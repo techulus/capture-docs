@@ -1,0 +1,11 @@
+{
+  "docs": {
+    "Get Started": ["get-started", "advanced-options", "caching"],
+    "Screenshot": ["screenshot-options"],
+    "PDF": ["pdf-options"],
+    "Content": ["content-options"]
+  },
+  "apis": {
+    "Batch APIs": ["batch-image", "batch-pdf"]
+  }
+}

@@ -1,0 +1,39 @@
+---
+id: screenshot-options
+title: Screenshot Request
+---
+
+## URL Format
+
+- `YOUR API KEY`, You'll get this from the console
+- `GENERATED HASH`, MD5 hash of full url including query string and API Secret, `md5(API SECRET + REQUEST URL & OPTIONS)`
+- `REQUEST URL & OPTIONS`, Target URL and query string that contains all of the options you want to set
+
+```html
+<img src="https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
+/10958f7757e331dcacf235340f0beb81/image?url=http://www.apple.com/&delay=2">
+```
+
+## Request Options
+
+| Query        	| Default value   	| Description                                                                             	|
+|--------------	|-----------------	|-----------------------------------------------------------------------------------------	|
+| url          	| -               	| URL-encoded target url                                                                  	|
+| vw           	| 1440            	| Viewport Width                                                                          	|
+| vh           	| 900             	| Viewport Height                                                                         	|
+| scaleFactor  	| 1               	| Specify screen scale factor (dpr)                                                       	|
+| top          	| 0               	| Top offset for clipping rectangle                                                       	|
+| left         	| 0               	| Left offset for clipping rectangle                                                      	|
+| width        	| Viewport Width  	| Clipping Width                                                                          	|
+| height       	| Viewport Height 	| Clipping Height                                                                         	|
+| waitFor      	| -               	| Capture will wait for this CSS selector to appear before taking screenshot              	|
+| waitForId    	| -               	| Capture will wait for this id to appear before taking screenshot                        	|
+| delay        	| 0               	| Delay in seconds before capturing                                                       	|
+| full         	| false           	| Set full as true to capture full page                                                   	|
+| transparent  	| false           	| Capture with a transparent background                                                   	|
+| userAgent    	| -               	| Custom User agent                                                                       	|
+| timestamp    	| -               	| This will force reload the image                                                        	|
+| fresh        	| false           	| Take a fresh screenshot instead of getting a cached version                             	|
+| resizeWidth  	| -               	| Resize the captured image to provided width, both resize height and width is mandatory  	|
+| resizeHeight 	| -               	| Resize the captured image to provided height, both resize height and width is mandatory 	|
+| fileName     	| -               	| File name used while saving to S3                                                       	|
