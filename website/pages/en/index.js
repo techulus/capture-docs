@@ -77,7 +77,7 @@ class HomeSplash extends React.Component {
     const language = this.props.language || '';
     return (
       <SplashContainer>
-        <img src={'http://localhost:3000/img/logo.png'} height={75}/>
+        <img src={'/img/logo.png'} height={75}/>
         <div className="inner">
           <ProjectTitle />
           <h3>Display screenshots anywhere with the best screenshot automation tool<br />
