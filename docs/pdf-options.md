@@ -9,7 +9,7 @@ title: PDF Request
 - `GENERATED HASH`, MD5 hash of full url including query string and API Secret, `md5(API SECRET + REQUEST URL & OPTIONS)`
 - `REQUEST URL & OPTIONS`, Target URL and query string that contains all of the options you want to set
 
-```
+```text
 https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 /10958f7757e331dcacf235340f0beb81/pdf?url=https://news.ycombinator.com/
 ```

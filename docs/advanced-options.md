@@ -12,13 +12,13 @@ We can add several additional paramaters to the request to customise the screens
 If you want to capture a full page screenshot of `http://www.apple.com/`, our request url will be:
 
 ```
-https://cdn.capture.techulus.in/sample_key/generated_hash/image?url=http://www.apple.com/&full=true
+https://cdn.capture.techulus.in/api_key/generated_hash/image?url=http://www.apple.com/&full=true
 ```
 
 To generate the hash all we need to do is to create an `MD5` hash of the API secret and URL including our parameters.
 
 ```javascript
-md5(sample_secret + 'url=http://www.apple.com/&full=true')
+md5(api_secret + 'url=http://www.apple.com/&full=true')
 ```
 
 ###  Capture a screenshot with custom dimensions
@@ -33,4 +33,27 @@ To generate the hash all we need to do is to create an `MD5` hash of the API sec
 
 ```javascript
 md5(sample_secret + 'url=http://www.apple.com/&vw=1920&vh=1080')
+```
+
+## Sample JavaScript Code
+
+```javascript
+// Include https://github.com/blueimp/JavaScript-MD5
+
+var API_URL = 'https://cdn.capture.techulus.in/';
+var your_api_key = 'API_KEY_FROM_CONSOLE';
+var your_api_secret = 'API_SECRET_FROM_CONSOLE'
+
+// Target URL
+var input_url = encodeURIComponent('http://techulus.in/');
+var options = 'full=true&scaleFactor=2'
+var full_url = input_url + '&' + options;
+var hash = md5(your_api_secret + 'url=' + full_url);
+
+// Image URL
+var result_img_url = API_URL + your_api_key + '/' + hash + '/image?url=' + full_url;
+// PDF URL
+var result_pdf_url = API_URL + your_api_key + '/' + hash + '/pdf?url=' + full_url;
+
+console.log(result_img_url, result_pdf_url);
 ```
