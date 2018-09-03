@@ -37,3 +37,4 @@ title: Screenshot Request
 | resizeWidth  	| -               	| Resize the captured image to provided width, both resize height and width is mandatory  	|
 | resizeHeight 	| -               	| Resize the captured image to provided height, both resize height and width is mandatory 	|
 | fileName     	| -               	| File name used while saving to S3                                                       	|
+| type         	| png              	| Specify screenshot type, can be either `jpeg` or `png`.                                  	|
