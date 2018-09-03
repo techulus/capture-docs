@@ -84,6 +84,11 @@ const siteConfig = {
   ogImage: 'https://capture.techulus.in/assets/paper_img/promo.png',
   twitterImage: 'https://capture.techulus.in/assets/paper_img/promo.png',
 
+  algolia: {
+    apiKey: 'ac7b51fb82921a920e3d37bb9e77b4ac',
+    indexName: 'capture_techulus',
+  },
+
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
