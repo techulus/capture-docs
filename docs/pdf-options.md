@@ -19,7 +19,23 @@ https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 | Query     	| Default value 	| Description                                                                                      	|
 |-----------	|---------------	|--------------------------------------------------------------------------------------------------	|
 | url       	| -             	| URL-encoded target url                                                                           	|
+| width       	| -             	| Paper width, accepts values labeled with units.                                                   |
+| height       	| -             	| Paper height, accepts values labeled with units.                                                  |
+| marginTop    	| -             	| Top margin, accepts values labeled with units.                                                  	|
+| marginRight  	| -             	| Right margin, accepts values labeled with units.                                                	|
+| marginBottom 	| -             	| Bottom margin, accepts values labeled with units.                                                	|
+| marginLeft  	| -             	| Left margin, accepts values labeled with units.                                                  	|
+| scale     	| 1             	| Scale of the webpage rendering                                                                	|
+| landscape    	| false            	| Paper orientation                                                                             	|
 | delay     	| 0             	| Delay in seconds before capturing                                                                	|
 | timestamp 	| -             	| This will force reload the image                                                                 	|
 | format    	| A4            	| Paper format. The format options are Letter, Legal, Tabloid, Ledger, A0, A1, A2, A3, A4, A5, A6. 	|
 | fileName  	| -             	| File name used while saving to S3                                                                	|
+
+## Custom Paper Size
+
+To capture using custom paper size, you can use the `width` and `height` options. Please note that both are mandatory for setting custom paper size. You can also customise the paper margins using `marginTop`, `marginRight`, `marginBottom` and `marginLeft` options. All four margins must be specified for setting custom margin.
+
+## Rate Limits
+
+All accounts are restricted at 5 requests / second, you can request an upgrade by **[contacting our support](https://techulus.freshdesk.com/support/home)**.

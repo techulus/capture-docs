@@ -38,3 +38,7 @@ title: Screenshot Request
 | resizeHeight 	| -               	| Resize the captured image to provided height, both resize height and width is mandatory 	|
 | fileName     	| -               	| File name used while saving to S3                                                       	|
 | type         	| png              	| Specify screenshot type, can be either `jpeg` or `png`.                                  	|
+
+## Rate Limits
+
+All accounts are restricted at 5 requests / second, you can request an upgrade by **[contacting our support](https://techulus.freshdesk.com/support/home)**.
