@@ -37,7 +37,11 @@ title: Screenshot Request
 | resizeWidth  	| -               	| Resize the captured image to provided width, both resize height and width is mandatory  	|
 | resizeHeight 	| -               	| Resize the captured image to provided height, both resize height and width is mandatory 	|
 | fileName     	| -               	| File name used while saving to S3                                                       	|
+| s3Acl	       	| -               	| The canned S3 ACL to apply to the object                                                	|
+| s3Redirect   	| false           	| Set as true to redirect response to uploaded S3 url                                     	|
 | type         	| png              	| Specify screenshot type, can be either `jpeg` or `png`.                                  	|
+
+Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
 ## Rate Limits
 
