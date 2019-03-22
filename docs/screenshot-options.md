@@ -37,7 +37,7 @@ title: Screenshot Request
 | resizeWidth  	| -               	| Resize the captured image to provided width, both resize height and width is mandatory  	|
 | resizeHeight 	| -               	| Resize the captured image to provided height, both resize height and width is mandatory 	|
 | fileName     	| -               	| File name used while saving to S3                                                       	|
-| s3Acl	       	| -               	| The canned S3 ACL to apply to the object                                                	|
+| s3Acl	       	| -               	| The canned S3 ACL to apply to S3 uploads                                                	|
 | s3Redirect   	| false           	| Set as true to redirect response to uploaded S3 url                                     	|
 | type         	| png              	| Specify screenshot type, can be either `jpeg` or `png`.                                  	|
 

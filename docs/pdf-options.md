@@ -31,6 +31,10 @@ https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 | timestamp 	| -             	| This will force reload the image                                                                 	|
 | format    	| A4            	| Paper format. The format options are Letter, Legal, Tabloid, Ledger, A0, A1, A2, A3, A4, A5, A6. 	|
 | fileName  	| -             	| File name used while saving to S3                                                                	|
+| s3Acl	    	| -             	| The canned S3 ACL to apply to S3 uploads                                                      	|
+| s3Redirect	| false         	| Set as true to redirect response to uploaded S3 url                                           	|
+
+Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
 ## Custom Paper Size
 
