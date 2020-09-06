@@ -31,6 +31,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'get-started', label: 'Docs'},
     {doc: 'batch-image', label: 'API'},
+    {doc: 'slack-integration', label: 'Integrations'},
     {page: 'help', label: 'Help'}
   ],
 

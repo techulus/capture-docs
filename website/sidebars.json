@@ -5,6 +5,9 @@
     "PDF": ["pdf-options"],
     "Content": ["content-options"]
   },
+  "Integrations": {
+    "Slack": ["slack-integration"]
+  },
   "apis": {
     "Batch APIs": ["batch-image", "batch-pdf"]
   }
