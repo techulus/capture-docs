@@ -10,3 +10,4 @@ A unique screenshot is any combination of url and parameters that you have not r
 
 ## How long do we cache?
 The maximum TTL for any request is 7 days, so after 7 days your cache screenshot / PDF will be deleted.
+Note. Maximum CDN bandwidth for cached requests is 10GB/day, you'll need an enterprise plan to upgrade this limit.
