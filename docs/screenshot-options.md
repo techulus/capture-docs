@@ -30,6 +30,8 @@ title: Screenshot Request
 | waitForId    	| -               	| Capture will wait for this id to appear before taking screenshot                        	|
 | delay        	| 0               	| Delay in seconds before capturing                                                       	|
 | full         	| false           	| Set full as true to capture full page                                                   	|
+| selector      | false           	| Take a screenshot of the element that matches this selector                               |
+| selectorId    | false           	| Take a screenshot of the element that matches this element ID                             |
 | transparent  	| false           	| Capture with a transparent background                                                   	|
 | userAgent    	| -               	| Custom User agent                                                                       	|
 | timestamp    	| -               	| This will force reload the image                                                        	|
