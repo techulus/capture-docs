@@ -1,0 +1,85 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "get-started",
+          "docs": [
+            {
+              "id": "advanced-options",
+              "path": "/docs/advanced-options",
+              "sidebar": "docs"
+            },
+            {
+              "id": "batch-image",
+              "path": "/docs/batch-image",
+              "sidebar": "apis"
+            },
+            {
+              "id": "batch-pdf",
+              "path": "/docs/batch-pdf",
+              "sidebar": "apis"
+            },
+            {
+              "id": "caching",
+              "path": "/docs/caching",
+              "sidebar": "docs"
+            },
+            {
+              "id": "content-options",
+              "path": "/docs/content-options",
+              "sidebar": "docs"
+            },
+            {
+              "id": "get-started",
+              "path": "/docs/get-started",
+              "sidebar": "docs"
+            },
+            {
+              "id": "pdf-options",
+              "path": "/docs/pdf-options",
+              "sidebar": "docs"
+            },
+            {
+              "id": "screenshot-options",
+              "path": "/docs/screenshot-options",
+              "sidebar": "docs"
+            },
+            {
+              "id": "slack-integration",
+              "path": "/docs/slack-integration",
+              "sidebar": "Integrations"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/docs/get-started",
+                "label": "get-started"
+              }
+            },
+            "Integrations": {
+              "link": {
+                "path": "/docs/slack-integration",
+                "label": "slack-integration"
+              }
+            },
+            "apis": {
+              "link": {
+                "path": "/docs/batch-image",
+                "label": "batch-image"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

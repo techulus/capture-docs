@@ -1,0 +1,29 @@
+{
+  "unversionedId": "screenshot-options",
+  "id": "screenshot-options",
+  "title": "Screenshot Request",
+  "description": "URL Format",
+  "source": "@site/../docs/screenshot-options.md",
+  "sourceDirName": ".",
+  "slug": "/screenshot-options",
+  "permalink": "/docs/screenshot-options",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "Oct 14, 2018",
+  "frontMatter": {
+    "id": "screenshot-options",
+    "title": "Screenshot Request"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Caching",
+    "permalink": "/docs/caching"
+  },
+  "next": {
+    "title": "PDF Request",
+    "permalink": "/docs/pdf-options"
+  }
+}

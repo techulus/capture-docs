@@ -1,0 +1,29 @@
+{
+  "unversionedId": "caching",
+  "id": "caching",
+  "title": "Caching",
+  "description": "We cache all your requests so that you don't have pay for the same request again.",
+  "source": "@site/../docs/caching.md",
+  "sourceDirName": ".",
+  "slug": "/caching",
+  "permalink": "/docs/caching",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "Oct 14, 2018",
+  "frontMatter": {
+    "id": "caching",
+    "title": "Caching"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Advanced options",
+    "permalink": "/docs/advanced-options"
+  },
+  "next": {
+    "title": "Screenshot Request",
+    "permalink": "/docs/screenshot-options"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "unversionedId": "slack-integration",
+  "id": "slack-integration",
+  "title": "Slack integration",
+  "description": "Setup",
+  "source": "@site/../docs/slack-integration.md",
+  "sourceDirName": ".",
+  "slug": "/slack-integration",
+  "permalink": "/docs/slack-integration",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "Oct 14, 2018",
+  "frontMatter": {
+    "id": "slack-integration",
+    "title": "Slack integration"
+  },
+  "sidebar": "Integrations"
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "content-options",
+  "id": "content-options",
+  "title": "Content Request",
+  "description": "The content API allows for capturing the page content in HTML (including the `` section). This is useful for capturing the content of a page that has a lot of JavaScript or other interactivity.",
+  "source": "@site/../docs/content-options.md",
+  "sourceDirName": ".",
+  "slug": "/content-options",
+  "permalink": "/docs/content-options",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "Oct 14, 2018",
+  "frontMatter": {
+    "id": "content-options",
+    "title": "Content Request"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "PDF Request",
+    "permalink": "/docs/pdf-options"
+  }
+}

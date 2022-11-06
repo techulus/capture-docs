@@ -3,7 +3,7 @@ id: content-options
 title: Content Request
 ---
 
-The content API allows for capturing the page content in HTML (including the <head> section). This is useful for capturing the content of a page that has a lot of JavaScript or other interactivity.
+The content API allows for capturing the page content in HTML (including the `<head>` section). This is useful for capturing the content of a page that has a lot of JavaScript or other interactivity.
 
 ## URL Format
 

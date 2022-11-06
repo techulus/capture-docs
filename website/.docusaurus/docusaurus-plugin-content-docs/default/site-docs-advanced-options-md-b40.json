@@ -1,0 +1,29 @@
+{
+  "unversionedId": "advanced-options",
+  "id": "advanced-options",
+  "title": "Advanced options",
+  "description": "Generating links with custom options",
+  "source": "@site/../docs/advanced-options.md",
+  "sourceDirName": ".",
+  "slug": "/advanced-options",
+  "permalink": "/docs/advanced-options",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "Oct 14, 2018",
+  "frontMatter": {
+    "id": "advanced-options",
+    "title": "Advanced options"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Make your first request",
+    "permalink": "/docs/get-started"
+  },
+  "next": {
+    "title": "Caching",
+    "permalink": "/docs/caching"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "batch-image",
+  "id": "batch-image",
+  "title": "Batch Image",
+  "description": "This API endpoint is for requesting batch processing of multiple image capture requests.",
+  "source": "@site/../docs/batch-image.md",
+  "sourceDirName": ".",
+  "slug": "/batch-image",
+  "permalink": "/docs/batch-image",
+  "draft": false,
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "Oct 14, 2018",
+  "frontMatter": {
+    "id": "batch-image",
+    "title": "Batch Image"
+  },
+  "sidebar": "apis",
+  "next": {
+    "title": "Batch PDF",
+    "permalink": "/docs/batch-pdf"
+  }
+}

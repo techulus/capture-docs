@@ -1,0 +1,95 @@
+{
+  "/__docusaurus/debug-1e1": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    }
+  },
+  "/__docusaurus/debug/config-328": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    }
+  },
+  "/__docusaurus/debug/content-362": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    },
+    "allContent": "allContent---docusaurus-debug-content-246-9aa"
+  },
+  "/__docusaurus/debug/globalData-b7b": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    }
+  },
+  "/__docusaurus/debug/metadata-5ec": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    }
+  },
+  "/__docusaurus/debug/registry-fa3": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    }
+  },
+  "/__docusaurus/debug/routes-276": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-3-e-1-2fa"
+    }
+  },
+  "/docs-1f6": {
+    "__comp": "__comp---theme-doc-page-1-be-9be",
+    "__context": {
+      "plugin": "plugin---docsd-1-b-2bc"
+    },
+    "versionMetadata": "versionMetadata---docs-935-398"
+  },
+  "/docs/advanced-options-130": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-advanced-optionsb-40-a7c"
+  },
+  "/docs/batch-image-298": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-batch-image-934-bca"
+  },
+  "/docs/batch-pdf-cd4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-batch-pdfa-68-028"
+  },
+  "/docs/caching-eca": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-cachingae-2-a61"
+  },
+  "/docs/content-options-a1c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-content-options-2-d-8-4c2"
+  },
+  "/docs/get-started-417": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-get-started-7-d-5-931"
+  },
+  "/docs/pdf-options-f62": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-pdf-optionsf-43-533"
+  },
+  "/docs/screenshot-options-678": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-screenshot-optionseda-93d"
+  },
+  "/docs/slack-integration-c57": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-slack-integration-6-ba-d9a"
+  },
+  "/-48f": {
+    "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",
+    "__context": {
+      "plugin": "plugin---345-a5e"
+    },
+    "config": "config---5-e-9-4f3"
+  }
+}

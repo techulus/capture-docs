@@ -1,0 +1,176 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "docs": [
+      {
+        "type": "category",
+        "label": "Get Started",
+        "items": [
+          {
+            "type": "link",
+            "label": "Make your first request",
+            "href": "/docs/get-started",
+            "docId": "get-started"
+          },
+          {
+            "type": "link",
+            "label": "Advanced options",
+            "href": "/docs/advanced-options",
+            "docId": "advanced-options"
+          },
+          {
+            "type": "link",
+            "label": "Caching",
+            "href": "/docs/caching",
+            "docId": "caching"
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Screenshot",
+        "items": [
+          {
+            "type": "link",
+            "label": "Screenshot Request",
+            "href": "/docs/screenshot-options",
+            "docId": "screenshot-options"
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "PDF",
+        "items": [
+          {
+            "type": "link",
+            "label": "PDF Request",
+            "href": "/docs/pdf-options",
+            "docId": "pdf-options"
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      },
+      {
+        "type": "category",
+        "label": "Content",
+        "items": [
+          {
+            "type": "link",
+            "label": "Content Request",
+            "href": "/docs/content-options",
+            "docId": "content-options"
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      }
+    ],
+    "Integrations": [
+      {
+        "type": "category",
+        "label": "Slack",
+        "items": [
+          {
+            "type": "link",
+            "label": "Slack integration",
+            "href": "/docs/slack-integration",
+            "docId": "slack-integration"
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      }
+    ],
+    "apis": [
+      {
+        "type": "category",
+        "label": "Batch APIs",
+        "items": [
+          {
+            "type": "link",
+            "label": "Batch Image",
+            "href": "/docs/batch-image",
+            "docId": "batch-image"
+          },
+          {
+            "type": "link",
+            "label": "Batch PDF",
+            "href": "/docs/batch-pdf",
+            "docId": "batch-pdf"
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      }
+    ]
+  },
+  "docs": {
+    "advanced-options": {
+      "id": "advanced-options",
+      "title": "Advanced options",
+      "description": "Generating links with custom options",
+      "sidebar": "docs"
+    },
+    "batch-image": {
+      "id": "batch-image",
+      "title": "Batch Image",
+      "description": "This API endpoint is for requesting batch processing of multiple image capture requests.",
+      "sidebar": "apis"
+    },
+    "batch-pdf": {
+      "id": "batch-pdf",
+      "title": "Batch PDF",
+      "description": "This API endpoint is for requesting batch processing of multiple PDF capture requests.",
+      "sidebar": "apis"
+    },
+    "caching": {
+      "id": "caching",
+      "title": "Caching",
+      "description": "We cache all your requests so that you don't have pay for the same request again.",
+      "sidebar": "docs"
+    },
+    "content-options": {
+      "id": "content-options",
+      "title": "Content Request",
+      "description": "The content API allows for capturing the page content in HTML (including the `` section). This is useful for capturing the content of a page that has a lot of JavaScript or other interactivity.",
+      "sidebar": "docs"
+    },
+    "get-started": {
+      "id": "get-started",
+      "title": "Get Started",
+      "description": "Welcome to Capture! This document will guide you through the process of making your first request.",
+      "sidebar": "docs"
+    },
+    "pdf-options": {
+      "id": "pdf-options",
+      "title": "PDF Request",
+      "description": "URL Format",
+      "sidebar": "docs"
+    },
+    "screenshot-options": {
+      "id": "screenshot-options",
+      "title": "Screenshot Request",
+      "description": "URL Format",
+      "sidebar": "docs"
+    },
+    "slack-integration": {
+      "id": "slack-integration",
+      "title": "Slack integration",
+      "description": "Setup",
+      "sidebar": "Integrations"
+    }
+  }
+}
