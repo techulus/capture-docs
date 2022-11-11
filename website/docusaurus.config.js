@@ -1,7 +1,7 @@
 module.exports={
   "title": "Capture",
   "tagline": "Screenshot and PDF automation tool",
-  "url": "https://capture.techulus.in",
+  "url": "https://docs.capture.techulus.in",
   "baseUrl": "/",
   "organizationName": "techulus",
   "projectName": "capture",
