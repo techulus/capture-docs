@@ -3,7 +3,8 @@
     "Get Started": ["get-started", "advanced-options", "caching"],
     "Screenshot": ["screenshot-options"],
     "PDF": ["pdf-options"],
-    "Content": ["content-options"]
+    "Content": ["content-options"],
+    "Metadata": ["metadata-options"]
   },
   "Integrations": {
     "Slack": ["slack-integration"]
