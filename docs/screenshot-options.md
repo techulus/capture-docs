@@ -44,7 +44,8 @@ title: Screenshot Request
 | s3Acl	       	        | -               	| The canned S3 ACL to apply to S3 uploads                                                	|
 | s3Redirect   	        | false           	| Set as true to redirect response to uploaded S3 url                                     	|
 | skipUpload   	        | false           	| Avoid uploading to S3 when this options is set as true                                   	|
-| type         	        | png              	| Specify screenshot type, can be either `jpeg` or `png`.                                  	|
+| type         	        | png              	| Specify screenshot type, can be either `jpeg`, `png` or `webp`.                           |
+| bestFormat         	| false           	| Use best image format, this will try to use webp for modern browsers, png for older ones  |
 
 Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
