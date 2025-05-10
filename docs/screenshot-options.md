@@ -32,6 +32,7 @@ title: Screenshot Request
 | full         	        | false           	| Set full as true to capture full page                                                   	|
 | darkMode              | false             | Take a dark mode screenshot                                                               |
 | blockCookieBanners    | false             | Dismiss cookie consent banners or popups before taking screenshot                         |
+| bypassBotDetection    | false             | Bypass bot detection / solve captchas                                                     |
 | selector              | false           	| Take a screenshot of the element that matches this selector                               |
 | selectorId            | false           	| Take a screenshot of the element that matches this element ID                             |
 | transparent  	        | false           	| Capture with a transparent background                                                   	|
