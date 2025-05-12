@@ -12,7 +12,7 @@ The metadata API allows for capturing the websites metadata in JSON format, prov
 - `REQUEST URL`, Target URL
 
 ```
-https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
+https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 /4d3e6e3d80d0ac77eaa72e87b1a31744/metadata?url=http://example.com/
 ```
 

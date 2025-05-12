@@ -6,7 +6,7 @@ title: Batch PDF
 This API endpoint is for requesting batch processing of multiple PDF capture requests.
 
 ## Endpoint
-POST `https://cdn.capture.techulus.in/batch-pdf/[your-api-key]`
+POST `https://cdn.capture.page/batch-pdf/[your-api-key]`
 
 ## Authentication
 All requests have to be authenticated using a signature header (x-req-signature)

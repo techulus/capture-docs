@@ -21,7 +21,7 @@ To capture a screenshot we need to generate a URL which has our authentication c
 For example, if you want to capture `http://www.apple.com/`, our request url will be:
 
 ```text
-https://cdn.capture.techulus.in/api_key/generated_hash/image?url=http://www.apple.com/
+https://cdn.capture.page/api_key/generated_hash/image?url=http://www.apple.com/
 ```
 
 To generate the hash all we need to do is to create an `MD5` hash of the API secret and URL
@@ -36,27 +36,27 @@ To display the screenshot you can use the link generated in the previous step as
 Using HTML tags:
 ```html
 <!-- IMG tag -->
-<img src="https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2" />
+<img src="https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2" />
 
 <!-- meta tag -->
-<meta property="og:image" content="https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2" />
+<meta property="og:image" content="https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2" />
 ```
 
 Using CSS:
 ```css
 .website-preview {
-    background-image: url(https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2);
+    background-image: url(https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2);
 }
 ```
 
 Using Markdown:
 ```md
-![](https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2)
+![](https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2)
 ```
 
 Here is a live demo:
 
-![](https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2)
+![](https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8/c87613a5bde6cdc09554e64c998cbffb/image?url=http://www.apple.com/&delay=2)
 
 Just treat the url as an image url and it will work anywhere you wish!
 
@@ -65,7 +65,7 @@ Just treat the url as an image url and it will work anywhere you wish!
 ```javascript
 // Include https://github.com/blueimp/JavaScript-MD5
 
-var API_URL = 'https://cdn.capture.techulus.in/';
+var API_URL = 'https://cdn.capture.page/';
 var your_api_key = 'API_KEY_FROM_CONSOLE';
 var your_api_secret = 'API_SECRET_FROM_CONSOLE'
 

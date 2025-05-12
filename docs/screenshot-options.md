@@ -10,9 +10,12 @@ title: Screenshot Request
 - `REQUEST URL & OPTIONS`, Target URL and query string that contains all of the options you want to set
 
 ```html
-<img src="https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
+<img src="https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 /10958f7757e331dcacf235340f0beb81/image?url=http://www.apple.com/&delay=2">
 ```
+
+> **Note:**
+> If your requests could take more than 60 seconds to complete due to delay or wait time, you should use the `edge` endpoint  (`edge.capture.page`) instead of `cdn` endpoint. Our CDN is optimized for fast response times and is not suitable for long running requests.
 
 ## Request Options
 
@@ -50,6 +53,3 @@ title: Screenshot Request
 
 Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
-## Rate Limits
-
-All accounts are restricted at 5 requests / second, you can request an upgrade by **[contacting our support](https://techulus.freshdesk.com/support/home)**.

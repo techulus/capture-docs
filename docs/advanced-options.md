@@ -12,7 +12,7 @@ We can add several additional paramaters to the request to customise the screens
 If you want to capture a full page screenshot of `http://www.apple.com/`, our request url will be:
 
 ```
-https://cdn.capture.techulus.in/api_key/generated_hash/image?url=http://www.apple.com/&full=true
+https://cdn.capture.page/api_key/generated_hash/image?url=http://www.apple.com/&full=true
 ```
 
 To generate the hash all we need to do is to create an `MD5` hash of the API secret and URL including our parameters.
@@ -26,7 +26,7 @@ md5(api_secret + 'url=http://www.apple.com/&full=true')
 If you want to capture a screenshot `http://www.apple.com/` with custom dimensions, we can make use of viewport width and height parameters, our request url will be:
 
 ```
-https://cdn.capture.techulus.in/sample_key/generated_hash/image?url=http://www.apple.com/&vw=1920&vh=1080
+https://cdn.capture.page/sample_key/generated_hash/image?url=http://www.apple.com/&vw=1920&vh=1080
 ```
 
 To generate the hash all we need to do is to create an `MD5` hash of the API secret and URL including our parameters.
@@ -40,7 +40,7 @@ md5(sample_secret + 'url=http://www.apple.com/&vw=1920&vh=1080')
 ```javascript
 // Include https://github.com/blueimp/JavaScript-MD5
 
-var API_URL = 'https://cdn.capture.techulus.in/';
+var API_URL = 'https://cdn.capture.page/';
 var your_api_key = 'API_KEY_FROM_CONSOLE';
 var your_api_secret = 'API_SECRET_FROM_CONSOLE'
 

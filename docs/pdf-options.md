@@ -10,7 +10,7 @@ title: PDF Request
 - `REQUEST URL & OPTIONS`, Target URL and query string that contains all of the options you want to set
 
 ```text
-https://cdn.capture.techulus.in/e1ab7054-dabc-48d6-a33f-c18038aac1c8
+https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 /10958f7757e331dcacf235340f0beb81/pdf?url=https://news.ycombinator.com/
 ```
 
@@ -40,6 +40,3 @@ Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK
 
 To capture using custom paper size, you can use the `width` and `height` options. Please note that both are mandatory for setting custom paper size. You can also customise the paper margins using `marginTop`, `marginRight`, `marginBottom` and `marginLeft` options. All four margins must be specified for setting custom margin.
 
-## Rate Limits
-
-All accounts are restricted at 5 requests / second, you can request an upgrade by **[contacting our support](https://techulus.freshdesk.com/support/home)**.

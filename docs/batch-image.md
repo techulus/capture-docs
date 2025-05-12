@@ -6,7 +6,7 @@ title: Batch Image
 This API endpoint is for requesting batch processing of multiple image capture requests.
 
 ## Endpoint
-POST `https://cdn.capture.techulus.in/batch-image/[your-api-key]`
+POST `https://cdn.capture.page/batch-image/[your-api-key]`
 
 ## Authentication
 All requests have to be authenticated using a signature header (x-req-signature)
