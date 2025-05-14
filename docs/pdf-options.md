@@ -19,6 +19,8 @@ https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 | Query     	| Default value 	| Description                                                                                      	|
 |-----------	|---------------	|--------------------------------------------------------------------------------------------------	|
 | url       	| -             	| URL-encoded target url                                                                           	|
+| httpAuth      | -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`              |
+| userAgent    	| -               	| Custom User agent (`base64url` encoded)                                         	                |
 | width       	| -             	| Paper width, accepts values labeled with units.                                                   |
 | height       	| -             	| Paper height, accepts values labeled with units.                                                  |
 | marginTop    	| -             	| Top margin, accepts values labeled with units.                                                  	|

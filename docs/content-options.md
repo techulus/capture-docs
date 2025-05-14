@@ -16,6 +16,17 @@ https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 /4d3e6e3d80d0ac77eaa72e87b1a31744/content?url=http://example.com/
 ```
 
+## Request Options
+
+| Query     	| Default value 	| Description                                                                                      	|
+|-----------	|---------------	|--------------------------------------------------------------------------------------------------	|
+| url       	| -             	| URL-encoded target url                                                                           	|
+| httpAuth      | -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`              |
+| userAgent    	| -               	| Custom User agent (`base64url` encoded)                                         	                |
+| delay     	| 0             	| Delay in seconds before capturing                                                                	|
+| waitFor      	| -               	| Capture will wait for this CSS selector to appear before taking content                       	|
+| waitForId    	| -               	| Capture will wait for this id to appear before taking content                                 	|
+
 ## Response
 
 The response will be a JSON in the following format:
@@ -23,6 +34,7 @@ The response will be a JSON in the following format:
 ```json
 {
 "success": true,
-"html": "<!DOCTYPE html><html><head>\n    <title>Example Domain</title>\n\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <style type=\"text/css\">\n    body {\n        background-color: #f0f0f2;\n        margin: 0;\n        padding: 0;\n        font-family: \"Open Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n        \n    }\n    div {\n        width: 600px;\n        margin: 5em auto;\n        padding: 50px;\n        background-color: #fff;\n        border-radius: 1em;\n    }\n    a:link, a:visited {\n        color: #38488f;\n        text-decoration: none;\n    }\n    @media (max-width: 700px) {\n        body {\n            background-color: #fff;\n        }\n        div {\n            width: auto;\n            margin: 0 auto;\n            border-radius: 0;\n            padding: 1em;\n        }\n    }\n    </style>    \n</head>\n\n<body>\n<div>\n    <h1>Example Domain</h1>\n    <p>This domain is established to be used for illustrative examples in documents. You may use this\n    domain in examples without prior coordination or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More information...</a></p>\n</div>\n\n\n</body></html>"
+"html": "<!DOCTYPE html><html><head>\n    <title>Example Domain</title>\n\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <style type=\"text/css\">\n    body {\n        background-color: #f0f0f2;\n        margin: 0;\n        padding: 0;\n        font-family: \"Open Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n        \n    }\n    div {\n        width: 600px;\n        margin: 5em auto;\n        padding: 50px;\n        background-color: #fff;\n        border-radius: 1em;\n    }\n    a:link, a:visited {\n        color: #38488f;\n        text-decoration: none;\n    }\n    @media (max-width: 700px) {\n        body {\n            background-color: #fff;\n        }\n        div {\n            width: auto;\n            margin: 0 auto;\n            border-radius: 0;\n            padding: 1em;\n        }\n    }\n    </style>    \n</head>\n\n<body>\n<div>\n    <h1>Example Domain</h1>\n    <p>This domain is established to be used for illustrative examples in documents. You may use this\n    domain in examples without prior coordination or asking for permission.</p>\n    <p><a href=\"http://www.iana.org/domains/example\">More information...</a></p>\n</div>\n\n\n</body></html>",
+"textContent": "Example Domain\nThis domain is established to be used for illustrative examples in documents. You may use this domain in examples without prior coordination or asking for permission."
 }
 ```

@@ -22,6 +22,7 @@ title: Screenshot Request
 | Query        	        | Default value   	| Description                                                                             	|
 |--------------	        |-----------------	|-----------------------------------------------------------------------------------------	|
 | url          	        | -               	| URL-encoded target url                                                                  	|
+| httpAuth           	| -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`      |
 | vw           	        | 1440            	| Viewport Width                                                                          	|
 | vh           	        | 900             	| Viewport Height                                                                         	|
 | scaleFactor  	        | 1               	| Specify screen scale factor (dpr)                                                       	|
@@ -35,11 +36,12 @@ title: Screenshot Request
 | full         	        | false           	| Set full as true to capture full page                                                   	|
 | darkMode              | false             | Take a dark mode screenshot                                                               |
 | blockCookieBanners    | false             | Dismiss cookie consent banners or popups before taking screenshot                         |
+| blockAds              | false             | Dismiss ads before taking screenshot                                                      |
 | bypassBotDetection    | false             | Bypass bot detection / solve captchas                                                     |
 | selector              | false           	| Take a screenshot of the element that matches this selector                               |
 | selectorId            | false           	| Take a screenshot of the element that matches this element ID                             |
 | transparent  	        | false           	| Capture with a transparent background                                                   	|
-| userAgent    	        | -               	| Custom User agent                                                                       	|
+| userAgent    	        | -               	| Custom User agent (`base64url` encoded)                                         	        |
 | timestamp    	        | -               	| This will force reload the image                                                        	|
 | fresh        	        | false           	| Take a fresh screenshot instead of getting a cached version                             	|
 | resizeWidth  	        | -               	| Resize the captured image to provided width, both resize height and width is mandatory  	|
