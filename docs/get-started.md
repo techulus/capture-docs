@@ -94,8 +94,8 @@ your_api_key = "API_KEY_FROM_CONSOLE"
 your_api_secret = "API_SECRET_FROM_CONSOLE"
 
 # Target URL
-input_url = urllib.parse.quote("http://techulus.xyz/", safe="")
-hash_input = your_api_secret + "url=" + input_url
+input_url = urllib.parse.quote("http://techulus.xyz", safe="")
+hash_input = your_api_secret + "url=" + input_url + "&delay=2" # Include request options here
 hash_value = hashlib.md5(hash_input.encode()).hexdigest()
 
 # Image URL
