@@ -65,12 +65,13 @@ Just treat the url as an image url and it will work anywhere you wish!
 ```javascript
 // Include https://github.com/blueimp/JavaScript-MD5
 
+# API configuration
 var API_URL = 'https://cdn.capture.page/';
 var your_api_key = 'API_KEY_FROM_CONSOLE';
 var your_api_secret = 'API_SECRET_FROM_CONSOLE'
 
 // Target URL
-var input_url = encodeURIComponent('http://techulus.in/');
+var input_url = encodeURIComponent('http://techulus.xyz');
 var hash = md5(your_api_secret + 'url=' + input_url);
 
 // Image URL
@@ -79,4 +80,33 @@ var result_img_url = API_URL + your_api_key + '/' + hash + '/image?url=' + input
 var result_pdf_url = API_URL + your_api_key + '/' + hash + '/pdf?url=' + input_url;
 
 console.log(result_img_url, result_pdf_url);
+```
+
+## Sample Python Code
+
+```python
+import hashlib
+import urllib.parse
+
+# API configuration
+API_URL = "https://cdn.capture.page/"
+your_api_key = "API_KEY_FROM_CONSOLE"
+your_api_secret = "API_SECRET_FROM_CONSOLE"
+
+# Target URL
+input_url = urllib.parse.quote("http://techulus.xyz/", safe="")
+hash_input = your_api_secret + "url=" + input_url
+hash_value = hashlib.md5(hash_input.encode()).hexdigest()
+
+# Image URL
+result_img_url = (
+    API_URL + your_api_key + "/" + hash_value + "/image?url=" + input_url
+)
+# PDF URL
+result_pdf_url = (
+    API_URL + your_api_key + "/" + hash_value + "/pdf?url=" + input_url
+)
+
+print(result_img_url)
+print(result_pdf_url)
 ```
