@@ -35,6 +35,7 @@ https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 | fileName  	| -             	| File name used while saving to S3                                                                	|
 | s3Acl	    	| -             	| The canned S3 ACL to apply to S3 uploads                                                      	|
 | s3Redirect	| false         	| Set as true to redirect response to uploaded S3 url                                           	|
+| printBackground	| false         	| When true, prints background graphics                                                          	|
 
 Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
