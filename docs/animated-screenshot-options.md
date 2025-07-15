@@ -98,13 +98,6 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 - **Codec**: VP9
 - **Best for**: Web-optimized video, smaller file sizes
 
-## Credit Billing
-
-Animated screenshots are billed based on duration:
-- **1 credit per second** of recording
-- Example: 15-second animation = 15 credits
-- Maximum duration: 30 seconds = 30 credits maximum
-
 ## Usage Examples
 
 ### Basic Animated Screenshot
