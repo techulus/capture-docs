@@ -1,16 +1,38 @@
 {
   "docs": {
-    "Get Started": ["get-started", "advanced-options", "caching"],
-    "Screenshot": ["screenshot-options"],
-    "PDF": ["pdf-options"],
-    "Content": ["content-options"],
-    "Metadata": ["metadata-options"]
+    "Get Started": [
+      "get-started",
+      "advanced-options",
+      "caching"
+    ],
+    "Screenshot": [
+      "screenshot-options"
+    ],
+    "Animated": [
+      "animated-screenshot-options"
+    ],
+    "PDF": [
+      "pdf-options"
+    ],
+    "Content": [
+      "content-options"
+    ],
+    "Metadata": [
+      "metadata-options"
+    ]
   },
   "Integrations": {
-    "Slack": ["slack-integration"],
-    "Zapier": ["zapier-integration"]
+    "Slack": [
+      "slack-integration"
+    ],
+    "Zapier": [
+      "zapier-integration"
+    ]
   },
   "apis": {
-    "Batch APIs": ["batch-image", "batch-pdf"]
+    "Batch APIs": [
+      "batch-image",
+      "batch-pdf"
+    ]
   }
 }
