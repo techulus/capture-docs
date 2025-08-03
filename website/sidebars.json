@@ -2,23 +2,51 @@
   "docs": {
     "Get Started": [
       "get-started",
+      "hash-generation",
       "advanced-options",
       "caching"
     ],
     "Screenshot": [
-      "screenshot-options"
+      "screenshot-options",
+      "screenshot-viewport",
+      "screenshot-capture-area",
+      "screenshot-timing",
+      "screenshot-page-enhancements",
+      "screenshot-device-emulation",
+      "screenshot-output-options",
+      "screenshot-storage",
+      "screenshot-authentication"
     ],
     "Animated": [
-      "animated-screenshot-options"
+      "animated-screenshot-options",
+      "animated-animation-settings",
+      "animated-viewport",
+      "animated-capture-behavior",
+      "animated-page-interaction",
+      "animated-authentication-storage"
     ],
     "PDF": [
-      "pdf-options"
+      "pdf-options",
+      "pdf-paper-size",
+      "pdf-margins",
+      "pdf-rendering",
+      "pdf-storage",
+      "pdf-authentication",
+      "pdf-timing"
     ],
     "Content": [
-      "content-options"
+      "content-options",
+      "content-timing",
+      "content-authentication"
     ],
     "Metadata": [
       "metadata-options"
+    ],
+    "Official SDKs": [
+      "sdk-overview",
+      "sdk-nodejs",
+      "sdk-go",
+      "sdk-rust"
     ]
   },
   "Integrations": {
