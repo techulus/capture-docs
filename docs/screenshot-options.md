@@ -42,6 +42,7 @@ title: Screenshot Request
 | selectorId            | false           	| Take a screenshot of the element that matches this element ID                             |
 | transparent  	        | false           	| Capture with a transparent background                                                   	|
 | userAgent    	        | -               	| Custom User agent (`base64url` encoded)                                         	        |
+| emulateDevice         | -               	| Emulate a specific device (e.g., `iphone_14`, `ipad`, `pixel_8`) - see device list below	|
 | timestamp    	        | -               	| This will force reload the image                                                        	|
 | fresh        	        | false           	| Take a fresh screenshot instead of getting a cached version                             	|
 | resizeWidth  	        | -               	| Resize the captured image to provided width, both resize height and width is mandatory  	|
@@ -54,4 +55,53 @@ title: Screenshot Request
 | bestFormat         	| false           	| Use best image format, this will try to use webp for modern browsers, png for older ones  |
 
 Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
+
+## Device Emulation
+
+The `emulateDevice` parameter allows you to capture screenshots as they would appear on specific mobile devices. When using device emulation, the viewport, user agent, and device scale factor are automatically set to match the selected device.
+
+### Available Devices
+
+To get the complete list of available devices with their specifications, use the devices endpoint:
+
+```bash
+curl "https://edge.capture.page/screenshot/devices"
+```
+
+**Sample Response:**
+```json
+{
+  "success": true,
+  "count": 120,
+  "devices": [
+    {
+      "name": "iPhone 15 Pro",
+      "key": "iphone_15_pro",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+      "viewport": {
+        "width": 393,
+        "height": 659,
+        "deviceScaleFactor": 3,
+        "isMobile": true,
+        "hasTouch": true,
+        "isLandscape": false
+      }
+    }
+  ]
+}
+```
+
+Use the `key` field from the response as the value for the `emulateDevice` parameter in your screenshot requests.
+
+### Usage Example
+
+```html
+<img src="https://cdn.capture.page/YOUR_API_KEY/HASH/image?url=https://example.com&emulateDevice=iphone_15_pro">
+```
+
+### Important Notes
+
+1. When `emulateDevice` is used, it overrides any manually set viewport parameters (`vw`, `vh`, `scaleFactor`)
+2. The device emulation includes proper touch events and mobile user agent strings
+3. If an invalid device key is provided, the API will fall back to using the default or manually specified viewport settings
 

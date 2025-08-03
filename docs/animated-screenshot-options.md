@@ -41,6 +41,7 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 | `vw` | number | `1440` | Viewport width in pixels |
 | `vh` | number | `900` | Viewport height in pixels |
 | `scaleFactor` | number | `1` | Device scale factor |
+| `emulateDevice` | string | - | Emulate a specific device (e.g., `iphone_14`, `ipad`, `pixel_8`) |
 
 ### Capture Behavior
 
@@ -120,6 +121,11 @@ https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&form
 https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&selector=.main-content&duration=8&format=mp4&fps=30
 ```
 
+### Mobile Device Recording
+```
+https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emulateDevice=iphone_15_pro&format=mp4&duration=10&scrolling=true
+```
+
 ## Technical Limitations
 
 - **Maximum Duration**: 30 seconds
@@ -152,3 +158,50 @@ https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&sele
    - Use `delay` parameter for dynamic content
    - Consider `waitFor` for specific elements
    - Enable ad blocking for faster loading
+
+## Device Emulation
+
+The `emulateDevice` parameter allows you to capture animated screenshots as they would appear on specific mobile devices. This is particularly useful for:
+- Testing responsive design behavior
+- Creating mobile app demos
+- Recording mobile-specific interactions
+
+### Available Devices
+
+To get the complete list of available devices with their specifications, use the devices endpoint:
+
+```bash
+curl "https://edge.capture.page/screenshot/devices"
+```
+
+**Sample Response:**
+```json
+{
+  "success": true,
+  "count": 120,
+  "devices": [
+    {
+      "name": "iPhone 15 Pro",
+      "key": "iphone_15_pro",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+      "viewport": {
+        "width": 393,
+        "height": 659,
+        "deviceScaleFactor": 3,
+        "isMobile": true,
+        "hasTouch": true,
+        "isLandscape": false
+      }
+    }
+  ]
+}
+```
+
+Use the `key` field from the response as the value for the `emulateDevice` parameter in your animated screenshot requests.
+
+### Device Emulation Notes
+
+1. When using `emulateDevice`, the viewport dimensions and scale factor are automatically set to match the selected device
+2. Touch events and mobile user agents are properly configured
+3. Scrolling animations work seamlessly with device emulation
+4. If an invalid device key is provided, the API falls back to default viewport settings
