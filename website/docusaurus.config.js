@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	title: "Capture",
 	tagline: "Screenshot and PDF automation tool",
 	url: "https://docs.capture.page",
