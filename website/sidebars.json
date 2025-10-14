@@ -50,6 +50,9 @@
     ]
   },
   "Integrations": {
+    "MCP": [
+      "mcp-integration"
+    ],
     "Slack": [
       "slack-integration"
     ],
