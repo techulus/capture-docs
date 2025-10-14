@@ -31,10 +31,6 @@ After running this command, restart your terminal session or start a new convers
 
 Add this configuration to your Claude Desktop config file:
 
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-
 ```json
 {
   "mcpServers": {
