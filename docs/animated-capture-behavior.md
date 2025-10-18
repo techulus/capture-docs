@@ -43,22 +43,22 @@ Control when and how the animated screenshot recording begins, what content to f
 
 ### Basic Delayed Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&delay=3&format=mp4&duration=10
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&delay=3&duration=10
 ```
 
 ### Wait for Content
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://spa-app.com&waitFor=.app-ready&format=mp4&duration=8
+https://cdn.capture.page/KEY/HASH/animated?url=https://spa-app.com&waitFor=.app-ready&duration=8
 ```
 
 ### Element-Focused Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&selector=.hero-section&format=mp4&duration=6
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&selector=.hero-section&duration=6
 ```
 
 ### Full Page Scroll Animation
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true&scrolling=true&format=mp4&duration=15
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true&scrolling=true&duration=15
 ```
 
 ## Timing Strategies
@@ -104,7 +104,7 @@ For pages loading external data:
 ### Hero Section Recording
 ```
 // Focus on landing page hero
-&selector=.hero-section&duration=8&format=mp4
+&selector=.hero-section&duration=8
 
 // Product showcase
 &selector=.product-gallery&duration=10&scrolling=true
@@ -113,7 +113,7 @@ For pages loading external data:
 ### Navigation Demonstrations
 ```
 // Header navigation
-&selector=header nav&duration=6&format=gif
+&selector=header nav&duration=6
 
 // Mobile menu animation
 &selector=.mobile-menu&delay=1&duration=5
@@ -205,7 +205,7 @@ For complex applications with multiple loading phases:
 &waitFor=.product-details-loaded&delay=2&duration=10
 
 // Image gallery animation
-&selector=.product-gallery&duration=8&format=mp4
+&selector=.product-gallery&duration=8
 
 // Reviews section
 &selector=.reviews-section&waitFor=.reviews-loaded&duration=6

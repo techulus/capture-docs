@@ -37,22 +37,22 @@ Configure the screen dimensions and device emulation for animated screenshots. T
 
 ### Desktop Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&vw=1920&vh=1080&format=mp4
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&vw=1920&vh=1080
 ```
 
 ### Mobile Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&emulateDevice=iphone_15_pro&format=mp4
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&emulateDevice=iphone_15_pro
 ```
 
 ### High-DPI Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&vw=1440&vh=900&scaleFactor=2&format=webm
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&vw=1440&vh=900&scaleFactor=2
 ```
 
 ### Tablet Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&emulateDevice=ipad_air&format=mp4&duration=10
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&emulateDevice=ipad_air&duration=10
 ```
 
 ## Common Viewport Sizes
@@ -154,8 +154,7 @@ const breakpoints = [
 ];
 
 breakpoints.forEach(bp => {
-  const url = `...&vw=${bp.vw}&vh=${bp.vh}&format=mp4&duration=8`;
-  // Record each breakpoint
+  const url = `...&vw=${bp.vw}&vh=${bp.vh}&duration=8`;
 });
 ```
 
@@ -163,13 +162,12 @@ breakpoints.forEach(bp => {
 ```javascript
 const devices = [
   'iphone_15_pro',
-  'ipad_air', 
+  'ipad_air',
   'desktop_hd'
 ];
 
 devices.forEach(device => {
-  const url = `...&emulateDevice=${device}&format=mp4&scrolling=true`;
-  // Record each device
+  const url = `...&emulateDevice=${device}&scrolling=true&duration=10`;
 });
 ```
 
@@ -178,19 +176,19 @@ devices.forEach(device => {
 #### Mobile App Landing
 ```
 // iOS perspective
-&emulateDevice=iphone_15_pro&format=mp4&duration=12&scrolling=true
+&emulateDevice=iphone_15_pro&duration=12&scrolling=true
 
-// Android perspective  
-&emulateDevice=pixel_8&format=mp4&duration=12&scrolling=true
+// Android perspective
+&emulateDevice=pixel_8&duration=12&scrolling=true
 ```
 
 #### Tablet App Demo
 ```
 // iPad demo
-&emulateDevice=ipad_pro_11&format=mp4&duration=15&fps=30
+&emulateDevice=ipad_pro_11&duration=15&fps=30
 
 // Android tablet
-&emulateDevice=galaxy_tab_s9&format=mp4&duration=15&fps=30
+&emulateDevice=galaxy_tab_s9&duration=15&fps=30
 ```
 
 ## Scale Factor Considerations
@@ -323,7 +321,7 @@ const contentViewports = {
 &emulateDevice=iphone_15_pro
 
 // E-commerce (mobile-first)
-&emulateDevice=pixel_8&format=mp4
+&emulateDevice=pixel_8&duration=10
 ```
 
 ### 2. Consider Platform Requirements
@@ -358,13 +356,13 @@ const testViewports = [
 
 ```
 // Quick previews
-&vw=1366&vh=768&scaleFactor=1&fps=24
+&vw=1366&vh=768&scaleFactor=1&fps=18
 
 // Production quality
 &vw=1920&vh=1080&scaleFactor=2&fps=30
 
 // Mobile optimization
-&emulateDevice=iphone_15&fps=30
+&emulateDevice=iphone_15&fps=24
 ```
 
 ## Troubleshooting

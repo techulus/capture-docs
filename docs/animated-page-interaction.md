@@ -35,22 +35,22 @@ Modify and enhance web pages before recording animated screenshots. These option
 
 ### Clean Professional Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://news-site.com&blockAds=true&blockCookieBanners=true&format=mp4&duration=10
+https://cdn.capture.page/KEY/HASH/animated?url=https://news-site.com&blockAds=true&blockCookieBanners=true&duration=10
 ```
 
 ### Dark Mode Animation
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&format=mp4&duration=8&scrolling=true
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&duration=8&scrolling=true
 ```
 
 ### Access Protected Content
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://protected-site.com&bypassBotDetection=true&format=mp4&duration=12
+https://cdn.capture.page/KEY/HASH/animated?url=https://protected-site.com&bypassBotDetection=true&duration=12
 ```
 
 ### Maximum Enhancement
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&blockAds=true&blockCookieBanners=true&format=webm&duration=15
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&blockAds=true&blockCookieBanners=true&duration=15
 ```
 
 ## Dark Mode Animation
@@ -66,16 +66,16 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 #### Brand Demonstrations
 ```
 // Show app in dark theme
-&darkMode=true&emulateDevice=iphone_15_pro&format=mp4&duration=10
+&darkMode=true&emulateDevice=iphone_15_pro&duration=10
 
 // Desktop dark mode
-&darkMode=true&vw=1440&vh=900&format=mp4&duration=12
+&darkMode=true&vw=1440&vh=900&duration=12
 ```
 
 #### Documentation Videos
 ```
 // Code editor dark theme
-&darkMode=true&selector=.code-editor&format=mp4&duration=8
+&darkMode=true&selector=.code-editor&duration=8
 
 // API documentation dark
 &darkMode=true&fullPage=true&scrolling=true&duration=15
@@ -84,7 +84,7 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 #### Accessibility Demos
 ```
 // High contrast demonstration
-&darkMode=true&format=gif&duration=6&fps=24
+&darkMode=true&duration=6&fps=24
 
 // Night mode comparison
 &darkMode=true&scrolling=true&duration=10
@@ -130,7 +130,7 @@ const darkModeChallenges = [
 #### News Site Animation
 ```
 // Clean news article
-&blockAds=true&selector=article&format=mp4&duration=8
+&blockAds=true&selector=article&duration=8
 
 // Full news page without ads
 &blockAds=true&fullPage=true&scrolling=true&duration=20
@@ -139,19 +139,19 @@ const darkModeChallenges = [
 #### Blog Content
 ```
 // Blog post focus
-&blockAds=true&selector=.post-content&format=gif&duration=10
+&blockAds=true&selector=.post-content&duration=10
 
 // Blog homepage clean
-&blockAds=true&vw=1440&vh=900&format=mp4&duration=12
+&blockAds=true&vw=1440&vh=900&duration=12
 ```
 
 #### E-commerce Clean
 ```
 // Product page without ads
-&blockAds=true&selector=.product-details&format=mp4&duration=8
+&blockAds=true&selector=.product-details&duration=8
 
 // Category page clean
-&blockAds=true&blockCookieBanners=true&format=mp4&duration=15
+&blockAds=true&blockCookieBanners=true&duration=15
 ```
 
 ## Cookie Banner Blocking
@@ -173,7 +173,7 @@ const darkModeChallenges = [
 #### Landing Page Recording
 ```
 // Clean landing page
-&blockCookieBanners=true&selector=.hero-section&format=mp4&duration=8
+&blockCookieBanners=true&selector=.hero-section&duration=8
 
 // Full landing page tour
 &blockCookieBanners=true&fullPage=true&scrolling=true&duration=15
@@ -182,10 +182,10 @@ const darkModeChallenges = [
 #### E-commerce Demo
 ```
 // Shopping experience
-&blockCookieBanners=true&blockAds=true&emulateDevice=iphone_15_pro&format=mp4&duration=12
+&blockCookieBanners=true&blockAds=true&emulateDevice=iphone_15_pro&duration=12
 
 // Product browsing
-&blockCookieBanners=true&selector=.product-grid&format=mp4&duration=10
+&blockCookieBanners=true&selector=.product-grid&duration=10
 ```
 
 ## Bot Detection Bypass
@@ -216,19 +216,19 @@ const protectedSites = [
 #### Corporate Sites
 ```
 // Company website demo
-&bypassBotDetection=true&blockCookieBanners=true&format=mp4&duration=10
+&bypassBotDetection=true&blockCookieBanners=true&duration=10
 
 // Product demo site
-&bypassBotDetection=true&selector=.product-demo&format=mp4&duration=12
+&bypassBotDetection=true&selector=.product-demo&duration=12
 ```
 
 #### SaaS Platforms
 ```
 // Platform overview
-&bypassBotDetection=true&delay=3&format=mp4&duration=15
+&bypassBotDetection=true&delay=3&duration=15
 
 // Feature demonstration
-&bypassBotDetection=true&selector=.features-section&format=webm&duration=10
+&bypassBotDetection=true&selector=.features-section&duration=10
 ```
 
 ## Combining Enhancements
@@ -236,13 +236,13 @@ const protectedSites = [
 ### Professional Demo Setup
 ```
 // Maximum clean setup
-&darkMode=true&blockAds=true&blockCookieBanners=true&bypassBotDetection=true&format=mp4&duration=12
+&darkMode=true&blockAds=true&blockCookieBanners=true&bypassBotDetection=true&duration=12
 
 // News site clean recording
-&blockAds=true&blockCookieBanners=true&selector=article&format=mp4&duration=8
+&blockAds=true&blockCookieBanners=true&selector=article&duration=8
 
 // E-commerce clean demo
-&blockAds=true&blockCookieBanners=true&emulateDevice=iphone_15_pro&format=mp4&duration=10
+&blockAds=true&blockCookieBanners=true&emulateDevice=iphone_15_pro&duration=10
 ```
 
 ### Content-Specific Combinations
@@ -250,28 +250,28 @@ const protectedSites = [
 #### Documentation Sites
 ```
 // Clean docs with dark mode
-&darkMode=true&blockCookieBanners=true&fullPage=true&scrolling=true&format=mp4&duration=20
+&darkMode=true&blockCookieBanners=true&fullPage=true&scrolling=true&duration=20
 
 // API docs clean
-&blockAds=true&blockCookieBanners=true&selector=.api-docs&format=mp4&duration=15
+&blockAds=true&blockCookieBanners=true&selector=.api-docs&duration=15
 ```
 
 #### Portfolio Sites
 ```
 // Clean portfolio showcase
-&blockAds=true&blockCookieBanners=true&fullPage=true&scrolling=true&format=mp4&duration=18
+&blockAds=true&blockCookieBanners=true&fullPage=true&scrolling=true&duration=18
 
 // Dark mode portfolio
-&darkMode=true&blockCookieBanners=true&format=mp4&duration=12
+&darkMode=true&blockCookieBanners=true&duration=12
 ```
 
 #### Product Demos
 ```
 // SaaS product clean demo
-&blockAds=true&blockCookieBanners=true&bypassBotDetection=true&format=mp4&duration=15
+&blockAds=true&blockCookieBanners=true&bypassBotDetection=true&duration=15
 
 // Mobile app landing
-&blockAds=true&blockCookieBanners=true&emulateDevice=iphone_15_pro&format=mp4&duration=10
+&blockAds=true&blockCookieBanners=true&emulateDevice=iphone_15_pro&duration=10
 ```
 
 ## Performance Considerations
@@ -286,29 +286,23 @@ Each enhancement adds processing time:
 ### Optimization Strategies
 
 ```javascript
-// Fast recording (minimal enhancements)
 const fastConfig = {
-  blockCookieBanners: true,  // Essential for clean look
-  duration: 8,
-  format: 'mp4'
+  blockCookieBanners: true,
+  duration: 8
 };
 
-// Quality recording (full enhancements)
 const qualityConfig = {
   darkMode: true,
   blockAds: true,
   blockCookieBanners: true,
   bypassBotDetection: true,
-  duration: 15,
-  format: 'webm'
+  duration: 15
 };
 
-// Balanced recording
 const balancedConfig = {
   blockAds: true,
   blockCookieBanners: true,
-  duration: 10,
-  format: 'mp4'
+  duration: 10
 };
 ```
 
@@ -318,13 +312,13 @@ const balancedConfig = {
 
 ```
 // Marketing videos
-&blockAds=true&blockCookieBanners=true&format=mp4
+&blockAds=true&blockCookieBanners=true
 
-// Developer documentation  
-&darkMode=true&blockCookieBanners=true&format=mp4
+// Developer documentation
+&darkMode=true&blockCookieBanners=true
 
 // Product demos
-&blockAds=true&blockCookieBanners=true&bypassBotDetection=true&format=mp4
+&blockAds=true&blockCookieBanners=true&bypassBotDetection=true
 ```
 
 ### 2. Test Enhancement Combinations

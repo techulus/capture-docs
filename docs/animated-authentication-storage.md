@@ -41,17 +41,17 @@ Configure authentication for accessing protected content and manage storage opti
 
 ### Basic Authentication
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://protected.site.com&httpAuth=YWRtaW46cGFzc3dvcmQ&format=mp4&duration=10
+https://cdn.capture.page/KEY/HASH/animated?url=https://protected.site.com&httpAuth=YWRtaW46cGFzc3dvcmQ&duration=10
 ```
 
 ### Custom File Storage
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fileName=homepage-demo&s3Acl=public-read&format=mp4
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fileName=homepage-demo&s3Acl=public-read
 ```
 
 ### Protected Content with Custom UA
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://internal.app.com&httpAuth=YWRtaW46c2VjcmV0&userAgent=Q29tcGFueUJvdA&format=webm&duration=15
+https://cdn.capture.page/KEY/HASH/animated?url=https://internal.app.com&httpAuth=YWRtaW46c2VjcmV0&userAgent=Q29tcGFueUJvdA&duration=15
 ```
 
 ## Authentication Use Cases
@@ -60,57 +60,48 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://internal.app.com&httpAuth
 
 #### Corporate Intranets
 ```javascript
-// Company intranet demo
 const corpAuth = encodeAuth('employee', 'intranet-pass');
-const url = `...&httpAuth=${corpAuth}&format=mp4&duration=12`;
+const url = `...&httpAuth=${corpAuth}&duration=12`;
 
-// HR portal animation
 const hrAuth = encodeAuth('hr-user', 'portal-access');
-const url = `...&httpAuth=${hrAuth}&selector=.dashboard&format=mp4`;
+const url = `...&httpAuth=${hrAuth}&selector=.dashboard&duration=10`;
 ```
 
 #### SaaS Platforms
 ```javascript
-// Admin dashboard demo
 const adminAuth = encodeAuth('admin', 'dashboard-demo');
-const url = `...&httpAuth=${adminAuth}&format=mp4&duration=15&scrolling=true`;
+const url = `...&httpAuth=${adminAuth}&duration=15&scrolling=true`;
 
-// Customer portal
 const customerAuth = encodeAuth('demo', 'customer-view');
-const url = `...&httpAuth=${customerAuth}&emulateDevice=iphone_15_pro&format=mp4`;
+const url = `...&httpAuth=${customerAuth}&emulateDevice=iphone_15_pro&duration=10`;
 ```
 
 ### Development Environments
 
 #### Staging Sites
 ```javascript
-// Staging environment
 const stagingAuth = encodeAuth('staging', 'preview-123');
-const url = `...&httpAuth=${stagingAuth}&format=webm&duration=20&fullPage=true`;
+const url = `...&httpAuth=${stagingAuth}&duration=20&fullPage=true`;
 
-// Feature branches
 const featureAuth = encodeAuth('feature', 'branch-demo');
-const url = `...&httpAuth=${featureAuth}&format=mp4&duration=10`;
+const url = `...&httpAuth=${featureAuth}&duration=10`;
 ```
 
 #### API Documentation
 ```javascript
-// Protected API docs
 const apiAuth = encodeAuth('api-demo', 'docs-access');
-const url = `...&httpAuth=${apiAuth}&selector=.api-explorer&format=mp4&duration=12`;
+const url = `...&httpAuth=${apiAuth}&selector=.api-explorer&duration=12`;
 ```
 
 ### Client Demonstrations
 
 #### Client Previews
 ```javascript
-// Client review portal
 const clientAuth = encodeAuth('client-abc', 'review-2024');
-const url = `...&httpAuth=${clientAuth}&format=mp4&duration=15&blockCookieBanners=true`;
+const url = `...&httpAuth=${clientAuth}&duration=15&blockCookieBanners=true`;
 
-// Proposal demonstrations
 const proposalAuth = encodeAuth('proposal', 'demo-access');
-const url = `...&httpAuth=${proposalAuth}&format=mp4&duration=18&darkMode=true`;
+const url = `...&httpAuth=${proposalAuth}&duration=18&darkMode=true`;
 ```
 
 ## Storage Strategies
@@ -119,15 +110,13 @@ const url = `...&httpAuth=${proposalAuth}&format=mp4&duration=18&darkMode=true`;
 
 #### By Project
 ```javascript
-// Project-based organization
 const projectFiles = {
   marketing: `marketing/homepage-demo-${date}`,
   product: `product/feature-animation-${version}`,
   tutorial: `tutorials/onboarding-flow-${step}`
 };
 
-// Usage
-&fileName=${projectFiles.marketing}&format=mp4
+&fileName=${projectFiles.marketing}
 ```
 
 #### By Client
@@ -158,25 +147,25 @@ const versionedFiles = {
 &fileName=public/marketing/product-demo&s3Acl=public-read&s3Redirect=true
 
 // Tutorial content
-&fileName=public/tutorials/getting-started&s3Acl=public-read&format=gif
+&fileName=public/tutorials/getting-started&s3Acl=public-read
 ```
 
 #### Private Client Work
 ```
 // Confidential client demos
-&fileName=private/client-demos/confidential-project&s3Acl=private&format=mp4
+&fileName=private/client-demos/confidential-project&s3Acl=private
 
 // Internal documentation
-&fileName=internal/docs/admin-workflow&s3Acl=bucket-owner-read&format=webm
+&fileName=internal/docs/admin-workflow&s3Acl=bucket-owner-read
 ```
 
 #### Team Sharing
 ```
 // Shared team resources
-&fileName=team/prototypes/new-feature&s3Acl=authenticated-read&format=mp4
+&fileName=team/prototypes/new-feature&s3Acl=authenticated-read
 
 // Development demos
-&fileName=dev/demos/api-integration&s3Acl=bucket-owner-read&format=mp4
+&fileName=dev/demos/api-integration&s3Acl=bucket-owner-read
 ```
 
 ## Authentication Encoding
@@ -227,7 +216,6 @@ const browserUserAgents = {
 
 #### CI/CD Integration
 ```javascript
-// Automated animation generation in pipeline
 async function generateReleaseAnimations(version) {
   const animations = [
     { name: `releases/v${version}/homepage`, url: 'https://app.com' },
@@ -239,7 +227,6 @@ async function generateReleaseAnimations(version) {
     await generateAnimation(animation.url, {
       fileName: animation.name,
       s3Acl: 'public-read',
-      format: 'mp4',
       duration: 12
     });
   }
@@ -248,12 +235,11 @@ async function generateReleaseAnimations(version) {
 
 #### Content Management
 ```javascript
-// Organized content creation
 async function createContentSeries(series, auth) {
   const configs = {
-    onboarding: { duration: 15, format: 'mp4' },
-    features: { duration: 10, format: 'webm' },
-    advanced: { duration: 20, format: 'mp4' }
+    onboarding: { duration: 15 },
+    features: { duration: 10 },
+    advanced: { duration: 20 }
   };
 
   for (const [type, config] of Object.entries(configs)) {
@@ -372,12 +358,11 @@ async function batchGenerateAnimations(requests, auth) {
 
 ### Storage Optimization
 ```javascript
-// Format selection for optimal storage
-function selectOptimalFormat(purpose, duration) {
-  if (purpose === 'social' && duration <= 6) return 'gif';
-  if (purpose === 'web' && duration <= 15) return 'webm';
-  if (purpose === 'archive' || duration > 15) return 'mp4';
-  return 'mp4'; // Default
+function selectOptimalDuration(purpose) {
+  if (purpose === 'social') return 8;
+  if (purpose === 'web') return 12;
+  if (purpose === 'documentation') return 15;
+  return 10;
 }
 ```
 

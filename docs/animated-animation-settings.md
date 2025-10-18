@@ -8,10 +8,10 @@ Configure the core animation properties for your animated screenshots, including
 ## Output Format
 
 ### Format (`format`)
-- **Default**: `mp4`
-- **Options**: `gif`, `mp4`, `webm`
+- **Default**: `gif`
+- **Options**: `gif` (only format supported)
 - **Example**: `format=gif`
-- **Description**: Output video/animation format
+- **Description**: Output animation format
 
 ## Animation Duration & Quality
 
@@ -23,9 +23,9 @@ Configure the core animation properties for your animated screenshots, including
 
 ### Frame Rate (`fps`)
 - **Default**: `30` frames per second
-- **Range**: 5-60 fps
+- **Range**: 5-30 fps
 - **Example**: `fps=24`
-- **Note**: GIF format limited to 30fps maximum
+- **Note**: Maximum 30fps for GIF format
 
 ## Scrolling Animation
 
@@ -51,85 +51,46 @@ Configure the core animation properties for your animated screenshots, including
 
 ### Basic GIF Animation
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&format=gif&duration=8
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=8
 ```
 
-### High-Quality MP4
+### High Frame Rate GIF
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&format=mp4&duration=15&fps=60
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=15&fps=30
 ```
 
 ### Scrolling GIF
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&format=gif&duration=12&scrolling=true&scrollSpeed=300
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=12&scrolling=true&scrollSpeed=300
 ```
 
-### Optimized WebM
+### Clean GIF with Scrollbars Hidden
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&format=webm&duration=10&fps=30&hideScrollbars=true
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=10&fps=30&hideScrollbars=true
 ```
 
-## Format Comparison
+## GIF Format
 
-### GIF Format
-```
-&format=gif
-```
-**Characteristics:**
-- Universal compatibility
-- Limited to 30fps
-- Larger file sizes
-- 256 color palette
+The animated screenshot endpoint produces GIF files with the following characteristics:
+
+**Technical Specifications:**
+- Universal compatibility across all platforms
+- Maximum 30fps frame rate
+- 256 color palette with dithering
 - Automatic looping
+- Optimized compression
 
 **Best for:**
 - Social media sharing
 - Email newsletters
-- Documentation GIFs
-- Quick previews
+- Documentation and tutorials
+- Website demonstrations
+- Quick previews and prototypes
 
-**File Size:** Largest
-**Quality:** Good for simple animations
-
-### MP4 Format
-```
-&format=mp4
-```
-**Characteristics:**
-- High compression efficiency
-- Up to 60fps support
-- Full color spectrum
-- H.264 codec with yuv420p
-- Excellent quality-to-size ratio
-
-**Best for:**
-- Video platforms
-- Website embedding
-- High-quality animations
-- Mobile playback
-
-**File Size:** Medium
-**Quality:** Excellent
-
-### WebM Format
-```
-&format=webm
-```
-**Characteristics:**
-- Modern web optimization
-- VP9 codec
-- Smallest file sizes
-- Up to 60fps support
-- Best compression
-
-**Best for:**
-- Modern web browsers
-- Bandwidth optimization
-- Progressive web apps
-- High-performance sites
-
-**File Size:** Smallest
-**Quality:** Excellent
+**Quality Optimization:**
+- Use 24-30fps for smooth animations
+- Lower fps (12-18) for smaller file sizes
+- Adjust duration to balance quality and file size
 
 ## Duration Guidelines
 
@@ -186,30 +147,23 @@ const docDurations = {
 - Most common choice
 - Good for most content
 
-#### High FPS (45-60)
+#### Maximum FPS (30)
 ```
-&fps=60
+&fps=30
 ```
-- Smoothest motion
-- Largest file sizes
-- Gaming/interactive demos
-- High-motion content
+- Smoothest GIF animation
+- Standard for most content
+- Good quality-to-size ratio
+- Recommended for dynamic content
 
-### Format-Specific FPS
+### Optimal FPS for GIF
 
 ```javascript
-// Optimal FPS by format
 const optimalFPS = {
-  gif: 24,    // Limited to 30fps max
-  mp4: 30,    // Standard video
-  webm: 30    // Balanced performance
-};
-
-// High-quality variants
-const highQualityFPS = {
-  gif: 30,    // Maximum for GIF
-  mp4: 60,    // Smooth motion
-  webm: 60    // Best quality
+  smooth: 30,      // Maximum fps, smoothest animation
+  balanced: 24,    // Good balance of quality and size
+  efficient: 18,   // Smaller file size, still smooth
+  minimal: 12      // Smallest files, adequate for simple content
 };
 ```
 
@@ -281,59 +235,53 @@ function calculateDuration(pageHeight, contentType) {
 }
 ```
 
-### Format Selection Logic
+### FPS Selection Logic
 
 ```javascript
-// Choose optimal format based on use case
-function selectFormat(useCase, quality, compatibility) {
-  if (compatibility === 'maximum') return 'gif';
-  if (quality === 'highest' && useCase === 'demo') return 'mp4';
-  if (useCase === 'web' && quality === 'good') return 'webm';
-  return 'mp4'; // Default
+function selectFPS(contentType, fileSize Priority) {
+  if (fileSizePriority === 'small') return 12;
+  if (contentType === 'documentation') return 18;
+  if (contentType === 'demo' || contentType === 'tutorial') return 24;
+  return 30;
 }
 ```
 
 ### Performance Optimization
 
 ```javascript
-// Balance quality vs file size
 const presets = {
-  preview: { format: 'gif', duration: 5, fps: 15 },
-  standard: { format: 'mp4', duration: 10, fps: 30 },
-  quality: { format: 'webm', duration: 15, fps: 60 },
-  social: { format: 'mp4', duration: 8, fps: 24 }
+  preview: { duration: 5, fps: 15 },
+  standard: { duration: 10, fps: 24 },
+  quality: { duration: 15, fps: 30 },
+  social: { duration: 8, fps: 24 }
 };
 ```
 
 ## Best Practices
 
-### 1. Match Format to Purpose
+### 1. Optimize for Purpose
 
 ```
 // Documentation
-&format=gif&duration=8&fps=24
+&duration=8&fps=24
 
 // Product demos
-&format=mp4&duration=12&fps=30
+&duration=12&fps=30
 
-// Web optimization
-&format=webm&duration=10&fps=30
+// Social media
+&duration=10&fps=24
 ```
 
 ### 2. Optimize for Platform
 
 ```javascript
-// Social media
 const socialSettings = {
-  format: 'mp4',
   duration: 8,
   fps: 30,
   scrolling: false
 };
 
-// Documentation
 const docSettings = {
-  format: 'gif',
   duration: 10,
   fps: 24,
   scrolling: true,
@@ -341,27 +289,26 @@ const docSettings = {
 };
 ```
 
-### 3. Consider Bandwidth
+### 3. Consider File Size
 
 ```
-// High bandwidth
-&format=mp4&duration=15&fps=60
+// Smaller file size
+&duration=6&fps=15
 
-// Limited bandwidth
-&format=webm&duration=8&fps=24
+// Balanced quality
+&duration=8&fps=24
 
-// Maximum compatibility
-&format=gif&duration=6&fps=15
+// Maximum quality
+&duration=15&fps=30
 ```
 
 ### 4. Test Different Settings
 
 ```javascript
-// A/B test configurations
 const testConfigs = [
-  { format: 'mp4', duration: 10, fps: 30 },
-  { format: 'webm', duration: 10, fps: 30 },
-  { format: 'gif', duration: 8, fps: 24 }
+  { duration: 10, fps: 30 },
+  { duration: 10, fps: 24 },
+  { duration: 8, fps: 18 }
 ];
 ```
 
@@ -369,20 +316,20 @@ const testConfigs = [
 
 ### Large File Sizes
 - Reduce duration
-- Lower frame rate
-- Use WebM format
+- Lower frame rate (try 18 or 24 fps)
 - Disable scrolling for static content
+- Reduce viewport dimensions
 
 ### Poor Quality
-- Increase frame rate
-- Use MP4 or WebM format
+- Increase frame rate to 30fps
 - Ensure adequate duration
 - Check source content quality
+- Verify content has sufficient contrast
 
-### Compatibility Issues
-- Use GIF for maximum compatibility
-- Test across target browsers
-- Consider fallback formats
+### Playback Issues
+- Ensure GIF players support looping
+- Test file size limits on target platforms
+- Verify browser compatibility
 
 ## See Also
 
