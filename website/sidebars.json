@@ -41,12 +41,6 @@
     ],
     "Metadata": [
       "metadata-options"
-    ],
-    "Official SDKs": [
-      "sdk-overview",
-      "sdk-nodejs",
-      "sdk-go",
-      "sdk-rust"
     ]
   },
   "Integrations": {

@@ -28,16 +28,14 @@ Control when and how the animated screenshot recording begins, what content to f
 ## Content Selection
 
 ### Element Selector (`selector`)
-- **Default**: None (full page)
+- **Default**: None (full viewport)
 - **Description**: Record only specific element
 - **Example**: `selector=.main-content`
-- **Note**: Creates focused animation of selected area
 
 ### Full Page Recording (`fullPage`)
 - **Default**: `false`
 - **Description**: Record entire page height
 - **Example**: `fullPage=true`
-- **Works with**: Scrolling animations
 
 ## Usage Examples
 
@@ -56,9 +54,9 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://spa-app.com&waitFor=.app-
 https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&selector=.hero-section&duration=6
 ```
 
-### Full Page Scroll Animation
+### Full Page Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true&scrolling=true&duration=15
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true&duration=15
 ```
 
 ## Timing Strategies
@@ -66,329 +64,107 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true
 ### Static Content
 For pages with minimal dynamic behavior:
 ```
-// Quick start for static sites
-&delay=1
-
-// No delay for simple pages
-&delay=0
+&delay=1  // Quick start for static sites
 ```
 
 ### Dynamic Content
 For JavaScript-heavy applications:
 ```
-// SPA applications
-&delay=3&waitFor=.app-mounted
-
-// Data-driven dashboards
-&delay=5&waitFor=.charts-loaded
-
-// E-commerce pages
-&delay=2&waitFor=.product-images-loaded
+&delay=3&waitFor=.app-mounted  // SPA applications
+&delay=5&waitFor=.charts-loaded  // Data-driven dashboards
 ```
 
 ### API-Dependent Content
 For pages loading external data:
 ```
-// Wait for API responses
 &delay=4&waitFor=.api-content-ready
-
-// Real-time data
 &delay=6&waitFor=[data-loaded="true"]
-
-// Third-party widgets
-&delay=5&waitFor=.widgets-initialized
 ```
 
 ## Content Selection Strategies
 
-### Hero Section Recording
+### Focus on Specific Sections
 ```
-// Focus on landing page hero
-&selector=.hero-section&duration=8
-
-// Product showcase
-&selector=.product-gallery&duration=10&scrolling=true
-```
-
-### Navigation Demonstrations
-```
-// Header navigation
-&selector=header nav&duration=6
-
-// Mobile menu animation
-&selector=.mobile-menu&delay=1&duration=5
-```
-
-### Feature Highlights
-```
-// Specific features
-&selector=.features-section&duration=12&scrolling=true
-
-// Interactive components
-&selector=.interactive-demo&delay=2&duration=10
+&selector=.hero-section&duration=8  // Landing page hero
+&selector=.product-gallery&duration=10  // Product showcase
+&selector=header nav&duration=6  // Navigation
 ```
 
 ### Dashboard Recording
 ```
-// Main dashboard area
 &selector=.dashboard-content&duration=15&waitFor=.data-loaded
-
-// Specific charts
-&selector=.charts-container&delay=3&duration=8
 ```
 
-## Full Page Recording
-
-### Long Form Content
+### Full Page
 ```
-// Blog posts
-&fullPage=true&scrolling=true&duration=20&scrollSpeed=200
-
-// Documentation pages
-&fullPage=true&scrolling=true&duration=25&scrollSpeed=150
-
-// Product catalogs
-&fullPage=true&scrolling=true&duration=30&scrollSpeed=300
+&fullPage=true&duration=20  // Complete page capture
 ```
 
-### Landing Pages
-```
-// Complete landing page tour
-&fullPage=true&scrolling=true&duration=15&scrollSpeed=250
-
-// Services overview
-&fullPage=true&scrolling=true&duration=18&scrollSpeed=200
-```
-
-## Advanced Behavior Patterns
-
-### Progressive Loading
-For content that loads in stages:
-```javascript
-// Wait for critical content first
-&waitFor=.critical-content&delay=2
-
-// Then capture progressive enhancement
-&duration=12&scrolling=true
-```
-
-### Interactive Demos
-For demonstrating user interactions:
-```
-// Wait for interactive elements
-&waitFor=.interactive-ready&delay=3&duration=10
-
-// Focus on interaction area
-&selector=.demo-area&duration=8
-```
-
-### Multi-Stage Applications
-For complex applications with multiple loading phases:
-```
-// Phase 1: App initialization
-&waitFor=.app-initialized
-
-// Phase 2: Data loading
-&waitFor=.data-ready
-
-// Phase 3: UI complete
-&waitFor=.ui-complete&duration=15
-```
-
-## Platform-Specific Patterns
+## Common Use Cases
 
 ### E-commerce Sites
-
-#### Product Pages
 ```
-// Product details loading
+// Product details
 &waitFor=.product-details-loaded&delay=2&duration=10
 
-// Image gallery animation
-&selector=.product-gallery&duration=8
-
-// Reviews section
-&selector=.reviews-section&waitFor=.reviews-loaded&duration=6
-```
-
-#### Category Pages
-```
-// Product grid loading
-&waitFor=.product-grid-complete&fullPage=true&scrolling=true&duration=20
-
-// Filter demonstrations
-&selector=.filters-container&delay=1&duration=8
+// Product grid
+&waitFor=.product-grid-complete&fullPage=true&duration=20
 ```
 
 ### Documentation Sites
-
-#### API Documentation
 ```
-// Code examples loading
+// Code examples
 &waitFor=.code-examples-ready&selector=.api-docs&duration=12
 
-// Interactive API explorer
-&selector=.api-explorer&waitFor=.explorer-ready&duration=15
-```
-
-#### Tutorials
-```
-// Step-by-step content
-&fullPage=true&scrolling=true&waitFor=.tutorial-loaded&duration=25
-
-// Code playground
-&selector=.code-playground&delay=3&duration=10
+// Full tutorial
+&fullPage=true&waitFor=.tutorial-loaded&duration=25
 ```
 
 ### SaaS Dashboards
-
-#### Analytics Dashboards
 ```
 // Charts loading
 &waitFor=.charts-rendered&delay=4&duration=12
-
-// Data tables
-&selector=.data-tables&waitFor=.table-ready&duration=8
 
 // Real-time metrics
 &waitFor=.metrics-live&delay=5&duration=15
 ```
 
-## Optimization Techniques
-
-### Efficient Waiting
-```javascript
-// Use most reliable indicator
-// ✅ Good - Specific and reliable
-&waitFor=.main-content[data-loaded="complete"]
-
-// ❌ Avoid - Generic or unreliable
-&waitFor=div
-&waitFor=.loading  // Might disappear quickly
-```
-
-### Smart Element Selection
-```javascript
-// Choose stable, well-defined areas
-// ✅ Good selections
-&selector=main.content
-&selector=.product-showcase
-&selector=#dashboard-main
-
-// ❌ Avoid problematic selectors
-&selector=.ad-container    // May be blocked
-&selector=.social-widget   // External dependencies
-```
-
-### Performance Balancing
-```javascript
-// Balance wait time vs recording time
-function optimizeRecording(contentType) {
-  const configs = {
-    static: { delay: 1, duration: 6 },
-    dynamic: { delay: 3, duration: 10 },
-    complex: { delay: 5, duration: 15 }
-  };
-  
-  return configs[contentType] || configs.dynamic;
-}
-```
-
-## Common Patterns
-
-### Loading States
-```
-// Skip loading spinners
-&waitFor=body:not(.loading)&delay=1
-
-// Wait for content to replace skeleton
-&waitFor=.content:not(.skeleton)&delay=2
-
-// Ensure data is populated
-&waitFor=[data-state="loaded"]&delay=1
-```
-
-### Animation Sequences
-```
-// CSS animations complete
-&delay=3&duration=8  // Allow entrance animations
-
-// JavaScript animations
-&waitFor=.animations-complete&duration=10
-
-// Transition states
-&waitFor=.transition-settled&delay=2
-```
-
-### Interactive Elements
-```
-// Form initialization
-&waitFor=.form-ready&selector=.contact-form&duration=6
-
-// Map loading
-&waitFor=.map-loaded&selector=.map-container&duration=8
-
-// Chat widget
-&waitFor=.chat-ready&selector=.chat-widget&duration=5
-```
-
 ## Best Practices
 
 ### 1. Minimize Wait Times
+Use the shortest reliable wait time instead of arbitrary delays:
 ```
-// Use shortest reliable wait
-&delay=2  // Instead of arbitrary &delay=10
-
-// Specific element waiting
+&delay=2  // Instead of &delay=10
 &waitFor=.critical-content  // Instead of general delay
 ```
 
 ### 2. Choose Appropriate Duration
-```javascript
-// Match duration to content
-const durations = {
-  hero: 6,           // Quick showcase
-  feature: 10,       // Feature demonstration  
-  tutorial: 15,      // Step-by-step
-  fullPage: 20       // Complete page tour
-};
+```
+hero: 6s           // Quick showcase
+feature: 10s       // Feature demonstration
+tutorial: 15s      // Step-by-step
+fullPage: 20s      // Complete page tour
 ```
 
 ### 3. Test Wait Conditions
+Verify wait conditions work in browser DevTools:
 ```javascript
-// Verify wait conditions work
-// Test in browser DevTools first
 document.querySelector('.your-wait-selector');
-
-// Monitor element appearance timing
-console.time('element-load');
-// ... wait for element
-console.timeEnd('element-load');
 ```
 
-### 4. Fallback Strategies
-```javascript
-// Implement graceful degradation
-function buildCaptureUrl(url, options) {
-  let captureUrl = url;
-  
-  if (options.waitFor) {
-    captureUrl += `&waitFor=${options.waitFor}`;
-  }
-  
-  // Always include a reasonable delay as fallback
-  const safeDelay = options.delay || 2;
-  captureUrl += `&delay=${safeDelay}`;
-  
-  return captureUrl;
-}
+### 4. Smart Element Selection
+Choose stable, well-defined areas:
+```
+✅ Good: &selector=main.content
+✅ Good: &selector=.product-showcase
+❌ Avoid: &selector=.ad-container  // May be blocked
 ```
 
 ## Troubleshooting
 
 ### Recording Starts Too Early
 - Increase delay time
-- Use waitFor with specific selector
+- Use `waitFor` with specific selector
 - Check for dynamic content loading
 
 ### Element Not Found
@@ -397,14 +173,9 @@ function buildCaptureUrl(url, options) {
 - Ensure element isn't removed after appearing
 
 ### Partial Content Recorded
-- Use fullPage=true for complete content
+- Use `fullPage=true` for complete content
 - Increase duration for long content
-- Enable scrolling for off-screen content
-
-### Poor Animation Quality
-- Ensure adequate delay before recording
-- Wait for animations to settle
-- Check for conflicting CSS transitions
+- Ensure selector targets the right element
 
 ## See Also
 
