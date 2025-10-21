@@ -11,7 +11,7 @@ Control when the HTML content is captured by implementing delays and waiting str
 - **Default**: `0` seconds
 - **Description**: Fixed delay before capturing page content
 - **Range**: 0-60 seconds
-- **Example**: `delay=3` waits 3 seconds before capture
+- **Example**: `delay=3`
 
 ### Wait for CSS Selector (`waitFor`)
 - **Default**: None
@@ -28,7 +28,6 @@ Control when the HTML content is captured by implementing delays and waiting str
 ## Usage Examples
 
 ### Simple Delay
-Wait for page to settle:
 ```
 https://cdn.capture.page/KEY/HASH/content?url=https://example.com&delay=2
 ```
@@ -46,11 +45,9 @@ https://cdn.capture.page/KEY/HASH/content?url=https://example.com&waitForId=arti
 ## Common Scenarios
 
 ### Single Page Applications (SPAs)
-
-#### React Applications
 ```
-// Wait for React app to mount
-&waitFor=.react-app-loaded
+// Wait for app to mount
+&waitFor=.app-loaded
 
 // Wait for specific component
 &waitFor=[data-testid="main-content"]
@@ -59,385 +56,85 @@ https://cdn.capture.page/KEY/HASH/content?url=https://example.com&waitForId=arti
 &waitFor=.route-loaded
 ```
 
-#### Vue.js Applications
-```
-// Wait for Vue app initialization
-&waitFor=#app.vue-mounted
-
-// Wait for component hydration
-&waitFor=.vue-component[data-loaded]
-
-// Wait for Vuex state populated
-&waitFor=[data-store-ready="true"]
-```
-
-#### Angular Applications
-```
-// Wait for Angular bootstrap
-&waitFor=app-root>*
-
-// Wait for component initialization
-&waitFor=.ng-star-inserted
-
-// Wait for HTTP requests complete
-&waitFor=[data-loading="false"]
-```
-
 ### API-Driven Content
-
-#### REST API Loading
 ```
 // Wait for data to load
 &waitFor=.data-loaded
 
-// Wait for specific API response
+// Wait for API response
 &waitFor=.api-content:not(.loading)
 
-// Wait for error states to clear
-&waitFor=body:not(.api-error)
+// Wait for specific data attribute
+&waitFor=[data-loaded="true"]
 ```
 
-#### GraphQL Content
+### E-commerce Sites
 ```
-// Wait for GraphQL query completion
-&waitFor=[data-apollo-loading="false"]
+// Wait for product data
+&waitFor=.product-details-loaded
 
-// Wait for specific data
-&waitFor=.graphql-data-ready
-
-// Wait for subscription updates
-&waitFor=.subscription-active
+// Wait for cart initialization
+&waitFor=.cart-ready
 ```
 
 ### Content Management Systems
-
-#### WordPress
 ```
 // Wait for dynamic widgets
 &waitFor=.widget-loaded
 
 // Wait for AJAX content
 &waitFor=.ajax-content
-
-// Wait for lazy-loaded posts
-&waitFor=.post-list-complete
 ```
 
-#### Drupal
+## Combining Timing Parameters
+
+### Multiple Strategies
 ```
-// Wait for views to load
-&waitFor=.view-loaded
+// Delay + waitFor for extra reliability
+&delay=2&waitFor=.content-ready
 
-// Wait for dynamic blocks
-&waitFor=.block-content
-```
-
-### E-commerce Platforms
-
-#### Shopify
-```
-// Wait for product data
-&waitFor=.product-details-loaded
-
-// Wait for cart to initialize
-&waitFor=.cart-ready
-
-// Wait for recommendations
-&waitFor=.product-recommendations
-```
-
-#### WooCommerce
-```
-// Wait for product gallery
-&waitFor=.woocommerce-product-gallery
-
-// Wait for variation data
-&waitFor=.variation-data-loaded
-```
-
-## Advanced Waiting Strategies
-
-### Multiple Conditions
-
-```javascript
-// Wait for multiple elements (server-side logic)
-const conditions = [
-  '.header-loaded',
-  '.content-ready', 
-  '.footer-initialized'
-];
-
-// Use the last loading element
-&waitFor=.footer-initialized
-```
-
-### Content-Specific Waiting
-
-#### Text Content
-```
-// Wait for specific text to appear
-&waitFor=h1:contains("Welcome")
-
-// Wait for non-empty content
-&waitFor=.article-body:not(:empty)
-
-// Wait for minimum content length
-&waitFor=.content[data-min-length="true"]
-```
-
-#### Media Content
-```
-// Wait for images to load
-&waitFor=.image-gallery.loaded
-
-// Wait for videos to initialize
-&waitFor=.video-player.ready
-
-// Wait for iframes to load
-&waitFor=.embedded-content.loaded
-```
-
-#### Form Content
-```
-// Wait for form initialization
-&waitFor=.form-ready
-
-// Wait for validation setup
-&waitFor=.form-validated
-
-// Wait for dynamic fields
-&waitFor=.conditional-fields-loaded
-```
-
-### Performance Optimization
-
-#### Minimize Wait Times
-```javascript
-// Use most specific indicator
-// ✅ Good
-&waitFor=.main-content.fully-loaded
-
-// ❌ Avoid waiting for slow elements
-&waitFor=.slow-loading-widget
-```
-
-#### Progressive Enhancement
-```javascript
-// Wait for core content first
-&waitFor=.core-content
-
-// Don't wait for optional enhancements
-// .social-widgets, .ads, .analytics
+// waitFor with fallback delay
+&waitFor=.data-loaded&delay=5
 ```
 
 ## Best Practices
 
-### 1. Choose Optimal Selectors
+### 1. Choose the Right Strategy
+- **Static sites**: No delay needed or minimal delay (1-2s)
+- **Dynamic sites**: Use `waitFor` for specific elements
+- **Slow APIs**: Combine `delay` with `waitFor`
 
+### 2. Use Specific Selectors
 ```
-// Specific and reliable
-&waitFor=.article-content[data-loaded="true"]
-
-// Avoid generic selectors
-&waitFor=div  // Too generic
-
-// Use semantic indicators
-&waitFor=main.content-ready
-```
-
-### 2. Combine Strategies
-
-```
-// Initial delay + element wait
-&delay=1&waitFor=.app-initialized
-
-// Multiple element strategy
-&waitFor=.critical-content.loaded
+✅ Good: &waitFor=.content[data-loaded="true"]
+✅ Good: &waitFor=#main-article
+❌ Avoid: &waitFor=div
+❌ Avoid: &waitFor=.loading
 ```
 
-### 3. Handle Different Content Types
+### 3. Set Reasonable Delays
+- Keep delays under 10 seconds when possible
+- Use `waitFor` instead of long delays
+- Test to find minimum required wait time
 
-```javascript
-// Dynamic content strategy
-function getWaitStrategy(contentType) {
-  switch(contentType) {
-    case 'spa':
-      return '&waitFor=.app-ready&delay=2';
-    case 'cms':
-      return '&waitFor=.content-loaded&delay=1';
-    case 'ecommerce':
-      return '&waitFor=.product-data&delay=3';
-    default:
-      return '&delay=2';
-  }
-}
-```
+## Troubleshooting
 
-## Debugging Wait Conditions
+### Content Not Loading
+- Increase delay time
+- Use more specific `waitFor` selector
+- Check if element appears in browser DevTools
 
-### Element Not Found
+### Timeout Errors
+- Verify selector exists and is visible
+- Check if element is in an iframe
+- Ensure page doesn't have JavaScript errors
 
-If `waitFor` times out:
-
-1. **Verify selector in browser DevTools**
-   ```javascript
-   // Test in browser console
-   document.querySelector('.your-selector')
-   ```
-
-2. **Check element timing**
-   ```javascript
-   // Monitor element appearance
-   const observer = new MutationObserver(() => {
-     if (document.querySelector('.target-element')) {
-       console.log('Element appeared at:', Date.now());
-     }
-   });
-   ```
-
-3. **Element lifecycle issues**
-   - Element appears then disappears
-   - Element is in iframe
-   - Element requires interaction
-
-### Fallback Strategies
-
-```javascript
-// Implement graceful degradation
-function buildContentUrl(baseUrl, options) {
-  let url = baseUrl;
-  
-  // Try specific wait condition first
-  if (options.waitFor) {
-    url += `&waitFor=${options.waitFor}`;
-  } else if (options.delay) {
-    // Fallback to delay
-    url += `&delay=${options.delay}`;
-  } else {
-    // Default delay
-    url += '&delay=2';
-  }
-  
-  return url;
-}
-```
-
-## Content Extraction Patterns
-
-### Structured Content
-
-```
-// News articles
-&waitFor=article.post-content
-
-// Blog posts  
-&waitFor=.entry-content.loaded
-
-// Documentation
-&waitFor=.docs-content[data-ready]
-```
-
-### Dynamic Lists
-
-```
-// Infinite scroll completion
-&waitFor=.list-complete
-
-// Paginated content
-&waitFor=.pagination-ready
-
-// Search results
-&waitFor=.search-results.loaded
-```
-
-### User-Generated Content
-
-```
-// Comments loaded
-&waitFor=.comments-section.loaded
-
-// Reviews displayed
-&waitFor=.reviews-list.complete
-
-// Social media feeds
-&waitFor=.social-feed.ready
-```
-
-## Specific Platform Guidance
-
-### WordPress/CMS
-```
-// General WordPress
-&delay=2&waitFor=.site-content
-
-// Gutenberg blocks
-&waitFor=.wp-block-group.loaded
-
-// Custom themes
-&waitFor=.theme-content-ready
-```
-
-### E-commerce
-```
-// Product pages
-&waitFor=.product-info.loaded&delay=3
-
-// Category pages
-&waitFor=.product-grid.complete
-
-// Checkout process
-&waitFor=.checkout-form.initialized
-```
-
-### Documentation Sites
-```
-// GitBook
-&waitFor=.markdown-section
-
-// Notion
-&waitFor=.notion-page-content
-
-// Confluence  
-&waitFor=.wiki-content
-```
-
-## Troubleshooting Common Issues
-
-### Content Partially Loaded
-
-```
-// Increase delay for slow APIs
-&delay=5&waitFor=.api-content
-
-// Wait for specific data attributes
-&waitFor=[data-loaded="complete"]
-
-// Use more specific selectors
-&waitFor=.main-content.fully-rendered
-```
-
-### JavaScript Errors
-
-```
-// Wait after error recovery
-&delay=3&waitFor=.error-recovered
-
-// Skip problematic elements
-&waitFor=.essential-content
-```
-
-### Network Dependencies
-
-```
-// Wait for external resources
-&delay=4&waitFor=.external-content
-
-// Handle CDN delays
-&delay=3&waitFor=.cdn-assets-loaded
-```
+### Partial Content
+- Element appeared but content still loading
+- Use `waitFor` with more specific selector (e.g., `[data-loaded="complete"]`)
+- Add small delay after `waitFor`
 
 ## See Also
 
 - [Content Authentication](content-authentication.md) - Access protected content
-- [Screenshot Timing](screenshot-timing.md) - Similar timing options for screenshots
-- [PDF Timing](pdf-timing.md) - Timing considerations for PDF generation
+- [Content Options](content-options.md) - Additional content extraction options

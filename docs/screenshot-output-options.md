@@ -11,7 +11,6 @@ Control the format, quality, and dimensions of your screenshot output. These opt
 - **Default**: `png`
 - **Options**: `png`, `jpeg`, `webp`
 - **Example**: `type=jpeg`
-- **Considerations**: Each format has different strengths
 
 ### Best Format (`bestFormat`)
 - **Default**: `false`
@@ -22,98 +21,59 @@ Control the format, quality, and dimensions of your screenshot output. These opt
 ## Format Specifications
 
 ### PNG Format
-```
-&type=png
-```
-**Characteristics:**
 - Lossless compression
 - Supports transparency
 - Larger file sizes
-- Best for: Screenshots with text, logos, UI elements
-
-**When to Use:**
-- Need transparent backgrounds
-- Capturing UI with sharp edges
-- Quality is paramount
-- File size is not a concern
+- **Best for**: Screenshots with text, logos, UI elements
 
 ### JPEG Format
-```
-&type=jpeg
-```
-**Characteristics:**
 - Lossy compression
 - No transparency support
-- Smaller file sizes
-- Best for: Photographs, complex images
-
-**When to Use:**
-- Capturing photo-heavy content
-- File size is important
-- Transparency not needed
-- Slight quality loss acceptable
+- Smaller file sizes (200-500 KB for 1920×1080)
+- **Best for**: Photographs, complex images
 
 ### WebP Format
-```
-&type=webp
-```
-**Characteristics:**
 - Modern format with excellent compression
 - Supports transparency
 - 25-35% smaller than PNG/JPEG
-- Best for: Web optimization
-
-**When to Use:**
-- Modern web applications
-- Bandwidth optimization
-- Need transparency with small size
-- Browser compatibility assured
+- **Best for**: Web optimization, modern applications
 
 ## Image Resizing
 
-### Resize Dimensions
-Both width and height must be specified:
+### Resize Width & Height
+Both width and height must be specified together:
 
-#### Resize Width (`resizeWidth`)
-- **Default**: None (original size)
-- **Description**: Target width in pixels
-- **Example**: `resizeWidth=800`
-- **Required**: Must be used with resizeHeight
-
-#### Resize Height (`resizeHeight`)
-- **Default**: None (original size)
-- **Description**: Target height in pixels
-- **Example**: `resizeHeight=600`
-- **Required**: Must be used with resizeWidth
+- `resizeWidth`: Target width in pixels
+- `resizeHeight`: Target height in pixels
 
 ### Resize Examples
 ```
-// Resize to specific dimensions
+// Social media size (Open Graph)
 &resizeWidth=1200&resizeHeight=630
 
-// Thumbnail size
+// Thumbnail
 &resizeWidth=300&resizeHeight=200
 
-// Social media size
-&resizeWidth=1200&resizeHeight=628
+// Instagram square
+&resizeWidth=1080&resizeHeight=1080
 ```
 
-## Special Effects
+## Transparent Background
 
-### Transparent Background (`transparent`)
+### Transparent (`transparent`)
 - **Default**: `false`
-- **Description**: Captures with transparent background (PNG/WebP only)
+- **Description**: Captures with transparent background
+- **Format**: PNG or WebP only
 - **Example**: `transparent=true`
-- **Note**: Only works where page background is transparent
 
 ## Usage Examples
 
-### High-Quality PNG Screenshot
+### High-Quality PNG
 ```
 https://cdn.capture.page/KEY/HASH/image?url=https://example.com&type=png
 ```
 
-### Optimized JPEG Screenshot
+### Optimized JPEG
 ```
 https://cdn.capture.page/KEY/HASH/image?url=https://example.com&type=jpeg
 ```
@@ -131,248 +91,102 @@ https://cdn.capture.page/KEY/HASH/image?url=https://example.com&selector=.logo&t
 ## Common Use Cases
 
 ### Social Media Images
-
-#### Open Graph (Facebook, LinkedIn)
 ```
+// Open Graph (Facebook, LinkedIn)
 &resizeWidth=1200&resizeHeight=630&type=jpeg
-```
 
-#### Twitter Cards
-```
+// Twitter Cards
 &resizeWidth=1200&resizeHeight=628&type=jpeg
-```
 
-#### Instagram Post
-```
+// Instagram Post
 &resizeWidth=1080&resizeHeight=1080&type=jpeg
 ```
 
 ### Thumbnails
-
-#### Gallery Thumbnail
 ```
+// Gallery thumbnail
 &resizeWidth=300&resizeHeight=200&type=jpeg
-```
 
-#### Product Thumbnail
-```
+// Product thumbnail
 &resizeWidth=400&resizeHeight=400&type=webp
 ```
 
-#### Article Preview
-```
-&resizeWidth=600&resizeHeight=400&bestFormat=true
-```
-
 ### Documentation
+```
+// UI screenshots with sharp text
+&type=png
 
-#### UI Screenshots
-```
-&type=png  // Sharp text and UI elements
-```
-
-#### Annotated Screenshots
-```
-&type=png&transparent=true  // For overlaying on backgrounds
+// Transparent screenshots for overlays
+&type=png&transparent=true
 ```
 
-#### Mobile App Stores
-```
-// iPhone App Store
-&resizeWidth=1290&resizeHeight=2796&type=png
+## Format Selection Guide
 
-// Google Play Store
-&resizeWidth=1080&resizeHeight=1920&type=png
-```
-
-## Quality Optimization
-
-### File Size Comparison
-Typical file sizes for a 1920×1080 screenshot:
-- **PNG**: 1.5-3 MB
-- **JPEG**: 200-500 KB
-- **WebP**: 150-400 KB
-
-### Format Selection Guide
-
-#### Choose PNG When:
+**Choose PNG when:**
 - Text clarity is critical
 - UI elements with sharp edges
 - Transparency is required
-- Archival quality needed
 
-#### Choose JPEG When:
+**Choose JPEG when:**
 - Photo-realistic content
 - File size constraints
-- Email attachments
 - Quick loading needed
 
-#### Choose WebP When:
+**Choose WebP when:**
 - Modern web apps
 - Best compression needed
 - Transparency with small size
-- Progressive enhancement
 
-### Best Format Strategy
-```
-// Let Capture choose optimal format
-&bestFormat=true
-
-// Fallback chain in your code
-const formats = ['webp', 'jpeg', 'png'];
-```
-
-## Resizing Best Practices
+## Best Practices
 
 ### 1. Maintain Aspect Ratio
-Calculate proportional dimensions:
+Calculate proportional dimensions to avoid distortion:
 ```javascript
-// Original: 1920×1080 (16:9)
-// Target width: 800
-
 const aspectRatio = 1920 / 1080;
 const targetWidth = 800;
 const targetHeight = Math.round(targetWidth / aspectRatio); // 450
-
-// Result: &resizeWidth=800&resizeHeight=450
 ```
 
 ### 2. Common Aspect Ratios
 ```
 // 16:9 (Widescreen)
 &resizeWidth=1920&resizeHeight=1080
-&resizeWidth=1280&resizeHeight=720
-&resizeWidth=640&resizeHeight=360
 
 // 4:3 (Standard)
 &resizeWidth=1024&resizeHeight=768
-&resizeWidth=800&resizeHeight=600
 
 // 1:1 (Square)
 &resizeWidth=1000&resizeHeight=1000
-&resizeWidth=500&resizeHeight=500
-
-// 9:16 (Vertical/Stories)
-&resizeWidth=1080&resizeHeight=1920
-&resizeWidth=540&resizeHeight=960
 ```
 
-### 3. Resize vs Viewport
-Understand the difference:
+### 3. Viewport vs Resize
 ```
 // Viewport: Renders at 1920×1080
 &vw=1920&vh=1080
 
-// Resize: Captures at original, then scales
+// Resize: Captures at original size, then scales down
 &resizeWidth=800&resizeHeight=450
 
-// Combined: Render large, output small
+// Combined: Render large, output small (best quality)
 &vw=1920&vh=1080&resizeWidth=800&resizeHeight=450
 ```
 
-## Transparency Guidelines
-
-### Requirements for Transparency
-1. Use PNG or WebP format
-2. Page must have transparent areas
-3. Enable transparent option
-
-### Common Scenarios
-```
-// Logo on transparent background
-&selector=.logo&transparent=true&type=png
-
-// UI component for documentation
-&selector=.button&transparent=true&type=png
-
-// Icon extraction
-&selectorId=icon-svg&transparent=true&type=webp
-```
-
-### Transparency Limitations
-- Won't remove white backgrounds
-- Page must define transparency
-- May not work with all elements
-- Check browser compatibility
-
-## Performance Tips
-
-### 1. Format Performance
-Processing speed by format:
-- PNG: Fastest (minimal processing)
-- JPEG: Fast (compression overhead)
-- WebP: Moderate (advanced compression)
-
-### 2. Resize Performance
-- Small resizes: Minimal impact
-- Large to small: More processing
-- Upscaling: Not recommended
-
-### 3. Optimization Strategy
-```
-// Fast processing
-&type=jpeg
-
-// Balanced quality/size
-&type=webp&bestFormat=true
-
-// Maximum quality
-&type=png
-```
-
-## Advanced Techniques
-
-### Dynamic Format Selection
-```javascript
-// Client-side detection
-const supportsWebP = checkWebPSupport();
-const format = supportsWebP ? 'webp' : 'jpeg';
-
-// Server-side detection
-const accepts = request.headers['accept'];
-const format = accepts.includes('webp') ? 'webp' : 'png';
-```
-
-### Responsive Images
-```html
-<!-- Multiple formats -->
-<picture>
-  <source srcset="capture.page/...&type=webp" type="image/webp">
-  <source srcset="capture.page/...&type=jpeg" type="image/jpeg">
-  <img src="capture.page/...&type=png" alt="Screenshot">
-</picture>
-```
-
-### Batch Processing
-```javascript
-// Generate multiple sizes
-const sizes = [
-  { w: 300, h: 200, name: 'thumb' },
-  { w: 800, h: 600, name: 'medium' },
-  { w: 1920, h: 1080, name: 'full' }
-];
-
-sizes.forEach(size => {
-  const url = `...&resizeWidth=${size.w}&resizeHeight=${size.h}`;
-});
-```
-
-## Common Issues
+## Troubleshooting
 
 ### Black Background Instead of Transparent
 - Ensure `type=png` or `type=webp`
-- Verify page has transparent areas
-- Check CSS background settings
+- Verify page has transparent areas in CSS
+- Page background must be defined as transparent
 
 ### Blurry Resized Images
 - Use higher source resolution
-- Avoid upscaling
-- Consider viewport sizing instead
+- Avoid upscaling (don't resize larger than original)
+- Consider using larger viewport instead
 
 ### Format Not Supported
-- Check browser compatibility
-- Use bestFormat for auto-selection
-- Implement fallback options
+- Check browser compatibility for WebP
+- Use `bestFormat=true` for auto-selection
+- Provide fallback formats
 
 ## See Also
 
