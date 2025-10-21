@@ -167,7 +167,7 @@ const devices = [
 ];
 
 devices.forEach(device => {
-  const url = `...&emulateDevice=${device}&scrolling=true&duration=10`;
+  const url = `...&emulateDevice=${device}&duration=10`;
 });
 ```
 
@@ -176,19 +176,19 @@ devices.forEach(device => {
 #### Mobile App Landing
 ```
 // iOS perspective
-&emulateDevice=iphone_15_pro&duration=12&scrolling=true
+&emulateDevice=iphone_15_pro&duration=12
 
 // Android perspective
-&emulateDevice=pixel_8&duration=12&scrolling=true
+&emulateDevice=pixel_8&duration=12
 ```
 
 #### Tablet App Demo
 ```
 // iPad demo
-&emulateDevice=ipad_pro_11&duration=15&fps=30
+&emulateDevice=ipad_pro_11&duration=15
 
 // Android tablet
-&emulateDevice=galaxy_tab_s9&duration=15&fps=30
+&emulateDevice=galaxy_tab_s9&duration=15
 ```
 
 ## Scale Factor Considerations
@@ -258,7 +258,7 @@ getEffectiveResolution(393, 852, 3);    // 10.1M pixels
 &vw=1920&vh=1080&scaleFactor=2
 
 // Native device resolution
-&emulateDevice=iphone_15_pro&fps=60
+&emulateDevice=iphone_15_pro&scaleFactor=3
 ```
 
 ## Advanced Viewport Techniques
@@ -356,20 +356,20 @@ const testViewports = [
 
 ```
 // Quick previews
-&vw=1366&vh=768&scaleFactor=1&fps=18
+&vw=1366&vh=768&scaleFactor=1
 
 // Production quality
-&vw=1920&vh=1080&scaleFactor=2&fps=30
+&vw=1920&vh=1080&scaleFactor=2
 
 // Mobile optimization
-&emulateDevice=iphone_15&fps=24
+&emulateDevice=iphone_15
 ```
 
 ## Troubleshooting
 
 ### Content Cut Off
 - Use larger viewport dimensions
-- Enable scrolling animation
+- Use fullPage=true for complete content
 - Check responsive design breakpoints
 
 ### Poor Mobile Rendering
@@ -380,7 +380,6 @@ const testViewports = [
 ### File Size Too Large
 - Reduce scale factor
 - Use smaller viewport
-- Lower frame rate
 - Shorter duration
 
 ## See Also

@@ -3,7 +3,7 @@ id: animated-animation-settings
 title: Animation Settings
 ---
 
-Configure the core animation properties for your animated screenshots, including output format, duration, frame rate, and scrolling behavior.
+Configure the core animation properties for your animated screenshots, including output format and duration.
 
 ## Output Format
 
@@ -13,33 +13,13 @@ Configure the core animation properties for your animated screenshots, including
 - **Example**: `format=gif`
 - **Description**: Output animation format
 
-## Animation Duration & Quality
+## Animation Duration
 
 ### Duration (`duration`)
 - **Default**: `5` seconds
 - **Range**: 1-30 seconds
 - **Example**: `duration=10`
 - **Description**: Total recording length
-
-### Frame Rate (`fps`)
-- **Default**: `30` frames per second
-- **Range**: 5-30 fps
-- **Example**: `fps=24`
-- **Note**: Maximum 30fps for GIF format
-
-## Scrolling Animation
-
-### Scrolling (`scrolling`)
-- **Default**: `false`
-- **Description**: Enable automatic page scrolling
-- **Example**: `scrolling=true`
-- **Effect**: Smoothly scrolls through page content
-
-### Scroll Speed (`scrollSpeed`)
-- **Default**: `200` pixels
-- **Range**: 50-1000 pixels per scroll step
-- **Example**: `scrollSpeed=500`
-- **Note**: Only applies when `scrolling=true`
 
 ### Hide Scrollbars (`hideScrollbars`)
 - **Default**: `true`
@@ -54,19 +34,14 @@ Configure the core animation properties for your animated screenshots, including
 https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=8
 ```
 
-### High Frame Rate GIF
+### Extended Duration GIF
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=15&fps=30
-```
-
-### Scrolling GIF
-```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=12&scrolling=true&scrollSpeed=300
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=15
 ```
 
 ### Clean GIF with Scrollbars Hidden
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=10&fps=30&hideScrollbars=true
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&duration=10&hideScrollbars=true
 ```
 
 ## GIF Format
@@ -75,7 +50,6 @@ The animated screenshot endpoint produces GIF files with the following character
 
 **Technical Specifications:**
 - Universal compatibility across all platforms
-- Maximum 30fps frame rate
 - 256 color palette with dithering
 - Automatic looping
 - Optimized compression
@@ -87,11 +61,6 @@ The animated screenshot endpoint produces GIF files with the following character
 - Website demonstrations
 - Quick previews and prototypes
 
-**Quality Optimization:**
-- Use 24-30fps for smooth animations
-- Lower fps (12-18) for smaller file sizes
-- Adjust duration to balance quality and file size
-
 ## Duration Guidelines
 
 ### Content-Based Duration
@@ -101,7 +70,7 @@ The animated screenshot endpoint produces GIF files with the following character
 | Landing pages | 5-8 seconds | Show key elements |
 | Product demos | 10-15 seconds | Feature highlights |
 | Tutorials | 15-25 seconds | Step-by-step process |
-| Full page scroll | 8-12 seconds | Complete page view |
+| Full page capture | 8-12 seconds | Complete page view |
 | App interactions | 5-10 seconds | User flow demo |
 
 ### Platform-Specific
@@ -124,93 +93,6 @@ const docDurations = {
 };
 ```
 
-## Frame Rate Optimization
-
-### FPS Selection Guide
-
-#### Low FPS (5-15)
-```
-&fps=12
-```
-- Smallest file sizes
-- Slideshow-like effect
-- Good for static content changes
-- Documentation screenshots
-
-#### Medium FPS (20-30)
-```
-&fps=24  // Cinematic standard
-&fps=30  // Standard video
-```
-- Balanced quality/size
-- Smooth animations
-- Most common choice
-- Good for most content
-
-#### Maximum FPS (30)
-```
-&fps=30
-```
-- Smoothest GIF animation
-- Standard for most content
-- Good quality-to-size ratio
-- Recommended for dynamic content
-
-### Optimal FPS for GIF
-
-```javascript
-const optimalFPS = {
-  smooth: 30,      // Maximum fps, smoothest animation
-  balanced: 24,    // Good balance of quality and size
-  efficient: 18,   // Smaller file size, still smooth
-  minimal: 12      // Smallest files, adequate for simple content
-};
-```
-
-## Scrolling Configuration
-
-### Automatic Scrolling
-
-```
-// Enable smooth scrolling
-&scrolling=true&scrollSpeed=200
-
-// Faster scrolling for long pages
-&scrolling=true&scrollSpeed=400
-
-// Slower, detailed scrolling
-&scrolling=true&scrollSpeed=100
-```
-
-### Scroll Speed Calculation
-
-```javascript
-// Calculate optimal scroll speed
-function calculateScrollSpeed(pageHeight, duration, fps) {
-  const totalFrames = duration * fps;
-  const pixelsPerFrame = pageHeight / totalFrames;
-  
-  // Ensure smooth scrolling (50-1000 range)
-  return Math.max(50, Math.min(1000, pixelsPerFrame * 3));
-}
-
-// Example: 3000px page, 10s duration, 30fps
-const speed = calculateScrollSpeed(3000, 10, 30); // ~300px
-```
-
-### Scrolling Patterns
-
-```
-// Full page scroll
-&scrolling=true&duration=10&scrollSpeed=250
-
-// Slow reveal scroll
-&scrolling=true&duration=15&scrollSpeed=150
-
-// Quick overview scroll
-&scrolling=true&duration=6&scrollSpeed=500
-```
-
 ## Advanced Animation Techniques
 
 ### Dynamic Duration
@@ -219,30 +101,19 @@ const speed = calculateScrollSpeed(3000, 10, 30); // ~300px
 // Adjust duration based on content
 function calculateDuration(pageHeight, contentType) {
   const baseDuration = 5;
-  
+
   // Adjust for page length
   const heightFactor = Math.min(pageHeight / 1000, 3);
-  
+
   // Adjust for content type
   const typeMultiplier = {
     'landing': 1,
     'tutorial': 2,
     'demo': 1.5,
-    'scroll': 1.8
+    'documentation': 1.8
   }[contentType] || 1;
-  
+
   return Math.min(30, baseDuration * heightFactor * typeMultiplier);
-}
-```
-
-### FPS Selection Logic
-
-```javascript
-function selectFPS(contentType, fileSize Priority) {
-  if (fileSizePriority === 'small') return 12;
-  if (contentType === 'documentation') return 18;
-  if (contentType === 'demo' || contentType === 'tutorial') return 24;
-  return 30;
 }
 ```
 
@@ -250,10 +121,10 @@ function selectFPS(contentType, fileSize Priority) {
 
 ```javascript
 const presets = {
-  preview: { duration: 5, fps: 15 },
-  standard: { duration: 10, fps: 24 },
-  quality: { duration: 15, fps: 30 },
-  social: { duration: 8, fps: 24 }
+  preview: { duration: 5 },
+  standard: { duration: 10 },
+  quality: { duration: 15 },
+  social: { duration: 8 }
 };
 ```
 
@@ -263,13 +134,13 @@ const presets = {
 
 ```
 // Documentation
-&duration=8&fps=24
+&duration=8
 
 // Product demos
-&duration=12&fps=30
+&duration=12
 
 // Social media
-&duration=10&fps=24
+&duration=10
 ```
 
 ### 2. Optimize for Platform
@@ -277,15 +148,12 @@ const presets = {
 ```javascript
 const socialSettings = {
   duration: 8,
-  fps: 30,
-  scrolling: false
+  hideScrollbars: true
 };
 
 const docSettings = {
   duration: 10,
-  fps: 24,
-  scrolling: true,
-  scrollSpeed: 200
+  hideScrollbars: true
 };
 ```
 
@@ -293,38 +161,62 @@ const docSettings = {
 
 ```
 // Smaller file size
-&duration=6&fps=15
+&duration=6
 
 // Balanced quality
-&duration=8&fps=24
+&duration=8
 
 // Maximum quality
-&duration=15&fps=30
+&duration=15
 ```
 
 ### 4. Test Different Settings
 
 ```javascript
 const testConfigs = [
-  { duration: 10, fps: 30 },
-  { duration: 10, fps: 24 },
-  { duration: 8, fps: 18 }
+  { duration: 10 },
+  { duration: 8 },
+  { duration: 12 }
 ];
+```
+
+## Best Practices by Use Case
+
+### Documentation
+
+```
+&duration=8
+```
+
+### Product Demos
+
+```
+&duration=12
+```
+
+### Social Media
+
+```
+&duration=10
+```
+
+### Quick Previews
+
+```
+&duration=5
+```
+
+### Full Demonstrations
+
+```
+&duration=15
 ```
 
 ## Troubleshooting
 
 ### Large File Sizes
 - Reduce duration
-- Lower frame rate (try 18 or 24 fps)
-- Disable scrolling for static content
 - Reduce viewport dimensions
-
-### Poor Quality
-- Increase frame rate to 30fps
-- Ensure adequate duration
-- Check source content quality
-- Verify content has sufficient contrast
 
 ### Playback Issues
 - Ensure GIF players support looping

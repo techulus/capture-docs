@@ -40,7 +40,7 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://news-site.com&blockAds=tr
 
 ### Dark Mode Animation
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&duration=8&scrolling=true
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&duration=8
 ```
 
 ### Access Protected Content
@@ -78,16 +78,16 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 &darkMode=true&selector=.code-editor&duration=8
 
 // API documentation dark
-&darkMode=true&fullPage=true&scrolling=true&duration=15
+&darkMode=true&fullPage=true&duration=15
 ```
 
 #### Accessibility Demos
 ```
 // High contrast demonstration
-&darkMode=true&duration=6&fps=24
+&darkMode=true&duration=6
 
 // Night mode comparison
-&darkMode=true&scrolling=true&duration=10
+&darkMode=true&duration=10
 ```
 
 ### Dark Mode Considerations
@@ -133,7 +133,7 @@ const darkModeChallenges = [
 &blockAds=true&selector=article&duration=8
 
 // Full news page without ads
-&blockAds=true&fullPage=true&scrolling=true&duration=20
+&blockAds=true&fullPage=true&duration=20
 ```
 
 #### Blog Content
@@ -176,7 +176,7 @@ const darkModeChallenges = [
 &blockCookieBanners=true&selector=.hero-section&duration=8
 
 // Full landing page tour
-&blockCookieBanners=true&fullPage=true&scrolling=true&duration=15
+&blockCookieBanners=true&fullPage=true&duration=15
 ```
 
 #### E-commerce Demo
@@ -250,7 +250,7 @@ const protectedSites = [
 #### Documentation Sites
 ```
 // Clean docs with dark mode
-&darkMode=true&blockCookieBanners=true&fullPage=true&scrolling=true&duration=20
+&darkMode=true&blockCookieBanners=true&fullPage=true&duration=20
 
 // API docs clean
 &blockAds=true&blockCookieBanners=true&selector=.api-docs&duration=15
@@ -259,7 +259,7 @@ const protectedSites = [
 #### Portfolio Sites
 ```
 // Clean portfolio showcase
-&blockAds=true&blockCookieBanners=true&fullPage=true&scrolling=true&duration=18
+&blockAds=true&blockCookieBanners=true&fullPage=true&duration=18
 
 // Dark mode portfolio
 &darkMode=true&blockCookieBanners=true&duration=12

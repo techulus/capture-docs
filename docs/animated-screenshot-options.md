@@ -3,7 +3,7 @@ id: animated-screenshot-options
 title: Animated Screenshot Request
 ---
 
-The animated screenshot endpoint allows you to capture animated screenshots of web pages in GIF format. This endpoint supports scrolling animations, custom durations, and frame rates up to 30fps.
+The animated screenshot endpoint allows you to capture animated screenshots of web pages in GIF format.
 
 ## URL Format
 
@@ -29,9 +29,6 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 |-----------|------|---------|-------------|
 | `format` | string | `gif` | Output format (only GIF supported) |
 | `duration` | number | `5` | Recording duration in seconds (1-30) |
-| `fps` | number | `30` | Frames per second (5-30) |
-| `scrolling` | boolean | `false` | Enable automatic scrolling during capture |
-| `scrollSpeed` | number | `200` | Scrolling speed in pixels (50-1000) |
 | `hideScrollbars` | boolean | `true` | Hide scrollbars during capture for cleaner output |
 
 ### Viewport Options
@@ -82,7 +79,6 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 ### GIF Format
 - **Extension**: `.gif`
 - **Content-Type**: `image/gif`
-- **Max FPS**: 30fps
 - **Color**: 256 color palette with dithering
 - **Looping**: Automatic continuous looping
 - **Compatibility**: Universal support across all platforms and browsers
@@ -95,32 +91,25 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&duration=10
 ```
 
-### Scrolling GIF with Custom Settings
+### Dark Mode Animation
 ```
-https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&duration=15&scrolling=true&scrollSpeed=300&fps=24
-```
-
-### High Frame Rate with Dark Mode
-```
-https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&duration=20&fps=30&darkMode=true&hideScrollbars=true
+https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&duration=20&darkMode=true&hideScrollbars=true
 ```
 
 ### Element-Specific Animation
 ```
-https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&selector=.main-content&duration=8&fps=30
+https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&selector=.main-content&duration=8
 ```
 
 ### Mobile Device Recording
 ```
-https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emulateDevice=iphone_15_pro&duration=10&scrolling=true
+https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emulateDevice=iphone_15_pro&duration=10
 ```
 
 ## Technical Limitations
 
 - **Format**: GIF only
 - **Maximum Duration**: 30 seconds
-- **FPS Range**: 5-30fps
-- **Scrolling**: Automatic smooth scrolling with configurable speed
 - **Browser**: Uses Chrome/Chromium with Puppeteer
 - **Extensions**: Supports uBlock Origin for ad blocking
 
@@ -129,24 +118,14 @@ https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emul
 1. **Optimize Duration**:
    - Shorter durations reduce credit usage and file size
    - 5-15 seconds often sufficient for most use cases
-   - Use longer durations (20-30s) only for full page scrolls
+   - Use longer durations (20-30s) for comprehensive page animations
 
-2. **Frame Rate Selection**:
-   - 24-30fps for smooth, high-quality animations
-   - 18fps for balanced quality and file size
-   - 12-15fps for smaller file sizes and simple content
-
-3. **Scrolling Settings**:
-   - Enable scrolling for long pages
-   - Adjust scroll speed based on content length
-   - Consider hiding scrollbars for cleaner output
-
-4. **File Size Optimization**:
-   - Lower fps reduces file size significantly
+2. **File Size Optimization**:
    - Shorter duration = smaller files
    - Reduce viewport dimensions if possible
+   - Consider hiding scrollbars for cleaner output
 
-5. **Performance**:
+3. **Performance**:
    - Use `delay` parameter for dynamic content
    - Consider `waitFor` for specific elements
    - Enable ad blocking for faster loading and cleaner output
@@ -195,5 +174,4 @@ Use the `key` field from the response as the value for the `emulateDevice` param
 
 1. When using `emulateDevice`, the viewport dimensions and scale factor are automatically set to match the selected device
 2. Touch events and mobile user agents are properly configured
-3. Scrolling animations work seamlessly with device emulation
-4. If an invalid device key is provided, the API falls back to default viewport settings
+3. If an invalid device key is provided, the API falls back to default viewport settings

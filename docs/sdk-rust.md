@@ -408,46 +408,42 @@ use capture_api::{CaptureClient, AnimatedOptions};
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = CaptureClient::new("your-api-key", "your-api-secret");
-    
+
     let options = AnimatedOptions {
         format: Some("mp4".to_string()),
         duration: Some(10),
-        fps: Some(30),
         ..Default::default()
     };
-    
+
     let animation = client.animated("https://example.com", Some(options)).await?;
-    
+
     // Save animation
     std::fs::write("animation.mp4", animation)?;
-    
+
     println!("Animation saved successfully");
     Ok(())
 }
 ```
 
-### Scrolling Animation
+### GIF Animation
 ```rust
 use capture_api::{CaptureClient, AnimatedOptions};
 
-async fn scrolling_animation() -> Result<(), Box<dyn std::error::Error>> {
+async fn gif_animation() -> Result<(), Box<dyn std::error::Error>> {
     let client = CaptureClient::new("your-api-key", "your-api-secret");
-    
+
     let options = AnimatedOptions {
         format: Some("gif".to_string()),
         duration: Some(15),
-        fps: Some(24),
-        scrolling: Some(true),
-        scroll_speed: Some(300),
         hide_scrollbars: Some(true),
         ..Default::default()
     };
-    
+
     let animation = client.animated("https://example.com", Some(options)).await?;
-    
-    std::fs::write("scroll-animation.gif", animation)?;
-    println!("Scrolling animation saved");
-    
+
+    std::fs::write("animation.gif", animation)?;
+    println!("GIF animation saved");
+
     Ok(())
 }
 ```
@@ -458,20 +454,19 @@ use capture_api::{CaptureClient, AnimatedOptions};
 
 async fn mobile_animation() -> Result<(), Box<dyn std::error::Error>> {
     let client = CaptureClient::new("your-api-key", "your-api-secret");
-    
+
     let options = AnimatedOptions {
         emulate_device: Some("iphone_15_pro".to_string()),
         format: Some("mp4".to_string()),
         duration: Some(12),
-        fps: Some(30),
         dark_mode: Some(true),
         ..Default::default()
     };
-    
+
     let animation = client.animated("https://example.com", Some(options)).await?;
-    
+
     println!("Mobile animation captured: {} bytes", animation.len());
-    
+
     Ok(())
 }
 ```

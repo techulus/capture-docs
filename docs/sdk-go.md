@@ -397,19 +397,18 @@ func socialMetadata() {
 ```go
 func basicAnimation() {
     client := capture.NewClient("your-api-key", "your-api-secret")
-    
+
     options := &capture.AnimatedOptions{
         Format:   "mp4",
         Duration: 10,
-        FPS:      30,
     }
-    
+
     animation, err := client.Animated("https://example.com", options)
     if err != nil {
         fmt.Printf("Error: %v\n", err)
         return
     }
-    
+
     // Save animation
     err = os.WriteFile("animation.mp4", animation, 0644)
     if err != nil {
@@ -418,27 +417,24 @@ func basicAnimation() {
 }
 ```
 
-### Scrolling Animation
+### GIF Animation
 ```go
-func scrollingAnimation() {
+func gifAnimation() {
     client := capture.NewClient("your-api-key", "your-api-secret")
-    
+
     options := &capture.AnimatedOptions{
         Format:          "gif",
         Duration:        15,
-        FPS:             24,
-        Scrolling:       true,
-        ScrollSpeed:     300,
         HideScrollbars:  true,
     }
-    
+
     animation, err := client.Animated("https://example.com", options)
     if err != nil {
         fmt.Printf("Error: %v\n", err)
         return
     }
-    
-    err = os.WriteFile("scroll-animation.gif", animation, 0644)
+
+    err = os.WriteFile("animation.gif", animation, 0644)
     if err != nil {
         fmt.Printf("Error saving: %v\n", err)
     }
@@ -449,21 +445,20 @@ func scrollingAnimation() {
 ```go
 func mobileAnimation() {
     client := capture.NewClient("your-api-key", "your-api-secret")
-    
+
     options := &capture.AnimatedOptions{
         EmulateDevice: "iphone_15_pro",
         Format:        "mp4",
         Duration:      12,
-        FPS:           30,
         DarkMode:      true,
     }
-    
+
     animation, err := client.Animated("https://example.com", options)
     if err != nil {
         fmt.Printf("Error: %v\n", err)
         return
     }
-    
+
     fmt.Printf("Mobile animation captured: %d bytes\n", len(animation))
 }
 ```

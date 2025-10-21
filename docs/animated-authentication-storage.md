@@ -70,7 +70,7 @@ const url = `...&httpAuth=${hrAuth}&selector=.dashboard&duration=10`;
 #### SaaS Platforms
 ```javascript
 const adminAuth = encodeAuth('admin', 'dashboard-demo');
-const url = `...&httpAuth=${adminAuth}&duration=15&scrolling=true`;
+const url = `...&httpAuth=${adminAuth}&duration=15`;
 
 const customerAuth = encodeAuth('demo', 'customer-view');
 const url = `...&httpAuth=${customerAuth}&emulateDevice=iphone_15_pro&duration=10`;

@@ -37,7 +37,7 @@ Control when and how the animated screenshot recording begins, what content to f
 - **Default**: `false`
 - **Description**: Record entire page height
 - **Example**: `fullPage=true`
-- **Works with**: Scrolling animations
+- **Note**: Captures the entire page in a single frame
 
 ## Usage Examples
 
@@ -56,9 +56,9 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://spa-app.com&waitFor=.app-
 https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&selector=.hero-section&duration=6
 ```
 
-### Full Page Scroll Animation
+### Full Page Recording
 ```
-https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true&scrolling=true&duration=15
+https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&fullPage=true&duration=15
 ```
 
 ## Timing Strategies
@@ -107,7 +107,7 @@ For pages loading external data:
 &selector=.hero-section&duration=8
 
 // Product showcase
-&selector=.product-gallery&duration=10&scrolling=true
+&selector=.product-gallery&duration=10
 ```
 
 ### Navigation Demonstrations
@@ -122,7 +122,7 @@ For pages loading external data:
 ### Feature Highlights
 ```
 // Specific features
-&selector=.features-section&duration=12&scrolling=true
+&selector=.features-section&duration=12
 
 // Interactive components
 &selector=.interactive-demo&delay=2&duration=10
@@ -142,22 +142,22 @@ For pages loading external data:
 ### Long Form Content
 ```
 // Blog posts
-&fullPage=true&scrolling=true&duration=20&scrollSpeed=200
+&fullPage=true&duration=20
 
 // Documentation pages
-&fullPage=true&scrolling=true&duration=25&scrollSpeed=150
+&fullPage=true&duration=25
 
 // Product catalogs
-&fullPage=true&scrolling=true&duration=30&scrollSpeed=300
+&fullPage=true&duration=30
 ```
 
 ### Landing Pages
 ```
 // Complete landing page tour
-&fullPage=true&scrolling=true&duration=15&scrollSpeed=250
+&fullPage=true&duration=15
 
 // Services overview
-&fullPage=true&scrolling=true&duration=18&scrollSpeed=200
+&fullPage=true&duration=18
 ```
 
 ## Advanced Behavior Patterns
@@ -168,8 +168,8 @@ For content that loads in stages:
 // Wait for critical content first
 &waitFor=.critical-content&delay=2
 
-// Then capture progressive enhancement
-&duration=12&scrolling=true
+// Then capture full content
+&duration=12&fullPage=true
 ```
 
 ### Interactive Demos
@@ -214,7 +214,7 @@ For complex applications with multiple loading phases:
 #### Category Pages
 ```
 // Product grid loading
-&waitFor=.product-grid-complete&fullPage=true&scrolling=true&duration=20
+&waitFor=.product-grid-complete&fullPage=true&duration=20
 
 // Filter demonstrations
 &selector=.filters-container&delay=1&duration=8
@@ -234,7 +234,7 @@ For complex applications with multiple loading phases:
 #### Tutorials
 ```
 // Step-by-step content
-&fullPage=true&scrolling=true&waitFor=.tutorial-loaded&duration=25
+&fullPage=true&waitFor=.tutorial-loaded&duration=25
 
 // Code playground
 &selector=.code-playground&delay=3&duration=10
@@ -399,7 +399,7 @@ function buildCaptureUrl(url, options) {
 ### Partial Content Recorded
 - Use fullPage=true for complete content
 - Increase duration for long content
-- Enable scrolling for off-screen content
+- Ensure selector targets the right element
 
 ### Poor Animation Quality
 - Ensure adequate delay before recording

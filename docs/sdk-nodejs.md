@@ -257,8 +257,7 @@ console.log(metadata.metadata.url);
 ```javascript
 const animation = await client.animated('https://example.com', {
   format: 'mp4',
-  duration: 10,
-  fps: 30
+  duration: 10
 });
 
 // Save animation
@@ -266,14 +265,11 @@ import fs from 'fs';
 fs.writeFileSync('animation.mp4', animation);
 ```
 
-### Scrolling Animation
+### GIF Animation
 ```javascript
-const scrollAnimation = await client.animated('https://example.com', {
+const gifAnimation = await client.animated('https://example.com', {
   format: 'gif',
   duration: 15,
-  fps: 24,
-  scrolling: true,
-  scrollSpeed: 300,
   hideScrollbars: true
 });
 ```
@@ -284,7 +280,6 @@ const mobileAnimation = await client.animated('https://example.com', {
   emulateDevice: 'iphone_15_pro',
   format: 'mp4',
   duration: 12,
-  fps: 30,
   darkMode: true
 });
 ```
