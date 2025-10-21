@@ -23,7 +23,6 @@ Enhance and modify web pages before capturing screenshots. These options help yo
 - **Default**: `false`
 - **Description**: Removes advertisements before screenshot
 - **Example**: `blockAds=true`
-- **Powered by**: uBlock Origin extension
 
 ### Bypass Bot Detection (`bypassBotDetection`)
 - **Default**: `false`
@@ -127,13 +126,6 @@ The dark mode feature applies intelligent color inversion:
 - Tracking pixels
 - Social media widgets (optionally)
 - Newsletter popups
-
-### Powered by uBlock Origin
-Uses the same filtering engine as the popular browser extension:
-- EasyList filters
-- EasyPrivacy filters
-- Peter Lowe's Ad server list
-- Online malicious URL blocklist
 
 ### Performance Benefits
 - Faster page load times

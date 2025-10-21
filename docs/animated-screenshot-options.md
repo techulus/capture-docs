@@ -111,7 +111,6 @@ https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emul
 - **Format**: GIF only
 - **Maximum Duration**: 30 seconds
 - **Browser**: Uses Chrome/Chromium with Puppeteer
-- **Extensions**: Supports uBlock Origin for ad blocking
 
 ## Best Practices
 
