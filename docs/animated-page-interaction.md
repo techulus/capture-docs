@@ -8,21 +8,25 @@ Modify and enhance web pages before recording animated screenshots. These option
 ## Page Enhancement Options
 
 ### Dark Mode (`darkMode`)
+
 - **Default**: `false`
 - **Description**: Apply dark mode styling to the page
 - **Example**: `darkMode=true`
 
 ### Block Cookie Banners (`blockCookieBanners`)
+
 - **Default**: `false`
 - **Description**: Automatically dismiss cookie consent popups
 - **Example**: `blockCookieBanners=true`
 
 ### Block Advertisements (`blockAds`)
+
 - **Default**: `false`
 - **Description**: Remove ads before recording
 - **Example**: `blockAds=true`
 
 ### Bypass Bot Detection (`bypassBotDetection`)
+
 - **Default**: `false`
 - **Description**: Attempt to bypass anti-bot systems
 - **Example**: `bypassBotDetection=true`
@@ -30,16 +34,19 @@ Modify and enhance web pages before recording animated screenshots. These option
 ## Usage Examples
 
 ### Clean Professional Recording
+
 ```
 https://cdn.capture.page/KEY/HASH/animated?url=https://news-site.com&blockAds=true&blockCookieBanners=true&duration=10
 ```
 
 ### Dark Mode Animation
+
 ```
 https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&duration=8
 ```
 
 ### Maximum Enhancement
+
 ```
 https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true&blockAds=true&blockCookieBanners=true&duration=15
 ```
@@ -47,12 +54,14 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 ## Dark Mode
 
 ### How It Works
+
 - Inverts colors (light backgrounds become dark)
 - Adjusts text for readability
 - Preserves images and logos
 - Smooth transitions to dark theme
 
 ### Best For
+
 - Documentation sites
 - Code editors
 - Admin dashboards
@@ -61,12 +70,14 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 ## Advertisement Blocking
 
 ### What Gets Blocked
+
 - Display ads (banners, sidebars)
 - Video ads
 - Pop-up ads
 - Tracking scripts
 
 ### Benefits
+
 - Cleaner visuals
 - Faster loading
 - Professional appearance
@@ -75,12 +86,14 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 ## Cookie Banner Blocking
 
 ### Supported Types
+
 - GDPR compliance banners
 - CCPA compliance notices
 - Popular providers (OneTrust, CookieBot, Quantcast Choice)
 - Custom implementations
 
 ### How It Works
+
 1. Detects common banner patterns
 2. Auto-clicks accept/dismiss buttons
 3. Hides banners that can't be dismissed
@@ -89,15 +102,16 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 ## Bot Detection Bypass
 
 ### When to Use
+
 - Corporate websites with protection
 - E-commerce sites with bot detection
 - SaaS platforms
 - Sites behind Cloudflare
 
 ### Supported Systems
+
 - Cloudflare basic challenges
 - Basic CAPTCHAs
-- Rate limiting bypass
 - User agent checks
 
 ## Combining Enhancements
@@ -116,6 +130,7 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 ## Performance Considerations
 
 Each enhancement adds processing time:
+
 - **Dark Mode**: +1-2 seconds
 - **Cookie Banners**: +2-3 seconds
 - **Ad Blocking**: +1-2 seconds
@@ -132,20 +147,24 @@ Each enhancement adds processing time:
 ## Troubleshooting
 
 ### Dark Mode Issues
+
 - Site already has dark mode (double inversion)
 - Complex CSS interactions
 - Some images may not display correctly
 
 ### Cookie Banner Problems
+
 - Banner reappears (session-based consent)
 - Some sites require consent acceptance
 - Multiple consent layers
 
 ### Ad Blocking Conflicts
+
 - Legitimate content blocked
 - Layout shifts when ad spaces removed
 
 ### Bot Detection Failures
+
 - Advanced protection systems may still block
 - May require longer processing time
 

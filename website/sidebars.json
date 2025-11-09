@@ -34,30 +34,16 @@
       "pdf-authentication",
       "pdf-timing"
     ],
-    "Content": [
-      "content-options",
-      "content-timing",
-      "content-authentication"
-    ],
-    "Metadata": [
-      "metadata-options"
-    ]
+    "Content": ["content-options", "content-timing", "content-authentication"],
+    "Metadata": ["metadata-options"],
+    "SDKs": ["sdk-overview"]
   },
   "Integrations": {
-    "MCP": [
-      "mcp-integration"
-    ],
-    "Slack": [
-      "slack-integration"
-    ],
-    "Zapier": [
-      "zapier-integration"
-    ]
+    "MCP": ["mcp-integration"],
+    "Slack": ["slack-integration"],
+    "Zapier": ["zapier-integration"]
   },
   "apis": {
-    "Batch APIs": [
-      "batch-image",
-      "batch-pdf"
-    ]
+    "Batch APIs": ["batch-image", "batch-pdf"]
   }
 }
