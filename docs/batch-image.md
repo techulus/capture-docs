@@ -35,5 +35,3 @@ Request body should contain an array data having details of the url to captured 
   ]
 }
 ```
-
-Sample Request and Response: https://paw.pt/cWEfEHqw
