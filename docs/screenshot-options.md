@@ -22,6 +22,7 @@ title: Screenshot Request
 | Query        	        | Default value   	| Description                                                                             	|
 |--------------	        |-----------------	|-----------------------------------------------------------------------------------------	|
 | url          	        | -               	| URL-encoded target url                                                                  	|
+| preset                | -                 | Apply predefined configuration preset                                                    |
 | httpAuth           	| -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`      |
 | vw           	        | 1440            	| Viewport Width                                                                          	|
 | vh           	        | 900             	| Viewport Height                                                                         	|

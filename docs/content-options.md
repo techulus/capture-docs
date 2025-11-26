@@ -21,6 +21,7 @@ https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 | Query     	| Default value 	| Description                                                                                      	|
 |-----------	|---------------	|--------------------------------------------------------------------------------------------------	|
 | url       	| -             	| URL-encoded target url                                                                           	|
+| preset        | -                 | Apply predefined configuration preset                                                             |
 | httpAuth      | -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`              |
 | userAgent    	| -               	| Custom User agent (`base64url` encoded)                                         	                |
 | delay     	| 0             	| Delay in seconds before capturing                                                                	|

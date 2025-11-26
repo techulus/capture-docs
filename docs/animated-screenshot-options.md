@@ -15,64 +15,35 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 - **GENERATED_HASH**: MD5 hash of the target URL and your API secret
 - **TARGET_URL**: The URL you want to capture (URL-encoded)
 
-## Request Parameters
+## Request Options
 
-### Mandatory Parameters
+| Query        	        | Default value   	| Description                                                                             	|
+|--------------	        |-----------------	|-----------------------------------------------------------------------------------------	|
+| url          	        | -               	| URL-encoded target url                                                                  	|
+| preset                | -                 | Apply predefined configuration preset                                                    |
+| format                | gif               | Output format (only GIF supported)                                                       |
+| duration              | 5                 | Recording duration in seconds (1-30)                                                     |
+| hideScrollbars        | true              | Hide scrollbars during capture for cleaner output                                        |
+| vw           	        | 1440            	| Viewport width in pixels                                                                 	|
+| vh           	        | 900             	| Viewport height in pixels                                                                	|
+| scaleFactor  	        | 1               	| Device scale factor                                                                      	|
+| emulateDevice         | -               	| Emulate a specific device (e.g., `iphone_14`, `ipad`, `pixel_8`) - see device list below	|
+| delay        	        | 0               	| Seconds to wait before starting capture (0-25)                                           	|
+| waitFor      	        | -               	| Wait for CSS selector to appear                                                          	|
+| waitForId    	        | -               	| Wait for element with specific ID to appear                                              	|
+| selector              | -               	| Capture specific element by CSS selector                                                 	|
+| fullPage              | false           	| Capture full page height                                                                 	|
+| darkMode              | false             | Enable dark mode                                                                         	|
+| blockCookieBanners    | false             | Automatically dismiss cookie consent popups                                              	|
+| blockAds              | false             | Block advertisements                                                                     	|
+| bypassBotDetection    | false             | Solve captchas automatically                                                             	|
+| httpAuth           	| -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`    	|
+| userAgent    	        | -               	| Custom user agent (`base64url` encoded)                                         	        |
+| fileName     	        | -               	| Custom filename for the output file                                                      	|
+| s3Acl	       	        | -               	| S3 Access Control List (e.g., `public-read`)                                           	|
+| s3Redirect   	        | false           	| Redirect to S3 URL instead of returning file data                                        	|
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `url` | string | Target URL to capture (URL-encoded) |
-
-### Animation Options
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `format` | string | `gif` | Output format (only GIF supported) |
-| `duration` | number | `5` | Recording duration in seconds (1-30) |
-| `hideScrollbars` | boolean | `true` | Hide scrollbars during capture for cleaner output |
-
-### Viewport Options
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `vw` | number | `1440` | Viewport width in pixels |
-| `vh` | number | `900` | Viewport height in pixels |
-| `scaleFactor` | number | `1` | Device scale factor |
-| `emulateDevice` | string | - | Emulate a specific device (e.g., `iphone_14`, `ipad`, `pixel_8`) |
-
-### Capture Behavior
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `delay` | number | `0` | Seconds to wait before starting capture (0-25) |
-| `waitFor` | string | - | Wait for CSS selector to appear |
-| `waitForId` | string | - | Wait for element with specific ID to appear |
-| `selector` | string | - | Capture specific element by CSS selector |
-| `fullPage` | boolean | `false` | Capture full page height |
-
-### Page Interaction
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `darkMode` | boolean | `false` | Enable dark mode |
-| `blockCookieBanners` | boolean | `false` | Automatically dismiss cookie consent popups |
-| `blockAds` | boolean | `false` | Block advertisements |
-| `bypassBotDetection` | boolean | `false` | Solve captchas automatically |
-
-### Authentication
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `httpAuth` | string | HTTP Basic Authentication (base64url encoded as `username:password`) |
-| `userAgent` | string | Custom user agent (base64url encoded) |
-
-### File Storage
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `fileName` | string | Custom filename for the output file |
-| `s3Acl` | string | S3 Access Control List (e.g., `public-read`) |
-| `s3Redirect` | boolean | Redirect to S3 URL instead of returning file data |
+Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
 ## Format Specifications
 
