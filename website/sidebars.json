@@ -42,7 +42,9 @@
   "Integrations": {
     "MCP": ["mcp-integration"],
     "Slack": ["slack-integration"],
-    "Zapier": ["zapier-integration"]
+    "Zapier": ["zapier-integration"],
+    "n8n": ["n8n-integration"],
+    "WordPress": ["wordpress-integration"]
   },
   "apis": {
     "Batch APIs": ["batch-image", "batch-pdf"]
