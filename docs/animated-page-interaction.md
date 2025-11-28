@@ -25,12 +25,6 @@ Modify and enhance web pages before recording animated screenshots. These option
 - **Description**: Remove ads before recording
 - **Example**: `blockAds=true`
 
-### Bypass Bot Detection (`bypassBotDetection`)
-
-- **Default**: `false`
-- **Description**: Attempt to bypass anti-bot systems
-- **Example**: `bypassBotDetection=true`
-
 ## Usage Examples
 
 ### Clean Professional Recording
@@ -99,21 +93,6 @@ https://cdn.capture.page/KEY/HASH/animated?url=https://example.com&darkMode=true
 3. Hides banners that can't be dismissed
 4. Removes background overlays
 
-## Bot Detection Bypass
-
-### When to Use
-
-- Corporate websites with protection
-- E-commerce sites with bot detection
-- SaaS platforms
-- Sites behind Cloudflare
-
-### Supported Systems
-
-- Cloudflare basic challenges
-- Basic CAPTCHAs
-- User agent checks
-
 ## Combining Enhancements
 
 ```
@@ -134,7 +113,6 @@ Each enhancement adds processing time:
 - **Dark Mode**: +1-2 seconds
 - **Cookie Banners**: +2-3 seconds
 - **Ad Blocking**: +1-2 seconds
-- **Bot Bypass**: +3-5 seconds
 
 ## Best Practices
 

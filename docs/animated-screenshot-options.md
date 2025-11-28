@@ -21,7 +21,6 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 |--------------	        |-----------------	|-----------------------------------------------------------------------------------------	|
 | url          	        | -               	| URL-encoded target url                                                                  	|
 | preset                | -                 | Apply predefined configuration preset                                                    |
-| format                | gif               | Output format (only GIF supported)                                                       |
 | duration              | 5                 | Recording duration in seconds (1-30)                                                     |
 | hideScrollbars        | true              | Hide scrollbars during capture for cleaner output                                        |
 | vw           	        | 1440            	| Viewport width in pixels                                                                 	|
@@ -36,14 +35,9 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 | darkMode              | false             | Enable dark mode                                                                         	|
 | blockCookieBanners    | false             | Automatically dismiss cookie consent popups                                              	|
 | blockAds              | false             | Block advertisements                                                                     	|
-| bypassBotDetection    | false             | Solve captchas automatically                                                             	|
-| httpAuth           	| -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`    	|
+| httpAuth           	  | -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`    	|
 | userAgent    	        | -               	| Custom user agent (`base64url` encoded)                                         	        |
 | fileName     	        | -               	| Custom filename for the output file                                                      	|
-| s3Acl	       	        | -               	| S3 Access Control List (e.g., `public-read`)                                           	|
-| s3Redirect   	        | false           	| Redirect to S3 URL instead of returning file data                                        	|
-
-Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
 
 ## Format Specifications
 
