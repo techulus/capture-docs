@@ -19,12 +19,7 @@
       "screenshot-authentication"
     ],
     "Animated": [
-      "animated-screenshot-options",
-      "animated-animation-settings",
-      "animated-viewport",
-      "animated-capture-behavior",
-      "animated-page-interaction",
-      "animated-authentication-storage"
+      "animated-screenshot-options"
     ],
     "PDF": [
       "pdf-options",
@@ -35,18 +30,37 @@
       "pdf-authentication",
       "pdf-timing"
     ],
-    "Content": ["content-options", "content-timing", "content-authentication"],
-    "Metadata": ["metadata-options"],
-    "SDKs": ["sdk-overview"]
+    "Content": [
+      "content-options"
+    ],
+    "Metadata": [
+      "metadata-options"
+    ],
+    "SDKs": [
+      "sdk-overview"
+    ]
   },
   "Integrations": {
-    "MCP": ["mcp-integration"],
-    "Slack": ["slack-integration"],
-    "Zapier": ["zapier-integration"],
-    "n8n": ["n8n-integration"],
-    "WordPress": ["wordpress-integration"]
+    "MCP": [
+      "mcp-integration"
+    ],
+    "Slack": [
+      "slack-integration"
+    ],
+    "Zapier": [
+      "zapier-integration"
+    ],
+    "n8n": [
+      "n8n-integration"
+    ],
+    "WordPress": [
+      "wordpress-integration"
+    ]
   },
   "apis": {
-    "Batch APIs": ["batch-image", "batch-pdf"]
+    "Batch APIs": [
+      "batch-image",
+      "batch-pdf"
+    ]
   }
 }
