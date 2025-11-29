@@ -30,23 +30,12 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 | delay        	        | 0               	| Seconds to wait before starting capture (0-25)                                           	|
 | waitFor      	        | -               	| Wait for CSS selector to appear                                                          	|
 | waitForId    	        | -               	| Wait for element with specific ID to appear                                              	|
-| selector              | -               	| Capture specific element by CSS selector                                                 	|
 | darkMode              | false             | Enable dark mode                                                                         	|
 | blockCookieBanners    | false             | Automatically dismiss cookie consent popups                                              	|
 | blockAds              | false             | Block advertisements                                                                     	|
 | httpAuth           	  | -               	| HTTP Basic Authentication base64url encoded in format `base64url(username:password)`    	|
 | userAgent    	        | -               	| Custom user agent (`base64url` encoded)                                         	        |
 | fileName     	        | -               	| Custom filename for the output file                                                      	|
-
-## Format Specifications
-
-### GIF Format
-- **Extension**: `.gif`
-- **Content-Type**: `image/gif`
-- **Color**: 256 color palette with dithering
-- **Looping**: Automatic continuous looping
-- **Compatibility**: Universal support across all platforms and browsers
-- **Best for**: Animations, documentation, social media, email newsletters
 
 ## Usage Examples
 
@@ -59,12 +48,6 @@ https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&dura
 ```
 https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&duration=20&darkMode=true&hideScrollbars=true
 ```
-
-### Element-Specific Animation
-```
-https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&selector=.main-content&duration=8
-```
-
 ### Mobile Device Recording
 ```
 https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emulateDevice=iphone_15_pro&duration=10
@@ -74,24 +57,6 @@ https://cdn.capture.page/your-api-key/hash/animated?url=https://example.com&emul
 
 - **Format**: GIF only
 - **Maximum Duration**: 30 seconds
-- **Browser**: Uses Chrome/Chromium with Puppeteer
-
-## Best Practices
-
-1. **Optimize Duration**:
-   - Shorter durations reduce credit usage and file size
-   - 5-15 seconds often sufficient for most use cases
-   - Use longer durations (20-30s) for comprehensive page animations
-
-2. **File Size Optimization**:
-   - Shorter duration = smaller files
-   - Reduce viewport dimensions if possible
-   - Consider hiding scrollbars for cleaner output
-
-3. **Performance**:
-   - Use `delay` parameter for dynamic content
-   - Consider `waitFor` for specific elements
-   - Enable ad blocking for faster loading and cleaner output
 
 ## Device Emulation
 
