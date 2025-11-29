@@ -31,7 +31,6 @@ https://cdn.capture.page/{API_KEY}/{GENERATED_HASH}/animated?url={TARGET_URL}
 | waitFor      	        | -               	| Wait for CSS selector to appear                                                          	|
 | waitForId    	        | -               	| Wait for element with specific ID to appear                                              	|
 | selector              | -               	| Capture specific element by CSS selector                                                 	|
-| fullPage              | false           	| Capture full page height                                                                 	|
 | darkMode              | false             | Enable dark mode                                                                         	|
 | blockCookieBanners    | false             | Automatically dismiss cookie consent popups                                              	|
 | blockAds              | false             | Block advertisements                                                                     	|
