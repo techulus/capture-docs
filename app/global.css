@@ -1,3 +1,7 @@
 @import "tailwindcss";
 @import "fumadocs-ui/css/catppuccin.css";
 @import "fumadocs-ui/css/preset.css";
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Ubuntu, sans-serif;
+}

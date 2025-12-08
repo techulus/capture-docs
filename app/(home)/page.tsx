@@ -4,11 +4,11 @@ export default function HomePage() {
   return (
     <div className="flex flex-col items-center justify-center text-center flex-1 px-4">
       <div className="max-w-3xl">
-        <p className="text-xl text-muted-foreground mb-8">
-          Fast & Reliable Screenshot API for Developer
-        </p>
+        <h1 className="text-2xl font-extrabold text-foreground mb-8">
+          Fast & Reliable Browser API
+        </h1>
 
-        <p className="text-lg mb-8">
+        <p className="text-md mb-8">
           Effortlessly capture screenshots, create PDFs, scrape content, and
           extract metadata from any website with our state-of-the-art API. Our
           blazing-fast screenshot API delivers reliable performance, giving you
@@ -19,15 +19,12 @@ export default function HomePage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <Link
             href="/docs/get-started"
-            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="group inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-2.5 font-medium text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
           >
-            Get Started →
-          </Link>
-          <Link
-            href="/docs/batch-image"
-            className="inline-flex items-center justify-center rounded-lg border border-input bg-background px-6 py-3 font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
-          >
-            API Reference
+            <span>Get Started</span>
+            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">
+              →
+            </span>
           </Link>
         </div>
       </div>
