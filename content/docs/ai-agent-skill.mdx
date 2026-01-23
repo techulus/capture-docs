@@ -1,0 +1,67 @@
+---
+title: AI Agent Skill
+description: Install Capture as an Agent Skill for Claude Code. Enable Claude to capture screenshots, generate PDFs, and extract web content using the Capture CLI.
+---
+
+Add Capture as an Agent Skill to give Claude the ability to capture screenshots, generate PDFs, and extract content from any URL.
+
+## Prerequisites
+
+1. Install the [Capture CLI](/docs/capture-cli)
+2. Set environment variables `CAPTURE_KEY` and `CAPTURE_SECRET`
+
+## Installation
+
+```bash
+npx skills add techulus/capture-skills
+```
+
+For manual installation, see the [capture-skills repository](https://github.com/techulus/capture-skills).
+
+## Usage
+
+Once installed, Claude will automatically use the Capture skill when you ask it to:
+
+- Take a screenshot of a website
+- Generate a PDF from a URL
+- Extract content from a page
+- Get metadata from a URL
+- Create an animated recording of a page
+
+**Example prompts:**
+
+```
+"Take a screenshot of https://example.com"
+"Create a full-page screenshot of news.ycombinator.com in dark mode"
+"Screenshot this page as it would appear on an iPhone"
+"Generate an A4 PDF of this article with backgrounds"
+"Create a landscape PDF of this page"
+"Extract the content from this blog post as markdown"
+"Get the metadata from https://example.com"
+"Record a 10 second GIF of this page"
+```
+
+## Available Commands
+
+The skill provides access to all Capture CLI commands:
+
+| Command | Description |
+|---------|-------------|
+| `capture screenshot <url> -o <file.png>` | Capture screenshot |
+| `capture pdf <url> -o <file.pdf>` | Generate PDF |
+| `capture content <url> --format markdown` | Extract content |
+| `capture metadata <url> --pretty` | Get metadata |
+| `capture animated <url> -o <file.gif>` | Record animated GIF |
+
+For the full list of options, see the [capture-skills repository](https://github.com/techulus/capture-skills) or the individual option pages:
+
+- [Screenshot Options](/docs/screenshot-options)
+- [PDF Options](/docs/pdf-options)
+- [Content Options](/docs/content-options)
+- [Metadata Options](/docs/metadata-options)
+- [Animated Screenshot Options](/docs/animated-screenshot-options)
+
+## Related
+
+- [Capture CLI](/docs/capture-cli) - Installation and setup
+- [MCP Integration](/docs/mcp-integration) - Use Capture with Claude Desktop

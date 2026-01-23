@@ -1,0 +1,94 @@
+---
+title: Capture CLI
+description: Command-line interface for Capture API. Take screenshots, generate PDFs, extract content and metadata from any URL directly from your terminal.
+---
+
+The Capture CLI lets you capture screenshots, generate PDFs, and extract content from any URL directly from your terminal.
+
+## Installation
+
+### Go Install
+
+```bash
+go install github.com/techulus/capture-go/cmd/capture@latest
+```
+
+### Homebrew
+
+```bash
+brew tap techulus/tap
+brew install capture
+```
+
+## Configuration
+
+Set your API credentials as environment variables:
+
+```bash
+export CAPTURE_KEY="your_api_key"
+export CAPTURE_SECRET="your_api_secret"
+```
+
+Get your API key and secret from the [Capture Dashboard](https://capture.page/dashboard).
+
+## Commands
+
+### Screenshot
+
+Capture screenshots of any website:
+
+```bash
+capture screenshot https://example.com -o screenshot.png
+capture screenshot https://example.com -X vw=1920 -X vh=1080 -X fullPage=true -o full.png
+```
+
+### PDF
+
+Generate PDFs from any website:
+
+```bash
+capture pdf https://example.com -o document.pdf
+capture pdf https://example.com -X format=A4 -X landscape=true -o landscape.pdf
+```
+
+### Content
+
+Extract content from any website:
+
+```bash
+capture content https://example.com --format markdown
+capture content https://example.com --format html -o page.html
+```
+
+### Metadata
+
+Extract metadata from any website:
+
+```bash
+capture metadata https://example.com --pretty
+```
+
+### Animated
+
+Create animated GIF recordings:
+
+```bash
+capture animated https://example.com -X duration=5 -o recording.gif
+```
+
+## Common Options
+
+| Option | Description |
+|--------|-------------|
+| `-o` | Output file path |
+| `-X` | Pass additional options (e.g., `-X vw=1920`) |
+| `--edge` | Use edge mode for faster response |
+| `--dry-run` | Preview the request URL without executing |
+
+## Learn More
+
+- **GitHub Repository**: [techulus/capture-go](https://github.com/techulus/capture-go)
+- [Screenshot Options](/docs/screenshot-options)
+- [PDF Options](/docs/pdf-options)
+- [Content Options](/docs/content-options)
+- [Metadata Options](/docs/metadata-options)
