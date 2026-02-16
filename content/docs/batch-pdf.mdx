@@ -5,6 +5,10 @@ description: Generate multiple PDFs in a single API request with Capture batch p
 
 This API endpoint is for requesting batch processing of multiple PDF capture requests.
 
+<Callout type="warn">
+Batch requests require an S3 bucket or S3-compatible storage (e.g., Cloudflare R2, MinIO) to be configured in your project settings. The generated files will be uploaded to this storage.
+</Callout>
+
 ## Endpoint
 POST `https://cdn.capture.page/batch-pdf/[your-api-key]`
 

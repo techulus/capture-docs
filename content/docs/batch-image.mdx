@@ -5,6 +5,10 @@ description: Capture multiple website screenshots in one API request with batch 
 
 This API endpoint is for requesting batch processing of multiple image capture requests.
 
+<Callout type="warn">
+Batch requests require an S3 bucket or S3-compatible storage (e.g., Cloudflare R2, MinIO) to be configured in your project settings. The generated files will be uploaded to this storage.
+</Callout>
+
 ## Endpoint
 POST `https://cdn.capture.page/batch-image/[your-api-key]`
 
