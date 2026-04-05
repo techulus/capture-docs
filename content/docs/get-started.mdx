@@ -1,6 +1,6 @@
 ---
 title: Get Started
-description: Get started with Capture API in minutes. Learn authentication, hash generation, and how to create your first screenshot or PDF request with complete code examples.
+description: Get started with Capture API in minutes. Learn authentication, URL generation, and how to create your first screenshot or PDF request with SDK and direct API examples.
 ---
 
 Welcome to Capture! This document will guide you through the process of making your first request.
@@ -27,6 +27,10 @@ To generate the hash all we need to do is to create an `MD5` hash of the API sec
 ```javascript
 md5(api_secret + 'url=http://www.apple.com/')
 ```
+
+If you're using JavaScript or Python, we recommend using the official SDKs so you don't have to generate request hashes manually.
+
+Capture also provides official SDKs for Go, Rust, Ruby, and PHP. See the [SDK Overview](/docs/sdk-overview) for the full list.
 
 ## Displaying screenshots
 
@@ -61,51 +65,60 @@ Just treat the url as an image url and it will work anywhere you wish!
 
 ## Sample JavaScript Code
 
+Install the official Node.js SDK:
+
+```bash
+npm install capture-node
+```
+
 ```javascript
-// Include https://github.com/blueimp/JavaScript-MD5
+import { Capture } from 'capture-node';
 
-# API configuration
-var API_URL = 'https://cdn.capture.page/';
-var your_api_key = 'API_KEY_FROM_CONSOLE';
-var your_api_secret = 'API_SECRET_FROM_CONSOLE'
+const capture = new Capture(
+  'API_KEY_FROM_CONSOLE',
+  'API_SECRET_FROM_CONSOLE'
+);
 
-// Target URL
-var input_url = encodeURIComponent('http://techulus.xyz');
-var hash = md5(your_api_secret + 'url=' + input_url);
+const targetUrl = 'https://techulus.xyz';
 
-// Image URL
-var result_img_url = API_URL + your_api_key + '/' + hash + '/image?url=' + input_url;
-// PDF URL
-var result_pdf_url = API_URL + your_api_key + '/' + hash + '/pdf?url=' + input_url;
+const imageUrl = capture.buildImageUrl(targetUrl, {
+  delay: 2,
+});
 
-console.log(result_img_url, result_pdf_url);
+const pdfUrl = capture.buildPdfUrl(targetUrl, {
+  delay: 2,
+});
+
+console.log(imageUrl);
+console.log(pdfUrl);
 ```
 
 ## Sample Python Code
 
+Install the official Python SDK:
+
+```bash
+pip install capture-sdk
+```
+
 ```python
-import hashlib
-import urllib.parse
+from capture import Capture
 
-# API configuration
-API_URL = "https://cdn.capture.page/"
-your_api_key = "API_KEY_FROM_CONSOLE"
-your_api_secret = "API_SECRET_FROM_CONSOLE"
-
-# Target URL
-input_url = urllib.parse.quote("http://techulus.xyz", safe="")
-hash_input = your_api_secret + "url=" + input_url + "&delay=2" # Include request options here
-hash_value = hashlib.md5(hash_input.encode()).hexdigest()
-
-# Image URL
-result_img_url = (
-    API_URL + your_api_key + "/" + hash_value + "/image?url=" + input_url
-)
-# PDF URL
-result_pdf_url = (
-    API_URL + your_api_key + "/" + hash_value + "/pdf?url=" + input_url
+client = Capture(
+    "API_KEY_FROM_CONSOLE",
+    "API_SECRET_FROM_CONSOLE",
 )
 
-print(result_img_url)
-print(result_pdf_url)
+target_url = "https://techulus.xyz"
+
+image_url = client.build_image_url(target_url, {
+    "delay": 2,
+})
+
+pdf_url = client.build_pdf_url(target_url, {
+    "delay": 2,
+})
+
+print(image_url)
+print(pdf_url)
 ```
