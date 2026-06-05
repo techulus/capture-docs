@@ -1,55 +1,61 @@
 ---
 title: MCP (Model Context Protocol)
-description: Connect Capture API to Claude Code and Claude Desktop using Model Context Protocol. Generate screenshots, PDFs, and extract content directly from AI conversations.
+description: Connect Capture API to any MCP-compatible AI client (Claude, Cursor, Codex, OpenCode, VS Code, and more) using the Model Context Protocol. Generate screenshots, PDFs, extract content, and drive browser sessions directly from AI conversations.
 ---
 
 ## What is MCP?
 
-The Model Context Protocol (MCP) allows AI tools like Claude Code and Claude Desktop to connect directly to Capture's API, enabling you to capture screenshots, generate PDFs, and extract content from any website directly within your AI conversations.
+The Model Context Protocol (MCP) lets any MCP-compatible AI client connect directly to Capture's API, enabling you to capture screenshots, generate PDFs, extract content, and drive interactive browser sessions from your AI conversations.
 
-## Setup
+Capture runs a remote MCP server over **Streamable HTTP**, so it works with any client that supports remote MCP servers — including Claude, Cursor, Codex, OpenCode, VS Code, and others.
 
-### Step 1: Get Your Bearer Token
+## Connection Details
+
+Most MCP clients only need two things:
+
+| Field | Value |
+| --- | --- |
+| **Server URL** | `https://capture.page/mcp/v1` |
+| **Transport** | Streamable HTTP |
+| **Auth header** | `Authorization: Bearer YOUR_TOKEN_HERE` |
+
+### Get Your Bearer Token
 
 Visit the [MCP Integration page](https://capture.page/dashboard/mcp) in your Capture dashboard to get your auto-generated Bearer token. This token authenticates your MCP connection and combines your API key and secret.
 
-### Step 2: Configure Your AI Tool
+## Setup
 
-#### Claude Code (CLI)
+Config formats differ between clients — use the example that matches yours and replace `YOUR_TOKEN_HERE` with your Bearer token. Any client not shown here can be configured with the Server URL and Authorization header from the table above, following its own MCP docs.
 
-Run this command in your terminal to add the Capture MCP server:
+### JSON config (Claude, Cursor, VS Code, and similar)
 
-```bash
-claude mcp add --transport http capture https://capture.page/mcp/http --header "Authorization: Bearer YOUR_TOKEN_HERE"
-```
-
-Replace `YOUR_TOKEN_HERE` with the Bearer token from your dashboard.
-
-After running this command, restart your terminal session or start a new conversation.
-
-#### Claude Desktop
-
-Add this configuration to your Claude Desktop config file:
+Paste this into your client's MCP config file (the exact location varies by client):
 
 ```json
 {
   "mcpServers": {
     "capture": {
-      "url": "https://capture.page/mcp/http",
-      "transport": {
-        "type": "http",
-        "headers": {
-          "Authorization": "Bearer YOUR_TOKEN_HERE"
-        }
+      "type": "http",
+      "url": "https://capture.page/mcp/v1",
+      "headers": {
+        "Authorization": "Bearer YOUR_TOKEN_HERE"
       }
     }
   }
 }
 ```
 
-Replace `YOUR_TOKEN_HERE` with the Bearer token from your dashboard.
+### Codex
 
-After saving the config file, restart Claude Desktop completely.
+Add this to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.capture]
+url = "https://capture.page/mcp/v1"
+http_headers = { Authorization = "Bearer YOUR_TOKEN_HERE" }
+```
+
+After saving the configuration, restart your client (or start a new conversation) for the Capture tools to appear.
 
 ## Available Tools
 
@@ -91,10 +97,11 @@ Generate PDFs from any website with custom settings:
 
 ### capture_content
 
-Extract HTML and text content from any website:
+Extract readable content from any website:
 
-- Raw HTML extraction
 - Cleaned text content
+- Markdown output
+- Raw HTML when needed
 - Useful for content analysis and web scraping
 
 **Example usage:**
@@ -118,6 +125,48 @@ Extract metadata from any website:
 "Get the SEO information for this website"
 ```
 
+### Browser sessions (interactive automation)
+
+For tasks that need more than a single capture — logging in, filling forms, clicking through pages, or reading content that only appears after interaction — Capture exposes a stateful **browser session** that your AI assistant can drive step by step.
+
+A session keeps a real browser open and is billed by duration — **1 credit per minute the session stays open** (rounded up), charged when the session closes or expires — so the assistant is instructed to close it as soon as the task is done.
+
+#### browser_session_create
+
+Start an interactive browser session. Returns a `sessionId` and `expiresAt`.
+
+- Optional `maxTtlSeconds` (max 900) to cap the session lifetime
+- Optional `proxy` to route through your configured proxy
+- Optional `bypassBotDetection` to use a stealth browser
+
+#### browser_session_act
+
+Run an action inside an open session. Takes the `sessionId`, an action `type`, and a `payload`.
+
+- Navigation: `goto`, `back`, `forward`, `reload`
+- Interaction: `click`, `type`, `type_text`, `fill`, `select`, `check`, `press`, `hover`, `scroll`, `move_mouse`, `drag_mouse`
+- Reading: `snapshot`, `content`, `query`, `title`, `url`, `console`, `errors`
+- Waiting: `wait_for_selector`, `wait_for_timeout`
+- Capture: `screenshot` (returned as an inline image; any action can set `payload.screenshot: true` to attach one)
+- `batch`: run several actions in one round-trip via `payload.actions`
+
+For `content`, set `payload.format` to `text`, `markdown`, or `html`. The
+default is cleaned text; request `html` only when the raw page source is needed.
+
+**Example usage:**
+```
+"Log into example.com with these credentials and take a screenshot of the dashboard"
+"Open this product page, accept the cookie banner, and extract the price"
+```
+
+#### browser_session_close
+
+Close a session and stop billing. The assistant calls this automatically when finished.
+
+#### browser_session_get
+
+Check a session's status — whether it's still active, when it expires, action counts, and credits billed so far.
+
 ## Usage Tips
 
 - Ask your AI assistant naturally - it will know when to use Capture tools
@@ -129,11 +178,12 @@ Extract metadata from any website:
 
 ### Connection Failed
 
-If you see "Failed to connect" when running `claude mcp list`:
+If your client reports that it failed to connect:
 
-1. Verify your Bearer token is correct
-2. Ensure you've restarted your AI tool after configuration
-3. Check that you have an active internet connection
+1. Verify the Server URL is `https://capture.page/mcp/v1` and the transport is HTTP
+2. Verify your Bearer token is correct
+3. Ensure you've restarted your client after configuration
+4. Check that you have an active internet connection
 
 ### Authentication Errors
 
@@ -141,7 +191,7 @@ If you receive authentication errors:
 
 1. Regenerate your Bearer token from the [MCP Integration page](https://capture.page/dashboard/mcp)
 2. Update your configuration with the new token
-3. Restart your AI tool
+3. Restart your client
 
 ## Learn More
 

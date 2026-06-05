@@ -1,0 +1,102 @@
+---
+title: Overview
+description: Learn what Capture browser sessions are, when to use them, and how to create a session before running browser actions.
+---
+
+Browser sessions give you a stateful cloud browser that stays alive across
+multiple API calls. Instead of asking Capture to take one screenshot, PDF, or
+content extraction in a single request, you create a session, run actions
+against the same browser page, and close it when the workflow is finished.
+
+Use sessions when a capture needs interaction or shared state: signing in,
+navigating through a multi-step flow, waiting for an application to update,
+querying page content after a click, or taking a screenshot after several
+browser actions.
+
+## How it works
+
+1. Create a browser session with `POST /v1/sessions`.
+2. Use the returned `sessionId` to execute actions with
+   `POST /v1/sessions/{sessionId}/actions`.
+3. Read session metadata when you need current state.
+4. Close the session with `DELETE /v1/sessions/{sessionId}` when you are done.
+
+Sessions automatically close when their TTL expires, but you should close them
+explicitly once your workflow is complete. Sessions are billed by duration: 1
+credit per minute the session stays open (rounded up), charged when the session
+closes or expires — not per action. A session can stay open for up to 15
+minutes, and you can run up to 5 at once.
+
+## Authentication
+
+Session endpoints use Bearer authentication:
+
+```text
+Authorization: Bearer <base64(userId:secret)>
+```
+
+The `secret` can be your primary Capture secret or one of your API secrets.
+
+## Example workflow
+
+Create a session:
+
+```bash
+curl -X POST "https://api.capture.page/v1/sessions" \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{"maxTtlSeconds":300}'
+```
+
+Navigate the browser:
+
+```bash
+curl -X POST "https://api.capture.page/v1/sessions/{sessionId}/actions" \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "goto",
+    "payload": {
+      "url": "https://example.com"
+    }
+  }'
+```
+
+Take a screenshot from the same session:
+
+```bash
+curl -X POST "https://api.capture.page/v1/sessions/{sessionId}/actions" \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "screenshot",
+    "payload": {
+      "fullPage": true
+    }
+  }'
+```
+
+Close the session:
+
+```bash
+curl -X DELETE "https://api.capture.page/v1/sessions/{sessionId}" \
+  -H "Authorization: Bearer <token>"
+```
+
+## Action types
+
+Actions are deterministic operations executed inside the active session page.
+Use them to navigate, inspect content, query matching elements, capture
+screenshots, and continue a workflow without losing browser state.
+
+The `content` action accepts `payload.format` as `text`, `markdown`, or `html`.
+It defaults to cleaned readable text so agents do not receive raw page HTML
+unless you request `html` explicitly.
+
+See the generated API reference in this section for request and response
+schemas:
+
+- [Create a browser session](/docs/browser-sessions/sessions/createSession)
+- [Get session metadata](/docs/browser-sessions/sessions/getSession)
+- [Close a browser session](/docs/browser-sessions/sessions/closeSession)
+- [Execute a Capture action](/docs/browser-sessions/actions/executeAction)

@@ -1,0 +1,578 @@
+openapi: 3.0.3
+info:
+  title: Capture Sessions API
+  version: 6.34.0
+  license:
+    name: UNLICENSED
+    url: https://capture.page
+  description: |
+    OpenAPI contract for Capture browser sessions and Capture actions.
+
+    Session endpoints use Bearer authentication with the same token format as
+    Capture MCP:
+
+    `Authorization: Bearer <base64(userId:secret)>`
+
+    `secret` may be the user's primary secret or one of their API secrets.
+servers:
+  - url: https://{host}
+    description: Replace `host` with your Capture API deployment hostname.
+    variables:
+      host:
+        default: api.capture.page
+tags:
+  - name: Sessions
+    description: Stateful cloud browser sessions.
+  - name: Actions
+    description: Deterministic browser actions executed inside a session.
+security:
+  - bearerAuth: []
+paths:
+  /v1/sessions:
+    post:
+      tags: [Sessions]
+      operationId: createSession
+      summary: Create a browser session
+      description: |
+        Creates a stateful browser session on the handling Capture API instance.
+        The session is automatically closed when its TTL expires. Billable
+        sessions charge 1 credit per elapsed minute, rounded up. Each user
+        can have up to 5 active sessions at a time.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionRequest'
+            examples:
+              defaultTtl:
+                value: {}
+              customTtl:
+                value:
+                  maxTtlSeconds: 300
+              proxyAndBypass:
+                value:
+                  maxTtlSeconds: 300
+                  proxy: true
+                  bypassBotDetection: true
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSessionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          description: User has reached the active session limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLimitErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /v1/sessions/{sessionId}:
+    get:
+      tags: [Sessions]
+      operationId: getSession
+      summary: Get session metadata
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSessionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    delete:
+      tags: [Sessions]
+      operationId: closeSession
+      summary: Close a browser session
+      description: |
+        Closes an active session and charges duration credits once. Repeated
+        close requests for an already-finalized session are idempotent.
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session closed or already finalized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSessionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Session is unavailable or not active
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ErrorResponse'
+                  - $ref: '#/components/schemas/InactiveSessionActionResponse'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+
+  /v1/sessions/{sessionId}/actions:
+    post:
+      tags: [Actions]
+      operationId: executeAction
+      summary: Execute a Capture action
+      description: |
+        Executes a deterministic browser action against the session's active
+        page. If the request lands on a non-owner API instance, Capture routes
+        the action to the owning instance through Redis.
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionRequest'
+            examples:
+              goto:
+                value:
+                  type: goto
+                  payload:
+                    url: https://example.com
+              screenshot:
+                value:
+                  type: screenshot
+                  payload:
+                    fullPage: true
+              query:
+                value:
+                  type: query
+                  payload:
+                    selector: article a[href]
+                    fields: [text, href]
+                    limit: 50
+              content:
+                value:
+                  type: content
+                  payload:
+                    format: markdown
+      responses:
+        '200':
+          description: Action result
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GotoActionResponse'
+                  - $ref: '#/components/schemas/ScreenshotActionResponse'
+                  - $ref: '#/components/schemas/GenericActionResponse'
+                  - $ref: '#/components/schemas/ContentActionResponse'
+                  - $ref: '#/components/schemas/QueryActionResponse'
+        '400':
+          description: Invalid action request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionErrorResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Session is unavailable or not active
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ErrorResponse'
+                  - $ref: '#/components/schemas/InactiveSessionActionResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionErrorResponse'
+        '503':
+          description: Required backing service is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionErrorResponse'
+        '504':
+          description: Action timed out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionErrorResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: base64(userId:secret)
+
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      description: Session id returned by `POST /v1/sessions`.
+      schema:
+        type: string
+        example: sess_123e4567-e89b-12d3-a456-426614174000
+
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: User is not allowed to create the session
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Session not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServiceUnavailable:
+      description: Required backing service is unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    GatewayTimeout:
+      description: Action timed out
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [success, error]
+      properties:
+        success:
+          type: boolean
+          enum: [false]
+        error:
+          type: string
+
+    SessionLimitErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - type: object
+          required: [activeSessionCount, maxConcurrentSessions]
+          properties:
+            activeSessionCount:
+              type: integer
+              example: 5
+            maxConcurrentSessions:
+              type: integer
+              example: 5
+
+    ActionErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - type: object
+          properties:
+            session:
+              $ref: '#/components/schemas/BrowserSession'
+
+    Success:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+          enum: [true]
+
+    CreateSessionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        maxTtlSeconds:
+          type: integer
+          minimum: 1
+          maximum: 900
+          description: Maximum session lifetime. Values above 900 are capped.
+          example: 300
+        proxy:
+          type: boolean
+          default: false
+          description: Use the authenticated user's configured browser proxy.
+        bypassBotDetection:
+          type: boolean
+          default: false
+          description: Use Capture's configured captcha/bot-detection bypass browser when available.
+
+    CreateSessionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          required: [session]
+          properties:
+            session:
+              type: object
+              required: [id, status, expiresAt, maxTtlSeconds, proxy, bypassBotDetection]
+              properties:
+                id:
+                  type: string
+                status:
+                  $ref: '#/components/schemas/SessionStatus'
+                expiresAt:
+                  type: string
+                  format: date-time
+                maxTtlSeconds:
+                  type: integer
+                proxy:
+                  type: boolean
+                bypassBotDetection:
+                  type: boolean
+
+    GetSessionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          required: [session]
+          properties:
+            session:
+              $ref: '#/components/schemas/BrowserSession'
+
+    BrowserSession:
+      type: object
+      required:
+        - id
+        - status
+        - startedAt
+        - expiresAt
+        - billedCredits
+        - actionCount
+        - actionSuccessCount
+        - actionErrorCount
+        - actionBreakdown
+        - options
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/SessionStatus'
+        closeReason:
+          type: string
+          nullable: true
+          example: closed
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        expiresAt:
+          type: string
+          format: date-time
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
+        durationSeconds:
+          type: integer
+          nullable: true
+        billedCredits:
+          type: integer
+          nullable: true
+          description: Duration credits charged at 1 credit per elapsed minute, rounded up.
+        actionCount:
+          type: integer
+          description: Number of actions attempted.
+        actionSuccessCount:
+          type: integer
+          description: Number of actions completed successfully.
+        actionErrorCount:
+          type: integer
+          description: Number of actions that failed.
+        actionBreakdown:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/UsageBreakdownEntry'
+        options:
+          type: object
+          additionalProperties: true
+          properties:
+            maxTtlSeconds:
+              type: integer
+            proxy:
+              type: boolean
+            bypassBotDetection:
+              type: boolean
+
+    SessionStatus:
+      type: string
+      enum: [active, closed, expired, error]
+
+    UsageBreakdownEntry:
+      type: object
+      required: [total, success, error]
+      properties:
+        total:
+          type: integer
+        success:
+          type: integer
+        error:
+          type: integer
+
+    ActionRequest:
+      type: object
+      required: [type]
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - goto
+            - screenshot
+            - wait_for_selector
+            - wait_for_timeout
+            - click
+            - move_mouse
+            - drag_mouse
+            - hover
+            - type
+            - type_text
+            - fill
+            - select
+            - check
+            - press
+            - scroll
+            - back
+            - forward
+            - reload
+            - title
+            - url
+            - cursor_position
+            - snapshot
+            - console
+            - errors
+            - content
+            - query
+            - batch
+        payload:
+          type: object
+          additionalProperties: true
+          description: Action-specific payload. Supports selectors, coordinates, text, keys, navigation options, screenshot options, safe DOM query fields, content format (`text`, `markdown`, or `html`; defaults to cleaned text), drag paths up to 100 points, and nested batch actions up to 25 actions.
+
+    GotoActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          required: [url]
+          properties:
+            url:
+              type: string
+
+    ScreenshotActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          required: [contentType, bodyBase64]
+          properties:
+            contentType:
+              type: string
+              enum: [image/png]
+            bodyBase64:
+              type: string
+
+    GenericActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          additionalProperties: true
+
+    ContentActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          required: [format, content]
+          properties:
+            format:
+              type: string
+              enum: [text, markdown, html]
+              default: text
+              description: Requested content format. `text` and `markdown` return cleaned readable content; `html` returns the raw page HTML.
+            content:
+              type: string
+
+    QueryActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/Success'
+        - type: object
+          required: [selector, fields, limit, count, elements]
+          properties:
+            selector:
+              type: string
+            fields:
+              type: array
+              items:
+                type: string
+                enum:
+                  - text
+                  - html
+                  - href
+                  - src
+                  - alt
+                  - title
+                  - value
+                  - name
+                  - id
+                  - className
+                  - tag
+                  - role
+                  - ariaLabel
+                  - visible
+                  - bbox
+            limit:
+              type: integer
+              minimum: 1
+              maximum: 100
+            count:
+              type: integer
+            elements:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+
+    InactiveSessionActionResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - type: object
+          required: [session]
+          properties:
+            session:
+              $ref: '#/components/schemas/BrowserSession'

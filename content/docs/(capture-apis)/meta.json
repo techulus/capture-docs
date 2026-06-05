@@ -1,0 +1,12 @@
+{
+  "title": "Core APIs",
+  "defaultOpen": true,
+  "pages": [
+    "[Overview](/docs/capture-apis-overview)",
+    "(screenshot)",
+    "(pdf)",
+    "(content)",
+    "(metadata)",
+    "(animated)"
+  ]
+}

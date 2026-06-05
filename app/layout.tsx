@@ -8,7 +8,8 @@ export const metadata: Metadata = {
     default: "Capture - Fast & Reliable Browser API",
     template: "%s | Capture",
   },
-  description: "Effortlessly capture screenshots, create PDFs, scrape content, and extract metadata from any website with our state-of-the-art API.",
+  description:
+    "Effortlessly capture screenshots, create PDFs, scrape content, and extract metadata from any website with our state-of-the-art API.",
 };
 
 export default function Layout({ children }: LayoutProps<"/">) {

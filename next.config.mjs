@@ -1,4 +1,4 @@
-import { createMDX } from 'fumadocs-mdx/next';
+import { createMDX } from "fumadocs-mdx/next";
 
 const withMDX = createMDX();
 
@@ -8,12 +8,12 @@ const config = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cdn.capture.page',
+        protocol: "https",
+        hostname: "cdn.capture.page",
       },
       {
-        protocol: 'https',
-        hostname: 'edge.capture.page',
+        protocol: "https",
+        hostname: "edge.capture.page",
       },
     ],
   },

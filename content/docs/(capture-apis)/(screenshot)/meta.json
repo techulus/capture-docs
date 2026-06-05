@@ -1,0 +1,15 @@
+{
+  "title": "Screenshot",
+  "defaultOpen": true,
+  "pages": [
+    "screenshot-options",
+    "screenshot-viewport",
+    "screenshot-capture-area",
+    "screenshot-timing",
+    "screenshot-page-enhancements",
+    "screenshot-device-emulation",
+    "screenshot-output-options",
+    "screenshot-storage",
+    "screenshot-authentication"
+  ]
+}
