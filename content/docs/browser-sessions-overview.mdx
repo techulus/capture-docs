@@ -25,7 +25,9 @@ Sessions automatically close when their TTL expires, but you should close them
 explicitly once your workflow is complete. Sessions are billed by duration: 1
 credit per minute the session stays open (rounded up), charged when the session
 closes or expires — not per action. A session can stay open for up to 15
-minutes, and you can run up to 5 at once.
+minutes, and you can run up to 5 at once. Each action response for an existing
+session includes `expiresInSeconds` so clients can renew or close proactively
+before the TTL is reached.
 
 ## Authentication
 
@@ -88,6 +90,13 @@ curl -X DELETE "https://api.capture.page/v1/sessions/{sessionId}" \
 Actions are deterministic operations executed inside the active session page.
 Use them to navigate, inspect content, query matching elements, capture
 screenshots, and continue a workflow without losing browser state.
+
+Navigation actions (`goto`, `back`, `forward`, and `reload`) accept
+`payload.waitUntil` as `load`, `domcontentloaded`, or `commit`. The default is
+`domcontentloaded`.
+
+The `wait_for_timeout` action accepts `payload.timeoutMs` and clamps values
+above 2500ms.
 
 The `content` action accepts `payload.format` as `text`, `markdown`, or `html`.
 It defaults to cleaned readable text so agents do not receive raw page HTML

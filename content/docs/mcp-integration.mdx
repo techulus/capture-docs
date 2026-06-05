@@ -150,6 +150,12 @@ Run an action inside an open session. Takes the `sessionId`, an action `type`, a
 - Capture: `screenshot` (returned as an inline image; any action can set `payload.screenshot: true` to attach one)
 - `batch`: run several actions in one round-trip via `payload.actions`
 
+Action results include `expiresInSeconds` when the session exists, letting the
+assistant renew, finish, or close the session before the TTL is reached.
+For navigation actions, set `payload.waitUntil` to `load`,
+`domcontentloaded`, or `commit`; the default is `domcontentloaded`.
+For `wait_for_timeout`, `payload.timeoutMs` is capped at 2500ms.
+
 For `content`, set `payload.format` to `text`, `markdown`, or `html`. The
 default is cleaned text; request `html` only when the raw page source is needed.
 

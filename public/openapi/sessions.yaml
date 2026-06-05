@@ -138,7 +138,9 @@ paths:
       description: |
         Executes a deterministic browser action against the session's active
         page. If the request lands on a non-owner API instance, Capture routes
-        the action to the owning instance through Redis.
+        the action to the owning instance through Redis. Responses for existing
+        sessions include `expiresInSeconds`, the remaining lifetime at the time
+        the action response is sent.
       parameters:
         - $ref: '#/components/parameters/SessionId'
       requestBody:
@@ -303,6 +305,10 @@ components:
         - $ref: '#/components/schemas/ErrorResponse'
         - type: object
           properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action was rejected, if the session exists.
             session:
               $ref: '#/components/schemas/BrowserSession'
 
@@ -485,7 +491,18 @@ components:
         payload:
           type: object
           additionalProperties: true
-          description: Action-specific payload. Supports selectors, coordinates, text, keys, navigation options, screenshot options, safe DOM query fields, content format (`text`, `markdown`, or `html`; defaults to cleaned text), drag paths up to 100 points, and nested batch actions up to 25 actions.
+          description: Action-specific payload. Supports selectors, coordinates, text, keys, navigation options, screenshot options, safe DOM query fields, content format (`text`, `markdown`, or `html`; defaults to cleaned text), drag paths up to 100 points, and nested batch actions up to 25 actions. For `goto`, `back`, `forward`, and `reload`, `waitUntil` must be `load`, `domcontentloaded`, or `commit`. For `wait_for_timeout`, `timeoutMs` is capped at 2500.
+          properties:
+            waitUntil:
+              type: string
+              enum: [load, domcontentloaded, commit]
+              default: domcontentloaded
+              description: Navigation readiness state for `goto`, `back`, `forward`, and `reload`.
+            timeoutMs:
+              type: integer
+              minimum: 1
+              maximum: 2500
+              description: Timeout in milliseconds for `wait_for_timeout`. Values above 2500 are clamped.
 
     GotoActionResponse:
       allOf:
@@ -493,6 +510,10 @@ components:
         - type: object
           required: [url]
           properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action completed.
             url:
               type: string
 
@@ -502,6 +523,10 @@ components:
         - type: object
           required: [contentType, bodyBase64]
           properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action completed.
             contentType:
               type: string
               enum: [image/png]
@@ -513,6 +538,11 @@ components:
         - $ref: '#/components/schemas/Success'
         - type: object
           additionalProperties: true
+          properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action completed.
 
     ContentActionResponse:
       allOf:
@@ -520,6 +550,10 @@ components:
         - type: object
           required: [format, content]
           properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action completed.
             format:
               type: string
               enum: [text, markdown, html]
@@ -534,6 +568,10 @@ components:
         - type: object
           required: [selector, fields, limit, count, elements]
           properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action completed.
             selector:
               type: string
             fields:
@@ -574,5 +612,9 @@ components:
         - type: object
           required: [session]
           properties:
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+              description: Remaining session lifetime when the action was rejected.
             session:
               $ref: '#/components/schemas/BrowserSession'
