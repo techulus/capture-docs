@@ -152,6 +152,11 @@ Run an action inside an open session. Takes the `sessionId`, an action `type`, a
 
 Action results include `expiresInSeconds` when the session exists, letting the
 assistant renew, finish, or close the session before the TTL is reached.
+For `query`, use `payload.fields` for built-in fields and `payload.attributes`
+for arbitrary DOM attributes; requested attributes are returned under each
+element's nested `attributes` object. `payload.limit` is capped at 500.
+Selector `click` and `hover` results include matched element diagnostics such
+as `visible`, `elementText`, `boundingBox`, and the interaction point.
 For navigation actions, set `payload.waitUntil` to `load`,
 `domcontentloaded`, or `commit`; the default is `domcontentloaded`.
 For `wait_for_timeout`, `payload.timeoutMs` is capped at 2500ms.

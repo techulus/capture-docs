@@ -166,7 +166,8 @@ paths:
                   payload:
                     selector: article a[href]
                     fields: [text, href]
-                    limit: 50
+                    attributes: [href, class, data-tab]
+                    limit: 400
               content:
                 value:
                   type: content
@@ -491,8 +492,26 @@ components:
         payload:
           type: object
           additionalProperties: true
-          description: Action-specific payload. Supports selectors, coordinates, text, keys, navigation options, screenshot options, safe DOM query fields, content format (`text`, `markdown`, or `html`; defaults to cleaned text), drag paths up to 100 points, and nested batch actions up to 25 actions. For `goto`, `back`, `forward`, and `reload`, `waitUntil` must be `load`, `domcontentloaded`, or `commit`. For `wait_for_timeout`, `timeoutMs` is capped at 2500.
+          description: Action-specific payload. Supports selectors, coordinates, text, keys, navigation options, screenshot options, safe DOM query fields, arbitrary query attributes, content format (`text`, `markdown`, or `html`; defaults to cleaned text), drag paths up to 100 points, and nested batch actions up to 25 actions. Selector `click` and `hover` responses include matched element diagnostics. For `query`, `fields` selects built-in fields, `attributes` returns arbitrary DOM attributes under each element's `attributes` object, and `limit` is capped at 500. For `goto`, `back`, `forward`, and `reload`, `waitUntil` must be `load`, `domcontentloaded`, or `commit`. For `wait_for_timeout`, `timeoutMs` is capped at 2500.
           properties:
+            fields:
+              type: array
+              items:
+                type: string
+              description: Built-in fields for `query`. Defaults to `text` when omitted.
+            attributes:
+              type: array
+              items:
+                type: string
+              description: Arbitrary DOM attributes for `query`, returned under each element's nested `attributes` object.
+            limit:
+              type: integer
+              minimum: 1
+              maximum: 500
+              description: Maximum number of `query` matches to return. Values above 500 are clamped.
+            visibleOnly:
+              type: boolean
+              description: Only return visible `query` matches when true.
             waitUntil:
               type: string
               enum: [load, domcontentloaded, commit]
@@ -514,6 +533,35 @@ components:
               type: integer
               minimum: 0
               description: Remaining session lifetime when the action completed.
+            matched:
+              type: boolean
+              description: Whether a selector-based interaction matched an element before executing.
+            visible:
+              type: boolean
+              description: Whether the matched selector element appeared visible before executing.
+            elementText:
+              type: string
+              description: Collapsed text from the matched selector element.
+            tagName:
+              type: string
+              description: Lowercase tag name of the matched selector element.
+            attributes:
+              type: object
+              additionalProperties:
+                type: string
+              description: Selected attributes from the matched selector element.
+            boundingBox:
+              type: object
+              additionalProperties: true
+              description: Bounding box of the matched selector element.
+            clickedPoint:
+              type: object
+              additionalProperties: true
+              description: Center point used as a diagnostic for selector click actions.
+            hoveredPoint:
+              type: object
+              additionalProperties: true
+              description: Center point used as a diagnostic for selector hover actions.
             url:
               type: string
 
@@ -566,7 +614,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Success'
         - type: object
-          required: [selector, fields, limit, count, elements]
+          required: [selector, fields, attributes, limit, count, elements]
           properties:
             expiresInSeconds:
               type: integer
@@ -594,10 +642,15 @@ components:
                   - ariaLabel
                   - visible
                   - bbox
+            attributes:
+              type: array
+              items:
+                type: string
+              description: Requested arbitrary DOM attributes returned under each element's nested `attributes` object.
             limit:
               type: integer
               minimum: 1
-              maximum: 100
+              maximum: 500
             count:
               type: integer
             elements:

@@ -91,6 +91,16 @@ Actions are deterministic operations executed inside the active session page.
 Use them to navigate, inspect content, query matching elements, capture
 screenshots, and continue a workflow without losing browser state.
 
+The `query` action accepts `payload.fields` for built-in fields and
+`payload.attributes` for arbitrary DOM attributes such as `href`, `class`, or
+`data-tab`. Requested attributes are returned under each element's nested
+`attributes` object. `payload.limit` is capped at 500.
+
+Selector-based `click` and `hover` responses include diagnostics about the
+matched element, including `matched`, `visible`, `elementText`, `boundingBox`,
+and the interaction point. Use these fields to detect a wrong selector or a
+likely no-op interaction without taking another screenshot.
+
 Navigation actions (`goto`, `back`, `forward`, and `reload`) accept
 `payload.waitUntil` as `load`, `domcontentloaded`, or `commit`. The default is
 `domcontentloaded`.
