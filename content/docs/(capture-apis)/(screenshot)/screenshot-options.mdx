@@ -39,6 +39,7 @@ description: Complete screenshot API reference with viewport control, full-page 
 | blockCookieBanners    | false             | Dismiss cookie consent banners or popups before taking screenshot                         |
 | blockAds              | false             | Block ads before taking screenshot                                                      |
 | bypassBotDetection    | false             | Bypass bot detection / solve captchas                                                     |
+| stealth               | false             | Use faster stealth mode to avoid triggering bot challenges                                 |
 | selector              | false           	| Take a screenshot of the element that matches this selector                               |
 | selectorId            | false           	| Take a screenshot of the element that matches this element ID                             |
 | transparent  	        | false           	| Capture with a transparent background                                                   	|
@@ -56,3 +57,9 @@ description: Complete screenshot API reference with viewport control, full-page 
 | bestFormat         	| false           	| Use best image format, this will try to use webp for modern browsers, png for older ones  |
 
 Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property) for valid S3 ACL values.
+
+## Stealth vs. Bot Detection Bypass
+
+Use `stealth=true` when you want a faster capture mode that reduces the chance of triggering bot challenges. Stealth mode cannot solve captchas; it tries to avoid causing them.
+
+Use `bypassBotDetection=true` when a page is expected to show bot detection or captchas. This mode can solve captchas, but it is slower than stealth mode.

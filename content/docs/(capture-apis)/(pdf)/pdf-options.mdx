@@ -31,6 +31,7 @@ https://cdn.capture.page/e1ab7054-dabc-48d6-a33f-c18038aac1c8
 | scale     	| 1             	| Scale of the webpage rendering                                                                	|
 | landscape    	| false            	| Paper orientation                                                                             	|
 | delay     	| 0             	| Delay in seconds before capturing                                                                	|
+| stealth     	| false         	| Use faster stealth mode to avoid triggering bot challenges                                     	|
 | timestamp 	| -             	| This will force reload the image                                                                 	|
 | format    	| A4            	| Paper format. The format options are Letter, Legal, Tabloid, Ledger, A0, A1, A2, A3, A4, A5, A6. 	|
 | fileName  	| -             	| File name used while saving to S3                                                                	|
@@ -43,4 +44,3 @@ Check the following [**reference**](https://docs.aws.amazon.com/AWSJavaScriptSDK
 ## Custom Paper Size
 
 To capture using custom paper size, you can use the `width` and `height` options. Please note that both are mandatory for setting custom paper size. You can also customise the paper margins using `marginTop`, `marginRight`, `marginBottom` and `marginLeft` options. All four margins must be specified for setting custom margin.
-
