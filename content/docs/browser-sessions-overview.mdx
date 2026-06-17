@@ -85,6 +85,53 @@ curl -X DELETE "https://api.capture.page/v1/sessions/{sessionId}" \
   -H "Authorization: Bearer <token>"
 ```
 
+## Connect over CDP
+
+When you need direct Chrome DevTools Protocol access, create the session with
+`cdp: true`. Capture returns a `connectUrl` that CDP clients can use to attach
+to the same cloud browser.
+
+```bash
+curl -X POST "https://api.capture.page/v1/sessions" \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{"cdp":true,"maxTtlSeconds":300}'
+```
+
+Use the returned `session.connectUrl` with a CDP client such as Puppeteer or
+Playwright:
+
+```ts
+import puppeteer from "puppeteer";
+
+const browser = await puppeteer.connect({
+  browserWSEndpoint: session.connectUrl,
+});
+```
+
+```ts
+import { chromium } from "playwright";
+
+const browser = await chromium.connectOverCDP(session.connectUrl);
+```
+
+`connectUrl` values are minted fresh and are only returned for active
+CDP-enabled sessions. If a client disconnects and you need to reconnect, fetch
+the session again while it is active:
+
+```bash
+curl "https://api.capture.page/v1/sessions/{sessionId}" \
+  -H "Authorization: Bearer <token>"
+```
+
+Disconnecting a CDP client does not close the Capture session. Close the
+session with `DELETE /v1/sessions/{sessionId}` when the workflow is finished so
+billing stops promptly.
+
+CDP sessions cannot be combined with `proxy` or `bypassBotDetection`. If you
+need either of those options, create a regular browser session and use Capture
+actions instead of a raw CDP connection.
+
 ## Action types
 
 Actions are deterministic operations executed inside the active session page.

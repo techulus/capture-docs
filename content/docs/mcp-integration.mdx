@@ -134,10 +134,21 @@ A session keeps a real browser open and is billed by duration — **1 credit per
 #### browser_session_create
 
 Start an interactive browser session. Returns a `sessionId` and `expiresAt`.
+When `cdp: true` is set, it also returns a `connectUrl` for external CDP
+clients.
 
 - Optional `maxTtlSeconds` (max 900) to cap the session lifetime
 - Optional `proxy` to route through your configured proxy
 - Optional `bypassBotDetection` to use a stealth browser
+- Optional `cdp` to expose a Chrome DevTools Protocol connection URL
+
+Use `cdp: true` when an external automation client needs to attach directly to
+the browser. Pass the returned `connectUrl` to Puppeteer `connect` or
+Playwright `connectOverCDP`, then close the Capture session with
+`browser_session_close` when finished. Disconnecting the CDP client does not
+close the Capture session.
+
+`cdp` cannot be combined with `proxy` or `bypassBotDetection`.
 
 #### browser_session_act
 
