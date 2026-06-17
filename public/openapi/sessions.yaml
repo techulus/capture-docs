@@ -50,6 +50,10 @@ paths:
               customTtl:
                 value:
                   maxTtlSeconds: 300
+              cdp:
+                value:
+                  maxTtlSeconds: 300
+                  cdp: true
               proxyAndBypass:
                 value:
                   maxTtlSeconds: 300
@@ -62,6 +66,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateSessionResponse'
+              examples:
+                default:
+                  value:
+                    success: true
+                    session:
+                      id: sess_123e4567-e89b-12d3-a456-426614174000
+                      status: active
+                      expiresAt: '2026-06-17T11:20:00.000Z'
+                      maxTtlSeconds: 300
+                      proxy: false
+                      bypassBotDetection: false
+                      cdp: false
+                cdp:
+                  value:
+                    success: true
+                    session:
+                      id: sess_123e4567-e89b-12d3-a456-426614174000
+                      status: active
+                      expiresAt: '2026-06-17T11:20:00.000Z'
+                      maxTtlSeconds: 300
+                      proxy: false
+                      bypassBotDetection: false
+                      cdp: true
+                      connectUrl: wss://connect.capture.page/cdp?token=v1.example
+        '400':
+          description: Invalid session options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -339,6 +373,14 @@ components:
           type: boolean
           default: false
           description: Use Capture's configured captcha/bot-detection bypass browser when available.
+        cdp:
+          type: boolean
+          default: false
+          description: |
+            Expose a Chrome DevTools Protocol connection URL for direct browser
+            automation clients. CDP sessions cannot be combined with `proxy` or
+            `bypassBotDetection`. The create response includes `session.cdp`;
+            session metadata includes `session.options.cdp`.
 
     CreateSessionResponse:
       allOf:
@@ -348,7 +390,7 @@ components:
           properties:
             session:
               type: object
-              required: [id, status, expiresAt, maxTtlSeconds, proxy, bypassBotDetection]
+              required: [id, status, expiresAt, maxTtlSeconds, proxy, bypassBotDetection, cdp]
               properties:
                 id:
                   type: string
@@ -363,6 +405,16 @@ components:
                   type: boolean
                 bypassBotDetection:
                   type: boolean
+                cdp:
+                  type: boolean
+                  description: Whether this session exposes a CDP connection.
+                connectUrl:
+                  type: string
+                  format: uri
+                  description: |
+                    Fresh WebSocket URL for active CDP-enabled sessions. Use
+                    this with clients such as Puppeteer `connect` or Playwright
+                    `connectOverCDP`.
 
     GetSessionResponse:
       allOf:
@@ -438,6 +490,16 @@ components:
               type: boolean
             bypassBotDetection:
               type: boolean
+            cdp:
+              type: boolean
+              description: Whether this session exposes a CDP connection.
+        connectUrl:
+          type: string
+          format: uri
+          description: |
+            Fresh WebSocket URL returned only while a CDP-enabled session is
+            active. Client disconnects do not close the Capture session; close
+            it with `DELETE /v1/sessions/{sessionId}` when finished.
 
     SessionStatus:
       type: string
