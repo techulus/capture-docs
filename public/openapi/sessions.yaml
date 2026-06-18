@@ -59,6 +59,11 @@ paths:
                   maxTtlSeconds: 300
                   proxy: true
                   bypassBotDetection: true
+              cdpWithProxy:
+                summary: 'Invalid: CDP cannot be combined with proxy'
+                value:
+                  cdp: true
+                  proxy: true
       responses:
         '201':
           description: Session created
@@ -96,6 +101,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                cdpWithProxy:
+                  summary: CDP cannot be combined with proxy or bypassBotDetection
+                  value:
+                    success: false
+                    error: cdp cannot be combined with proxy or bypassBotDetection
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -106,6 +117,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SessionLimitErrorResponse'
+        '503':
+          description: CDP session creation is temporarily unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error: CDP connections are not available
         '500':
           $ref: '#/components/responses/InternalError'
 
@@ -379,8 +399,9 @@ components:
           description: |
             Expose a Chrome DevTools Protocol connection URL for direct browser
             automation clients. CDP sessions cannot be combined with `proxy` or
-            `bypassBotDetection`. The create response includes `session.cdp`;
-            session metadata includes `session.options.cdp`.
+            `bypassBotDetection` and require CDP connection support to be available.
+            The create response includes `session.cdp`; session metadata includes
+            `session.options.cdp`.
 
     CreateSessionResponse:
       allOf:
