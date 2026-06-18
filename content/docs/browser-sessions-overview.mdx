@@ -59,7 +59,8 @@ curl -X POST "https://api.capture.page/v1/sessions/{sessionId}/actions" \
   -d '{
     "type": "goto",
     "payload": {
-      "url": "https://example.com"
+      "url": "https://example.com",
+      "viewport": { "width": 1440, "height": 900 }
     }
   }'
 ```
@@ -73,10 +74,53 @@ curl -X POST "https://api.capture.page/v1/sessions/{sessionId}/actions" \
   -d '{
     "type": "screenshot",
     "payload": {
-      "fullPage": true
+      "fullPage": true,
+      "vw": 1440,
+      "vh": 900
     }
   }'
 ```
+
+## Viewport and device emulation
+
+Browser sessions use a live page viewport. Set or update the viewport on
+`goto`, `screenshot`, or actions that use `payload.screenshot: true`.
+
+Viewport action options:
+
+```json
+{
+  "viewport": { "width": 1440, "height": 900 },
+  "scaleFactor": 1
+}
+```
+
+Equivalent shorthand:
+
+```json
+{
+  "vw": 1440,
+  "vh": 900,
+  "deviceScaleFactor": 1
+}
+```
+
+Device emulation uses the same device keys returned by `/screenshot/devices`:
+
+```json
+{
+  "emulateDevice": "iphone_14"
+}
+```
+
+When `emulateDevice` is present, it configures the viewport, user agent, touch
+support, and scale factor for that device and takes precedence over explicit
+viewport dimensions. Viewport changes are stateful: if an action changes the
+viewport, later actions use the new viewport until you change it again.
+
+Limits: viewport width and height can be up to `5000` and must be provided
+together; `scaleFactor` / `deviceScaleFactor` can be up to `3`. Invalid device
+keys are rejected.
 
 Close the session:
 

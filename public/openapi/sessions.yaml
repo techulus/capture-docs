@@ -575,8 +575,68 @@ components:
         payload:
           type: object
           additionalProperties: true
-          description: Action-specific payload. Supports selectors, coordinates, text, keys, navigation options, screenshot options, safe DOM query fields, arbitrary query attributes, content format (`text`, `markdown`, or `html`; defaults to cleaned text), drag paths up to 100 points, and nested batch actions up to 25 actions. Selector `click` and `hover` responses include matched element diagnostics. For `query`, `fields` selects built-in fields, `attributes` returns arbitrary DOM attributes under each element's `attributes` object, and `limit` is capped at 500. For `goto`, `back`, `forward`, and `reload`, `waitUntil` must be `load`, `domcontentloaded`, or `commit`. For `wait_for_timeout`, `timeoutMs` is capped at 2500.
+          description: |
+            Action-specific payload. Supports selectors, coordinates, text,
+            keys, navigation options, screenshot options, live viewport options,
+            safe DOM query fields, arbitrary query attributes, content format
+            (`text`, `markdown`, or `html`; defaults to cleaned text), drag
+            paths up to 100 points, and nested batch actions up to 25 actions.
+            Selector `click` and `hover` responses include matched element
+            diagnostics. For `query`, `fields` selects built-in fields,
+            `attributes` returns arbitrary DOM attributes under each element's
+            `attributes` object, and `limit` is capped at 500. For `goto`,
+            `back`, `forward`, and `reload`, `waitUntil` must be `load`,
+            `domcontentloaded`, or `commit`. For `goto`, `screenshot`, and
+            action payloads with `screenshot: true`, `viewport`, `vw` / `vh`,
+            `scaleFactor` / `deviceScaleFactor`, or `emulateDevice` update the
+            live session viewport before the action; this change persists for
+            later actions. For `wait_for_timeout`, `timeoutMs` is capped at
+            2500.
           properties:
+            viewport:
+              type: object
+              additionalProperties: false
+              description: Live viewport to apply before supported actions. Width and height are capped at 5000; device scale factor is capped at 3.
+              required: [width, height]
+              properties:
+                width:
+                  type: integer
+                  minimum: 1
+                  maximum: 5000
+                height:
+                  type: integer
+                  minimum: 1
+                  maximum: 5000
+                deviceScaleFactor:
+                  type: number
+                  minimum: 0
+                  exclusiveMinimum: true
+                  maximum: 3
+            vw:
+              type: integer
+              minimum: 1
+              maximum: 5000
+              description: Live viewport width to apply before supported actions. Must be provided with `vh`.
+            vh:
+              type: integer
+              minimum: 1
+              maximum: 5000
+              description: Live viewport height to apply before supported actions. Must be provided with `vw`.
+            scaleFactor:
+              type: number
+              minimum: 0
+              exclusiveMinimum: true
+              maximum: 3
+              description: Device pixel ratio to apply before supported actions. Alias of `deviceScaleFactor`.
+            deviceScaleFactor:
+              type: number
+              minimum: 0
+              exclusiveMinimum: true
+              maximum: 3
+              description: Device pixel ratio to apply before supported actions.
+            emulateDevice:
+              type: string
+              description: Device profile key from `/screenshot/devices` to apply before supported actions.
             fields:
               type: array
               items:
