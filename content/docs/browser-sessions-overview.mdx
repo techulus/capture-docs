@@ -81,6 +81,50 @@ curl -X POST "https://api.capture.page/v1/sessions/{sessionId}/actions" \
   }'
 ```
 
+## Batch multi-step workflows
+
+For multi-step workflows, prefer the `batch` action instead of sending each
+step as a separate HTTP request. Batched actions run sequentially inside the
+same session, keep the same browser state, and reduce repeated request,
+authentication, routing, and network overhead.
+
+```bash
+curl -X POST "https://api.capture.page/v1/sessions/{sessionId}/actions" \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "batch",
+    "payload": {
+      "actions": [
+        {
+          "type": "goto",
+          "payload": {
+            "url": "https://example.com",
+            "waitUntil": "domcontentloaded"
+          }
+        },
+        {
+          "type": "wait_for_selector",
+          "payload": { "selector": "body", "visible": true }
+        },
+        {
+          "type": "scroll",
+          "payload": { "direction": "down", "amount": 500 }
+        },
+        { "type": "title" },
+        {
+          "type": "screenshot",
+          "payload": { "fullPage": false }
+        }
+      ]
+    }
+  }'
+```
+
+Use separate action requests when you need to inspect an intermediate result
+before deciding the next step. Otherwise, batching is the recommended pattern
+for predictable multi-action automations.
+
 ## Viewport and device emulation
 
 Browser sessions use a live page viewport. Set or update the viewport on
@@ -202,6 +246,10 @@ above 2500ms.
 The `content` action accepts `payload.format` as `text`, `markdown`, or `html`.
 It defaults to cleaned readable text so agents do not receive raw page HTML
 unless you request `html` explicitly.
+
+The `batch` action accepts up to 25 nested actions and executes them in order.
+Use it when the next steps are known ahead of time, such as navigating, waiting,
+scrolling, reading the title, and taking a screenshot.
 
 See the generated API reference in this section for request and response
 schemas:

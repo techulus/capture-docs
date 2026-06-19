@@ -581,6 +581,9 @@ components:
             safe DOM query fields, arbitrary query attributes, content format
             (`text`, `markdown`, or `html`; defaults to cleaned text), drag
             paths up to 100 points, and nested batch actions up to 25 actions.
+            Prefer `batch` for known multi-step workflows because it executes
+            actions sequentially in one session request and reduces repeated
+            request, authentication, routing, and network overhead.
             Selector `click` and `hover` responses include matched element
             diagnostics. For `query`, `fields` selects built-in fields,
             `attributes` returns arbitrary DOM attributes under each element's
