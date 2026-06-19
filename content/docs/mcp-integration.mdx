@@ -161,6 +161,12 @@ Run an action inside an open session. Takes the `sessionId`, an action `type`, a
 - Capture: `screenshot` (returned as an inline image; any action can set `payload.screenshot: true` to attach one)
 - `batch`: run several actions in one round-trip via `payload.actions`
 
+`goto`, `screenshot`, and action payloads with `screenshot: true` can include
+`viewport`, `vw` / `vh`, `scaleFactor` / `deviceScaleFactor`, or
+`emulateDevice` to update the live session viewport before the action. This is
+stateful: later actions keep using that viewport until another action changes
+it.
+
 Action results include `expiresInSeconds` when the session exists, letting the
 assistant renew, finish, or close the session before the TTL is reached.
 For `query`, use `payload.fields` for built-in fields and `payload.attributes`
