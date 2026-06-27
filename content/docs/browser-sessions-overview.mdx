@@ -216,9 +216,19 @@ Disconnecting a CDP client does not close the Capture session. Close the
 session with `DELETE /v1/sessions/{sessionId}` when the workflow is finished so
 billing stops promptly.
 
-CDP sessions cannot be combined with `proxy` or `bypassBotDetection`. If you
-need either of those options, create a regular browser session and use Capture
-actions instead of a raw CDP connection.
+CDP sessions can be combined with `proxy: true` to route both the Capture-owned
+page and CDP-created targets through your configured browser proxy:
+
+```bash
+curl -X POST "https://api.capture.page/v1/sessions" \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{"cdp":true,"proxy":true,"maxTtlSeconds":300}'
+```
+
+CDP sessions cannot be combined with `bypassBotDetection`. If you need bot
+detection bypass, create a regular browser session and use Capture actions
+instead of a raw CDP connection.
 
 ## Action types
 
