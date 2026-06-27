@@ -148,7 +148,8 @@ Playwright `connectOverCDP`, then close the Capture session with
 `browser_session_close` when finished. Disconnecting the CDP client does not
 close the Capture session.
 
-`cdp` cannot be combined with `proxy` or `bypassBotDetection`.
+`cdp` can be combined with `proxy` when CDP-created targets need to use your
+configured proxy. `cdp` cannot be combined with `bypassBotDetection`.
 
 #### browser_session_act
 
